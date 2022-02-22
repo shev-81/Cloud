@@ -1,0 +1,100 @@
+1.Сделать запрос, в котором мы выберем все данные о городе – регион, страна(надо учесть, что у нас есть города в которых region_id is null, есть те у которых region_id = какому то значению - как получить и те и другие). Можно использовать limit 50 для ограничения выдачи данных, или сделать такой запрос для страны Россия.
+
+SELECT *
+FROM  _cities 
+LEFT JOIN _regions 
+ON _cities.region_id = _regions.region_id
+LEFT JOIN _countries
+ON _countries.country_id=_regions.country_id
+LIMIT 50
+;
+
+2.Выбрать все города из Московской области. Попробуйте использовать функцию like - когда мы может вводить Не полное название области "Mocковск" 
+
+SELECT _regions.title_ru ,_cities.title_ru 
+FROM _regions
+LEFT JOIN _cities 
+ON _regions.region_id = _cities.region_id
+WHERE _regions.title_ru LIKE  'Московск%' 
+LIMIT 50
+;
+
+3. Выбрать среднюю зарплату по отделам . Рассматриваем зарплату по неуволенным сотрудникам. Сложность для тех кто хочет *** Покажите среднюю зарплату сотрудников отделов ("d001","d004") и чтобы средняя зарплата была больше > 70 000. При использовании средних величин обязательно используйте функции округления round(salary,2)  
+
+SELECT 
+ROUND(AVG(salaries.salary),2) AS AVG_salaries,
+dept_emp.emp_no
+FROM dept_emp 
+JOIN employees ON dept_emp.emp_no = employees.emp_no
+JOIN salaries ON employees.emp_no=salaries.emp_no
+WHERE (dept_emp.dept_no = 'd001' OR dept_emp.dept_no = 'd004') AND salaries.salary>70000 AND dept_emp.to_date = '9999-01-01'
+GROUP BY dept_emp.emp_no
+LIMIT 50
+;
+
+(mySQL выводит ошибку Экспресии если добавляю dept_emp.dept_no) поясните почему не могу взять номер депортамента сотрудника
+
+4.  Выбрать максимальную зарплату у сотрудника. Выбираем неуволенных сотрудников. Сложность *** возьмите отделы 'd002','d003' и с максимально зарплатой больше 75 000
+
+SELECT DISTINCT 
+MAX(salaries.salary),
+employees.emp_no
+FROM dept_emp
+JOIN employees ON dept_emp.emp_no = employees.emp_no
+JOIN salaries ON salaries.emp_no = employees.emp_no
+WHERE dept_emp.dept_no = 'd002' OR dept_emp.dept_no = 'd003' AND dept_emp.to_date = '9999-01-01'
+GROUP BY employees.emp_no
+LIMIT 50
+;
+
+(такой же вопрос как и к 3 заданию)
+
+5. Найти количество сотрудников в отделах и посмотреть, сколько всего денег получает отдел. Такие данные логичнее давать на текущий момент, и рассматривать только неуволенных людей и на текущий момент (Так как в таблице salaries по каждому работнику своя история выплат, у кого то 3 года работы, у кого то 10лет работы).
+
+SELECT DISTINCT 
+	SUM(salaries.salary),
+	dept_emp.dept_no 
+FROM dept_emp
+JOIN employees ON dept_emp.emp_no = employees.emp_no
+JOIN salaries ON salaries.emp_no = employees.emp_no
+WHERE dept_emp.to_date = '9999-01-01'
+GROUP BY dept_emp.dept_no
+;
+
+6. Посчитать количество сотрудников во всех отделах. Неуволенные сотрудники. Сложность * покажите отделы количество сотрудников которых больше 20 000
+
+SELECT 
+COUNT(employees.emp_no) > 20000,
+dept_emp.dept_no 
+FROM dept_emp
+JOIN employees ON dept_emp.emp_no = employees.emp_no
+WHERE dept_emp.to_date = '9999-01-01'
+GROUP BY dept_emp.dept_no
+;
+
+7. Удалить одного сотрудника, у которого максимальная зарплата. Проверка на неуволенного сотрудника обязательно.
+
+DELETE FROM employees WHERE emp_no = (
+SELECT MAX(salaries.salary) 
+FROM salaries
+WHERE salaries.to_date = '9999-01-01'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
