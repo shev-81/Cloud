@@ -10,7 +10,6 @@
             <AppenderRef ref="FILE" />
         </Root>
         <Logger name="com.cloud.serverpak" level="info"/>
-        <Logger name="com.cloud.serverpak.ClientHandler" level="info"/>
     </Loggers>
     <Appenders>
         <File name="FILE" fileName="${basePath}/logfile.log" append="true">

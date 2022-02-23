@@ -1,5 +1,6 @@
 package com.cloud.clientpak;
 
+import messages.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,11 +14,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable{
 
@@ -62,36 +62,45 @@ public class Controller implements Initializable{
     }
 
     @FXML
-    public void clickAddFile() {
+    public void clickAddFile() throws IOException {
         File file = fileChooser.showOpenDialog(ClientApp.getpStage());
         if (file != null) {
-            Message message = new Message(1, file);
             if(fileList.contains(file.getName())){
                 Alert allert = new Alert(Alert.AlertType.CONFIRMATION,"Файл будет перезаписан.");
                 Optional<ButtonType> option = allert.showAndWait();
                 if (option.get() == null) {
                     return;
                 } else if (option.get() == ButtonType.OK) {
-                    new Thread(() -> {
-                        if(!connection.send(message)){
-                            Alert allert1 = new Alert(Alert.AlertType.ERROR,"Ошибка при отправке файла!");
-                            allert1.show();
-                        }
-                    }).start();
+                    addFile(file);
                     return;
                 } else if (option.get() == ButtonType.CANCEL) {
                     return;
                 }
             }
-            new Thread(() -> {
-                if(!connection.send(message)){
-                    Alert allert = new Alert(Alert.AlertType.ERROR,"Ошибка при отправке файла!");
-                    allert.show();
-                }
-            }).start();
+            addFile(file);
             fileList.add(file.getName());
             reloadFxFilesList();
         }
+    }
+
+    public void addFile(File file) throws IOException {
+        int bufSize = 1024 * 1024 * 10;
+        int partsCount = (int)(file.length() / bufSize);
+        if (file.length() % bufSize != 0) {
+            partsCount++;
+        }
+        FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[bufSize]);
+        FileInputStream in = new FileInputStream(file);
+        for (int i = 0; i < partsCount; i++) {
+            int readedBytes = in.read(fmOut.data);
+            fmOut.partNumber = i + 1;
+            if (readedBytes < bufSize) {
+                fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
+            }
+            connection.send(fmOut);
+            System.out.println("Отправлена часть #" + (i + 1));
+        }
+        in.close();
     }
 
     @FXML
@@ -100,7 +109,7 @@ public class Controller implements Initializable{
         if(delFileName != null){
             fileList.remove(delFileName);
             reloadFxFilesList();
-            connection.send(new Message(0, delFileName));
+            connection.send(new DellFileRequest(delFileName));
         }
     }
 
@@ -108,7 +117,7 @@ public class Controller implements Initializable{
     public void clickGetButton() {
         String getFileName = listView.getSelectionModel().getSelectedItem();
         if(getFileName != null){
-            connection.send(new Message(2, getFileName));
+            connection.send(new FileRequest(getFileName));
         }
     }
 
@@ -173,14 +182,13 @@ public class Controller implements Initializable{
         }else{
             String login = authLogin.getText();
             String pass = authPassword.getText();
-            Message message = new Message(4, login+" "+pass);
+            AbstractMessage message = new AuthMessage(login, pass);
             connection.send(message);
         }
-
     }
 
     @FXML
-    public void register() {            // command - 5 регистрация нового пользователя
+    public void register() {
         if (connection == null) {
             connection = new Connection(this);
             new Thread(connection).start();
@@ -195,8 +203,7 @@ public class Controller implements Initializable{
             regMessage.setText("Passwords do not match");
             regMessage.setVisible(true);
         } else {
-            String userNameLoginPass = regName.getText()+" "+ regLogin.getText() +" "+ regPassword.getText();
-            Message message = new Message(5, userNameLoginPass);
+            AbstractMessage message = new RegUserRequest(regName.getText(), regLogin.getText(), regPassword.getText());
             connection.send(message);
         }
     }

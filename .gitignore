@@ -1,3 +1,6 @@
 # Project exclude paths
 /client/target/
 /server/target/
+/server/files/
+/client/files/
+/server/files/

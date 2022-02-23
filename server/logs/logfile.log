@@ -1,327 +1,146 @@
-INFO  2022-02-18 20:27:21 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 20:27:21 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:27:39 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 20:27:39 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:27:39 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:67) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 20:28:16 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:45) - Пользователь Aaa удалил файл Новое_изображение2.JPG
-INFO  2022-02-18 20:28:49 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 20:29:09 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 20:29:09 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:30:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 20:30:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:30:47 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:67) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 20:33:35 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 20:33:49 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 20:33:49 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:33:49 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:67) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 20:35:00 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 20:35:32 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 20:35:32 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:35:32 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:67) - Пользователь Aaa авторизовался на сервере!
-ERROR 2022-02-18 20:36:55 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:94) - Throwing
-java.net.SocketException: Connection reset
-	at sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:323) ~[?:?]
-	at sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350) ~[?:?]
-	at sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803) ~[?:?]
-	at java.net.Socket$SocketInputStream.read(Socket.java:966) ~[?:?]
-	at java.net.Socket$SocketInputStream.read(Socket.java:961) ~[?:?]
-	at java.io.DataInputStream.readUnsignedShort(DataInputStream.java:343) ~[?:?]
-	at java.io.DataInputStream.readUTF(DataInputStream.java:595) ~[?:?]
-	at java.io.DataInputStream.readUTF(DataInputStream.java:570) ~[?:?]
-	at com.cloud.serverpak.ClientHandler.read(ClientHandler.java:42) ~[classes/:?]
-	at com.cloud.serverpak.ClientHandler.<init>(ClientHandler.java:29) ~[classes/:?]
-	at com.cloud.serverpak.ServerApp.lambda$new$0(ServerApp.java:29) ~[classes/:?]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
-	at java.lang.Thread.run(Thread.java:833) [?:?]
-INFO  2022-02-18 20:36:55 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 20:37:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 20:37:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 20:37:33 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:67) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 21:01:37 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:10:48 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 21:10:48 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:11:14 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:11:14 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:11:14 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 21:11:18 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:124) - [Server]: Файл Голдшир_фон.jpg выслан пользователю.
-INFO  2022-02-18 21:11:59 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:124) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-18 21:12:19 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:124) - [Server]: Файл test_file.txt выслан пользователю.
-INFO  2022-02-18 21:12:42 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:12:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:12:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:12:46 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-18 21:17:20 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:17:26 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:17:26 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:17:26 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-18 21:17:28 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:17:30 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:17:30 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:17:30 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 21:18:49 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:22:38 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 21:22:38 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:22:55 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:22:55 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:22:56 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 21:23:02 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:23:05 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:23:05 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:23:05 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-18 21:23:21 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:35:29 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 21:35:29 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:36:27 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:36:27 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:36:27 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-18 21:37:06 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:148) - [Server]: Получаем файл.
-INFO  2022-02-18 21:37:06 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:166) - [Server]: Файл fon_workSpace.JPG записан
-INFO  2022-02-18 21:37:27 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:37:52 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:37:52 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:37:52 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-18 21:38:33 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:124) - [Server]: Файл fon_workSpace.JPG выслан пользователю.
-INFO  2022-02-18 21:39:54 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:39:58 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:39:58 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:39:58 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 21:40:20 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:40:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:40:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:40:47 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 21:41:48 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:124) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-18 21:42:55 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:45:54 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 21:45:54 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:46:19 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:46:19 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:50:56 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 21:51:19 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 21:51:19 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 21:51:58 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 22:19:54 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 22:19:54 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 22:20:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 22:20:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-ERROR 2022-02-18 22:21:07 [pool-2-thread-1] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:49) - Throwing
-org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: users.NickName)
-	at org.sqlite.core.DB.newSQLException(DB.java:1030) ~[sqlite-jdbc-3.36.0.3.jar:?]
-	at org.sqlite.core.DB.newSQLException(DB.java:1042) ~[sqlite-jdbc-3.36.0.3.jar:?]
-	at org.sqlite.core.DB.throwex(DB.java:1007) ~[sqlite-jdbc-3.36.0.3.jar:?]
-	at org.sqlite.core.NativeDB._exec_utf8(Native Method) ~[sqlite-jdbc-3.36.0.3.jar:?]
-	at org.sqlite.core.NativeDB._exec(NativeDB.java:97) ~[sqlite-jdbc-3.36.0.3.jar:?]
-	at org.sqlite.jdbc3.JDBC3Statement.executeUpdate(JDBC3Statement.java:102) ~[sqlite-jdbc-3.36.0.3.jar:?]
-	at com.cloud.serverpak.AuthServiceBD.registerNewUser(AuthServiceBD.java:46) ~[classes/:?]
-	at com.cloud.serverpak.ClientHandler.read(ClientHandler.java:90) ~[classes/:?]
-	at com.cloud.serverpak.ClientHandler.<init>(ClientHandler.java:29) ~[classes/:?]
-	at com.cloud.serverpak.ServerApp.lambda$new$0(ServerApp.java:29) ~[classes/:?]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
-	at java.lang.Thread.run(Thread.java:833) [?:?]
-INFO  2022-02-18 22:22:39 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 22:23:28 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 22:23:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 22:23:45 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 22:23:45 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 22:27:36 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 22:27:46 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 22:27:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 22:28:22 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 22:28:22 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 22:28:55 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-18 22:28:57 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 22:29:01 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-18 22:29:01 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-18 22:29:44 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:68) - Пользователь www авторизовался на сервере!
-INFO  2022-02-18 22:30:07 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:154) - [Server]: Получаем файл.
-INFO  2022-02-18 22:30:07 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:172) - [Server]: Файл keystore.jks записан
-INFO  2022-02-18 22:31:19 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:127) - [Server]: Файл keystore.jks выслан пользователю.
-INFO  2022-02-18 22:31:50 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-18 23:03:47 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-18 23:03:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 10:45:39 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 10:45:39 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 10:45:55 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 10:45:55 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 10:45:55 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:122) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 10:46:00 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 12:04:36 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 12:04:36 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 12:04:53 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 12:04:53 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 12:04:53 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:141) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 12:05:04 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:99) - Пользователь Aaa удалил файл Голдшир_фон.jpg
-INFO  2022-02-19 12:05:47 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:104) - [Server]: Получаем файл.
-INFO  2022-02-19 12:05:47 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:122) - [Server]: Файл Голдшир_фон.jpg записан
-INFO  2022-02-19 12:05:58 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 12:06:04 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 12:06:04 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 12:06:04 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:141) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-19 12:06:14 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 12:06:24 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 12:06:24 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 12:06:30 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:141) - Пользователь eee авторизовался на сервере!
-INFO  2022-02-19 12:06:34 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:99) - Пользователь eee удалил файл 
-INFO  2022-02-19 12:07:10 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:104) - [Server]: Получаем файл.
-INFO  2022-02-19 12:07:10 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:122) - [Server]: Файл module-info.java записан
-INFO  2022-02-19 12:07:35 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:186) - [Server]: Файл module-info.java выслан пользователю.
-INFO  2022-02-19 12:07:44 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:32) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 13:45:03 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 13:45:03 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 13:45:18 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 13:45:18 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 13:45:18 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:144) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 13:45:57 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 13:46:07 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 13:46:07 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 13:46:17 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 13:46:17 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 13:46:17 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:145) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 13:46:40 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:108) - [Server]: Получаем файл.
-INFO  2022-02-19 13:46:40 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:126) - [Server]: Файл mysql-connector-java-8.0.25.jar записан.
-INFO  2022-02-19 13:46:49 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл mysql-connector-java-8.0.25.jar
-INFO  2022-02-19 13:47:12 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:108) - [Server]: Получаем файл.
-INFO  2022-02-19 13:47:12 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:126) - [Server]: Файл mysql-connector-java-8.0.25.jar записан.
-INFO  2022-02-19 13:47:21 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл mysql-connector-java-8.0.25.jar
-INFO  2022-02-19 13:47:28 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 14:01:34 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 14:01:34 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 14:01:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 14:01:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 14:01:46 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:151) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 14:02:21 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:02:21 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:03:04 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:03:04 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:03:21 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл DZ-3.txt
-INFO  2022-02-19 14:03:30 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:98) - Пользователь Aaa не удалил файл
-INFO  2022-02-19 14:03:34 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:98) - Пользователь Aaa не удалил файл
-INFO  2022-02-19 14:03:50 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:03:50 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:04:47 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл DZ-3.txt
-INFO  2022-02-19 14:05:22 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:05:22 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:05:58 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:05:58 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:16:24 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 14:16:30 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 14:16:30 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 14:16:43 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 14:16:43 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 14:16:43 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:151) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 14:17:34 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:17:34 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:18:45 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:18:45 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:32:06 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 14:32:28 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 14:32:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 14:32:41 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 14:32:41 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 14:32:41 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:151) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 14:33:16 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:33:16 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:33:59 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:33:59 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:35:07 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл DZ-3.txt
-INFO  2022-02-19 14:35:19 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 14:35:19 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:132) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 14:35:32 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:15:17 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 23:15:17 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:15:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:15:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:15:33 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:16:01 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:16:26 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:16:26 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:16:26 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-19 23:16:48 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:17:05 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:17:05 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:17:05 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:17:10 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл dir
-INFO  2022-02-19 23:17:16 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:30:09 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 23:30:09 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:30:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:30:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:30:20 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:30:48 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-19 23:30:48 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:117) - [Server]: Файл DZ-3.txt записан.
-INFO  2022-02-19 23:31:04 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:187) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-19 23:31:26 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:187) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-19 23:31:40 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:33:57 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 23:33:57 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:34:06 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:34:06 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:34:06 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:34:08 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:187) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-19 23:34:44 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:187) - [Server]: Файл test_file.txt выслан пользователю.
-INFO  2022-02-19 23:35:05 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:52:33 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 23:52:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:52:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:52:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:52:47 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:52:56 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл test_file.txt выслан пользователю.
-INFO  2022-02-19 23:53:13 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл test_file.txt выслан пользователю.
-INFO  2022-02-19 23:53:38 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл test_file.txt
-INFO  2022-02-19 23:53:44 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-19 23:54:16 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:54:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:54:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:54:28 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:54:35 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-19 23:57:01 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-19 23:57:08 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-19 23:57:08 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:57:21 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-19 23:57:21 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-19 23:57:21 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-19 23:57:25 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-19 23:57:39 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-20 00:02:06 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-20 00:02:12 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-20 00:02:12 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-20 00:02:25 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-20 00:02:25 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-20 00:02:25 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-20 00:02:28 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:174) - [Server]: Файл DZ-3.txt выслан пользователю.
-INFO  2022-02-20 00:03:08 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-20 00:04:00 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:117) - [Server]: Файл data.006 записан.
-INFO  2022-02-20 00:04:23 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл data.006
-INFO  2022-02-20 00:07:20 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-20 00:11:39 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-20 00:11:39 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-20 00:11:50 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-20 00:11:50 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-20 00:11:50 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-20 00:12:42 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-20 00:13:28 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:117) - [Server]: Файл data.006 записан.
-INFO  2022-02-20 00:23:23 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-20 00:30:29 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-20 00:30:29 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-20 00:30:43 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-20 00:30:43 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-20 00:30:43 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-20 00:32:58 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:95) - Пользователь Aaa удалил файл data.006
-INFO  2022-02-20 00:33:18 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-20 00:34:12 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:117) - [Server]: Файл data.014 записан.
-INFO  2022-02-20 00:34:36 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-22 09:29:33 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-22 09:29:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-22 09:29:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-22 09:29:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-22 09:29:46 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Anna авторизовался на сервере!
-INFO  2022-02-22 09:30:04 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
-INFO  2022-02-22 09:57:12 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
-INFO  2022-02-22 09:57:12 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-22 09:57:48 [main] com.cloud.serverpak.ServerApp (ServerApp.java:27) - User connected.
-INFO  2022-02-22 09:57:48 [main] com.cloud.serverpak.ServerApp (ServerApp.java:25) - Server wait connected User.
-INFO  2022-02-22 09:57:48 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:136) - Пользователь Aaa авторизовался на сервере!
-INFO  2022-02-22 09:58:11 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:103) - [Server]: Получаем файл.
-INFO  2022-02-22 09:58:11 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:117) - [Server]: Файл VLtelecom.txt записан.
-INFO  2022-02-22 09:58:52 [pool-2-thread-1] com.cloud.serverpak.ClientHandler (ClientHandler.java:57) - [Server]: Соединение c клиентом разорванно.
+INFO  2022-02-22 13:51:56 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 13:51:57 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 14:12:24 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 14:12:24 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 15:21:19 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 15:21:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 15:21:34 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:50) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 15:22:14 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 15:22:14 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 15:22:26 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация НЕ пройдена.
+INFO  2022-02-22 15:37:26 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 15:37:26 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 15:37:56 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:51) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 15:38:01 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:61) - Пользователь Anna удалил файл fon_workSpace.JPG
+INFO  2022-02-22 15:38:22 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:51) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:15:27 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:15:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:15:39 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:19:57 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:19:57 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:20:21 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:23:54 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:23:54 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:24:06 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:42:59 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:43:00 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:43:11 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:45:42 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:45:43 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:45:59 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:47:07 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:47:08 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:47:23 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:49:30 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:49:31 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:50:46 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:52:00 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:52:00 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:52:56 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:54:59 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:55:00 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:55:11 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 17:57:41 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 17:57:42 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 17:57:54 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:06:53 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 18:06:54 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 18:07:16 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:15:54 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 18:15:55 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 18:16:09 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:20:25 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 18:20:25 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 18:20:38 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:21:18 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:25:39 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 18:25:39 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 18:25:53 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:35:18 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 18:35:18 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 18:35:32 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 18:38:09 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:65) - Пользователь Aaa удалил файл data.006
+INFO  2022-02-22 18:55:19 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 18:55:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 18:55:32 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:00:51 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:00:51 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:01:06 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:08:49 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:08:49 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:09:03 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:12:49 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:12:50 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:13:17 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:16:24 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:16:24 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:16:38 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:21:12 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:104) - Соединение закрыто
+INFO  2022-02-22 19:22:23 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:22:24 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:22:36 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:24:32 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:24:33 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:24:44 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:26:18 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:104) - Соединение закрыто
+INFO  2022-02-22 19:26:27 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:26:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:26:38 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:27:41 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:104) - Соединение закрыто
+INFO  2022-02-22 19:34:33 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:34:34 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:34:47 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:41:44 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:41:44 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:41:57 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:53:53 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:53:54 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:54:09 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 19:54:56 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:105) - Соединение закрыто
+INFO  2022-02-22 19:58:02 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 19:58:03 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 19:58:17 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 20:02:19 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 20:02:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 20:02:34 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:56) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 20:35:21 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-22 20:35:22 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-22 20:35:46 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:56) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-22 20:35:56 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:66) - Пользователь Aaa удалил файл data.014
+INFO  2022-02-22 20:35:59 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:66) - Пользователь Aaa удалил файл data.006
+INFO  2022-02-23 22:53:02 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-23 22:53:03 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-23 22:53:27 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:56) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-23 22:55:09 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:66) - Пользователь Aaa удалил файл data.014
+INFO  2022-02-23 22:55:31 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:56) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-23 22:55:47 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:59) - Авторизация НЕ пройдена.
+INFO  2022-02-23 22:55:47 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:59) - Авторизация НЕ пройдена.
+INFO  2022-02-23 22:55:48 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:59) - Авторизация НЕ пройдена.
+INFO  2022-02-23 22:55:48 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:59) - Авторизация НЕ пройдена.
+INFO  2022-02-23 22:55:48 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:59) - Авторизация НЕ пройдена.
+INFO  2022-02-23 23:27:47 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-23 23:27:47 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-23 23:28:17 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:56) - Авторизация НЕ пройдена.
+INFO  2022-02-23 23:34:29 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-23 23:34:30 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-23 23:34:39 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:54) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-23 23:38:27 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-23 23:38:27 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-23 23:45:07 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-23 23:45:08 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-23 23:45:49 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:54) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-23 23:46:04 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:54) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:04:31 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 00:04:31 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-24 00:04:45 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:04:48 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:64) - Пользователь Aaa удалил файл DZ-3.txt
+INFO  2022-02-24 00:05:52 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:64) - Пользователь Aaa удалил файл Голдшир_фон.jpg
+INFO  2022-02-24 00:07:30 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:07:42 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:08:03 [nioEventLoopGroup-3-4] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:08:43 [nioEventLoopGroup-3-4] com.cloud.serverpak.MainHandler (MainHandler.java:64) - Пользователь Shev удалил файл data.014
+INFO  2022-02-24 00:08:56 [nioEventLoopGroup-3-5] com.cloud.serverpak.MainHandler (MainHandler.java:56) - Авторизация НЕ пройдена.
+INFO  2022-02-24 00:09:15 [nioEventLoopGroup-3-5] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:10:05 [nioEventLoopGroup-3-6] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 00:13:17 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 00:13:17 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
