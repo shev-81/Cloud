@@ -73,12 +73,11 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     }
 
     public void fileReq(ChannelHandlerContext ctx, Object msg){
-        new Thread(() -> {
             try {
                 String nameFile = ((FileRequest) msg).getFilename();
                 File file = new File("server/files/" + userName + "/" + nameFile);
                 int bufSize = 1024 * 1024 * 10;
-                int partsCount = new Long(file.length() / bufSize).intValue();
+                int partsCount = (int)(file.length() / bufSize);
                 if (file.length() % bufSize != 0) {
                     partsCount++;
                 }
@@ -91,14 +90,12 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                         fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
                     }
                     ctx.writeAndFlush(fmOut);
-                    Thread.sleep(100);
                     System.out.println("Отправлена часть #" + (i + 1));
                 }
                 in.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }).start();
     }
 
     public void fileMess(Object msg) throws IOException {
