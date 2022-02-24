@@ -144,3 +144,50 @@ INFO  2022-02-24 00:09:15 [nioEventLoopGroup-3-5] com.cloud.serverpak.MainHandle
 INFO  2022-02-24 00:10:05 [nioEventLoopGroup-3-6] com.cloud.serverpak.MainHandler (MainHandler.java:53) - Авторизация пройдена успешно выслан список файлов на сервере
 INFO  2022-02-24 00:13:17 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
 INFO  2022-02-24 00:13:17 [main] com.cloud.serverpak.ServerApp (ServerApp.java:40) - Сервер запущен
+INFO  2022-02-24 01:30:34 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 01:30:34 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 01:31:01 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 01:32:02 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:14:19 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:14:20 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:14:32 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:21:09 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:21:10 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:21:21 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:23:16 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:24:47 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:25:49 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:25:50 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:26:00 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:29:38 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:41:09 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:41:09 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:41:25 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:48:25 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:48:26 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:48:41 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:48:54 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:50:19 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:50:19 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:50:35 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:54:08 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:54:09 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:54:27 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 10:55:03 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:123) - Пользователь Aaa удалил файл data.006
+INFO  2022-02-24 10:57:10 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 10:57:11 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 10:57:24 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:04:25 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:12:41 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:13:43 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:123) - Пользователь Aaa удалил файл data.014
+INFO  2022-02-24 11:17:07 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 11:17:08 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 11:17:20 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:19:59 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:20:28 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:123) - Пользователь Aaa удалил файл data.006
+INFO  2022-02-24 11:20:53 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:123) - Пользователь Aaa удалил файл data.014
+INFO  2022-02-24 11:25:49 [nioEventLoopGroup-3-3] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:31:27 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-02-24 11:31:28 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-02-24 11:32:30 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-02-24 11:36:10 [nioEventLoopGroup-3-2] com.cloud.serverpak.MainHandler (MainHandler.java:55) - Авторизация пройдена успешно выслан список файлов на сервере

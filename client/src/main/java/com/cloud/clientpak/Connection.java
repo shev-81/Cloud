@@ -99,12 +99,23 @@ public class Connection implements Runnable {
         if (fmsg.partsCount == 1) {
             append = false;
         }
+        double percentProgressBar = (double) 1 / fmsg.partsCount;
+        Platform.runLater(() -> {
+            controller.fileNameMessage.setText("Копируем файла - "+ fmsg.filename + ".");
+            controller.fileNameMessage.setVisible(true);
+            controller.progressBar.setVisible(true);
+            controller.progressBar.setProgress((double) fmsg.partNumber * percentProgressBar);
+        });
         System.out.println(fmsg.partNumber + " / " + fmsg.partsCount);
         FileOutputStream fos = new FileOutputStream("client/files/" + fmsg.filename, append);
         fos.write(fmsg.data);
         fos.close();
         if (fmsg.partNumber == fmsg.partsCount) {
             System.out.println("файл полностью получен");
+            Platform.runLater(()->{
+                controller.progressBar.setVisible(false);
+                controller.fileNameMessage.setVisible(false);
+            });
         }
     }
 

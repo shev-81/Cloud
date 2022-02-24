@@ -54,6 +54,11 @@ public class Controller implements Initializable{
     @FXML
     Label authMessage;
 
+    @FXML
+    ProgressBar progressBar;
+    @FXML
+    Label fileNameMessage;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changeStageToAuth();
@@ -84,23 +89,42 @@ public class Controller implements Initializable{
     }
 
     public void addFile(File file) throws IOException {
-        int bufSize = 1024 * 1024 * 10;
-        int partsCount = (int)(file.length() / bufSize);
-        if (file.length() % bufSize != 0) {
-            partsCount++;
-        }
-        FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[bufSize]);
-        FileInputStream in = new FileInputStream(file);
-        for (int i = 0; i < partsCount; i++) {
-            int readedBytes = in.read(fmOut.data);
-            fmOut.partNumber = i + 1;
-            if (readedBytes < bufSize) {
-                fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
+        new Thread(() ->{
+            try {
+                int bufSize = 1024 * 1024 * 10;
+                int partsCount = (int)(file.length() / bufSize);
+                double percentProgressBar = (double) 1 / partsCount;
+                if (file.length() % bufSize != 0) {
+                    partsCount++;
+                }
+                Platform.runLater(() -> {
+                    fileNameMessage.setText("Загрузка файла - "+ file.getName()+" в облако.");
+                    fileNameMessage.setVisible(true);
+                    progressBar.setVisible(true);
+                });
+                FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[bufSize]);
+                FileInputStream in = new FileInputStream(file);
+                for (int i = 0; i < partsCount; i++) {
+                    int readedBytes = in.read(fmOut.data);
+                    fmOut.partNumber = i + 1;
+                    Platform.runLater(() -> {
+                        progressBar.setProgress((double) fmOut.partNumber * percentProgressBar);
+                    });
+                    if (readedBytes < bufSize) {
+                        fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
+                    }
+                    connection.send(fmOut);
+                    System.out.println("Отправлена часть #" + (i + 1));
+                }
+                in.close();
+                Platform.runLater(() -> {
+                    fileNameMessage.setVisible(false);
+                    progressBar.setVisible(false);
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            connection.send(fmOut);
-            System.out.println("Отправлена часть #" + (i + 1));
-        }
-        in.close();
+        }).start();
     }
 
     @FXML

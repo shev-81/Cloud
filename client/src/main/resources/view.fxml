@@ -207,7 +207,9 @@
                             <MenuItem onAction="#exitApp" text="Выйти из программы"/>
                         </Menu>
                     </MenuBar>
-                    <ListView fx:id="listView" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="listView" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="fileNameMessage" visible="false" text="" textFill="blue"/>
+                        <ProgressBar fx:id="progressBar" visible="false" prefWidth="Infinity"></ProgressBar>
                     <HBox spacing="5">
                         <Button maxWidth="Infinity" onAction="#clickAddFile" text="Add" HBox.hgrow="ALWAYS"/>
                         <Button maxWidth="Infinity" onAction="#clickDeleteButton" text="Delete" HBox.hgrow="ALWAYS"/>
