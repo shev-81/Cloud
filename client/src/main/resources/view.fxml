@@ -3,221 +3,211 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.text.Font?>
-<StackPane prefHeight="500" prefWidth="500" style="-fx-background-color: white;"
-           xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.cloud.clientpak.Controller">
+<StackPane prefHeight="500" prefWidth="500" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cloud.clientpak.Controller">
     <children>
         <GridPane fx:id="authPane" prefHeight="500" prefWidth="500" stylesheets="@style.css" visible="false">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="210.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="210.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <TextField fx:id="authLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                           minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1"
-                           GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
-                <PasswordField fx:id="authPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                               minWidth="-Infinity" onAction="#enterCloud" prefHeight="25.0" prefWidth="200.0"
-                               GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6"
-                               GridPane.valignment="CENTER"/>
+                <TextField fx:id="authLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                <PasswordField fx:id="authPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#enterCloud" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                 <Label text="Login:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <padding>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </padding>
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Label>
                 <Label text="Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                     <padding>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </padding>
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Label>
-                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#enterCloud" prefHeight="40.0" prefWidth="120.0" text="Enter"
-                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7"
-                        GridPane.valignment="CENTER">
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enterCloud" prefHeight="40.0" prefWidth="120.0" text="Enter" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets/>
+                        <Insets />
                     </GridPane.margin>
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Button>
-                <Label text="Cloud storage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"
-                       GridPane.valignment="BOTTOM">
+                <Label text="Cloud storage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <font>
-                        <Font name="Ubuntu Bold" size="25.0"/>
+                        <Font name="Ubuntu Bold" size="25.0" />
                     </font>
                 </Label>
-                <Label fx:id="authMessage" text="Account is already online" textAlignment="CENTER" textFill="RED"
-                       visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3"
-                       GridPane.valignment="CENTER">
+                <Label fx:id="authMessage" text="Account is already online" textAlignment="CENTER" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Label>
-                <Hyperlink onAction="#changeStageToReg" style="-fx-underline: false;" text="Don't have an accaunt?"
-                           GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8"
-                           GridPane.valignment="CENTER">
+                <Hyperlink onAction="#changeStageToReg" style="-fx-underline: false;" text="Don't have an accaunt?" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="Ubuntu" size="13.0"/>
+                        <Font name="Ubuntu" size="13.0" />
                     </font>
                 </Hyperlink>
-                <Label text="Authorization" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-                       GridPane.valignment="CENTER">
+                <Label text="Authorization" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Label>
             </children>
         </GridPane>
         <GridPane fx:id="regPane" prefHeight="500" prefWidth="500" stylesheets="@style.css" visible="false">
             <children>
-                <TextField fx:id="regLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                           minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1"
-                           GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
-                <PasswordField fx:id="regPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                               minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1"
-                               GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
-                <PasswordField fx:id="regPasswordRep" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                               minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1"
-                               GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER"/>
-                <TextField fx:id="regName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                           minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1"
-                           GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER"/>
+                <TextField fx:id="regLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                <PasswordField fx:id="regPassword" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                <PasswordField fx:id="regPasswordRep" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                <TextField fx:id="regName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
                 <Label text="Login:" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                     <padding>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </padding>
                 </Label>
                 <Label text="Password:" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                     <padding>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </padding>
                 </Label>
-                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="120.0" text="Register"
-                        GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11"
-                        GridPane.valignment="CENTER">
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="120.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets/>
+                        <Insets />
                     </GridPane.margin>
                     <font>
-                        <Font size="15.0"/>
+                        <Font size="15.0" />
                     </font>
                 </Button>
-                <Label text="Cloud storage" GridPane.columnIndex="1" GridPane.halignment="CENTER"
-                       GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <Label text="Cloud storage" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <font>
-                        <Font name="Ubuntu Bold" size="25.0"/>
+                        <Font name="Ubuntu Bold" size="25.0" />
                     </font>
                 </Label>
-                <Label fx:id="regMessage" text="Login is already in use" textAlignment="CENTER" textFill="RED"
-                       visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3"
-                       GridPane.valignment="CENTER">
+                <Label fx:id="regMessage" text="Login is already in use" textAlignment="CENTER" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Label>
-                <Hyperlink onAction="#changeStageToAuth" prefHeight="23.0" prefWidth="219.0"
-                           style="-fx-underline: false;" text="Already have an accaunt? Sign in."
-                           GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="12"
-                           GridPane.valignment="TOP">
+                <Hyperlink onAction="#changeStageToAuth" prefHeight="23.0" prefWidth="219.0" style="-fx-underline: false;" text="Already have an accaunt? Sign in." GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="TOP">
                     <font>
-                        <Font name="Ubuntu" size="13.0"/>
+                        <Font name="Ubuntu" size="13.0" />
                     </font>
                 </Hyperlink>
-                <Label text="Registration" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-                       GridPane.valignment="CENTER">
+                <Label text="Registration" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                 </Label>
                 <Label text="Nickname:" GridPane.halignment="RIGHT" GridPane.rowIndex="10">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                     <padding>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </padding>
                 </Label>
-                <Label text="Repeat password:" GridPane.halignment="RIGHT" GridPane.rowIndex="8"
-                       GridPane.valignment="CENTER">
+                <Label text="Repeat password:" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                     <font>
-                        <Font name="Ubuntu" size="15.0"/>
+                        <Font name="Ubuntu" size="15.0" />
                     </font>
                     <padding>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                     </padding>
                 </Label>
             </children>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="210.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="210.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="10.0"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="10.0"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-                <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="NEVER"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="10.0" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                <RowConstraints minHeight="10.0" prefHeight="75.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
         </GridPane>
-        <VBox fx:id="cloudPane" prefHeight="Infinity" prefWidth="Infinity" stylesheets="@style.css" visible="false" alignment="center" xmlns="http://javafx.com/javafx/16"
-              xmlns:fx="http://javafx.com/fxml/1">
+        <VBox fx:id="cloudPane" alignment="center" prefHeight="Infinity" prefWidth="Infinity" stylesheets="@style.css" visible="false" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
             <children>
-                    <MenuBar>
-                        <Menu fx:id="menuApp" text="Меню">
-                            <MenuItem onAction="#changeUser" text="Сменить пользователя"/>
-                            <MenuItem onAction="#exitApp" text="Выйти из программы"/>
-                        </Menu>
-                    </MenuBar>
-                        <ListView fx:id="listView" VBox.vgrow="ALWAYS" />
-                        <Label fx:id="fileNameMessage" visible="false" text="" textFill="blue"/>
-                        <ProgressBar fx:id="progressBar" visible="false" prefWidth="Infinity"></ProgressBar>
-                    <HBox spacing="5">
-                        <Button maxWidth="Infinity" onAction="#clickAddFile" text="Add" HBox.hgrow="ALWAYS"/>
-                        <Button maxWidth="Infinity" onAction="#clickDeleteButton" text="Delete" HBox.hgrow="ALWAYS"/>
-                        <Button maxWidth="Infinity" onAction="#clickGetButton" text="Get" HBox.hgrow="ALWAYS"/>
-                        <padding>
-                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
-                        </padding>
-                    </HBox>
+                <MenuBar>
+                    <Menu fx:id="menuApp" text="Меню">
+                        <MenuItem onAction="#changeUser" text="Сменить пользователя" />
+                        <MenuItem onAction="#exitApp" text="Выйти из программы" />
+                    </Menu>
+                </MenuBar>
+                <HBox maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox maxWidth="Infinity" prefWidth="400" HBox.hgrow="ALWAYS">
+                            <ListView fx:id="listView" VBox.vgrow="ALWAYS"  maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" />
+                            <Label fx:id="fileNameMessage" alignment="CENTER" prefWidth="Infinity" text="" textAlignment="CENTER" textFill="blue" visible="false">
+                                <font>
+                                    <Font size="13.0" />
+                                </font>
+                            </Label>
+                            <ProgressBar fx:id="progressBar" maxWidth="Infinity" prefWidth="Infinity" visible="false" />
+                        </VBox>
+                        <VBox fx:id="load_bar" alignment="BOTTOM_CENTER" prefHeight="2000.0" prefWidth="40.0" style="-fx-border-color: black; -fx-border-radius: 2 2 2 2;">
+                            <children>
+                                <Label alignment="TOP_CENTER" prefWidth="Infinity" text="10 Gb" textAlignment="CENTER" textFill="#4169E1" visible="true">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Label>
+                                <VBox fx:id="bar" prefHeight="222.0" prefWidth="40.0"  style="-fx-border-radius: 2 2 2 2;">
+                                    <Label fx:id="fileSizeLabel" alignment="BOTTOM_CENTER" prefWidth="Infinity" text="10 Gb" textAlignment="CENTER" textFill="white" visible="true">
+                                        <font>
+                                            <Font size="20.0" />
+                                        </font>
+                                    </Label>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox spacing="5">
+                    <Button maxWidth="Infinity" onAction="#clickAddFile" text="Add" HBox.hgrow="ALWAYS" />
+                    <Button maxWidth="Infinity" onAction="#clickDeleteButton" text="Delete" HBox.hgrow="ALWAYS" />
+                    <Button maxWidth="Infinity" onAction="#clickGetButton" text="Get" HBox.hgrow="ALWAYS" />
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
             </children>
         </VBox>
     </children>

@@ -1,10 +1,10 @@
 package messages;
 
-public class FileSizeMessage extends AbstractMessage{
+public class FilesSizeMessage extends AbstractMessage{
 
     private long filesSize;
 
-    public FileSizeMessage(long filesSize) {
+    public FilesSizeMessage(long filesSize) {
         this.filesSize = filesSize;
     }
 

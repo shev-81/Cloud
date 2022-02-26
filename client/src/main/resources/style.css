@@ -1,7 +1,3 @@
-.scroll-pane .viewport {
-    -fx-background-image: url(images/background.png);
-}
-
 .scroll-pane, .split-pane {
   -fx-background-insets: 0;
   -fx-padding: 0;

@@ -25,6 +25,8 @@ public class Controller implements Initializable{
     private List<String> fileList;
     private ObservableList<String> listFilesModel;
     private FileChooser fileChooser;
+    private boolean reWriteFileCheck;
+    private final static long CAPACITY_CLOUD_IN_GB = 10;
 
     @FXML
     VBox cloudPane;
@@ -59,12 +61,22 @@ public class Controller implements Initializable{
     @FXML
     Label fileNameMessage;
 
+    @FXML
+    VBox load_bar;
+    @FXML
+    VBox bar;
+
+    @FXML
+    Label fileSizeLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changeStageToAuth();
         fileList = new ArrayList<>();
         this.fileChooser = new FileChooser();
-    }
+        bar.setStyle("-fx-background-color: #4169E1");  //todo перенести в стили
+        reWriteFileCheck = false;
+       }
 
     @FXML
     public void clickAddFile() throws IOException {
@@ -76,12 +88,19 @@ public class Controller implements Initializable{
                 if (option.get() == null) {
                     return;
                 } else if (option.get() == ButtonType.OK) {
+                    reWriteFileCheck = true;                // чек на перезапись если отключен то файл не перезаписывается
                     addFile(file);
                     return;
                 } else if (option.get() == ButtonType.CANCEL) {
                     return;
                 }
             }
+            if (connection.getLastLoadSizeFiles() + file.length() > CAPACITY_CLOUD_IN_GB * 1024 * 1024 * 1024) {
+                Alert allert = new Alert(Alert.AlertType.INFORMATION, "Нехватает места в облаке для сохранения файла.");
+                allert.show();
+                return;
+            }
+            reWriteFileCheck = false;
             addFile(file);
             fileList.add(file.getName());
             reloadFxFilesList();
@@ -116,6 +135,9 @@ public class Controller implements Initializable{
                     connection.send(fmOut);
                     System.out.println("Отправлена часть #" + (i + 1));
                 }
+                reWriteFileCheck = false;
+                System.out.println("посылаем запрос размера файлов на сервере");
+                connection.send(new FilesSizeMessage(1));
                 in.close();
                 Platform.runLater(() -> {
                     fileNameMessage.setVisible(false);
@@ -241,5 +263,20 @@ public class Controller implements Initializable{
         changeStageToAuth();
         connection.closeConnection();
         connection = null;
+    }
+
+    // длина в лоад-баре 1 % в зависимости от размера бара в окне просмотра в пикселях
+    // расчет к примре получил метод 4 гб  -> (10 gb / 4 gb) = 2,5 ( это 1/4 от 10 gb)
+    // теперь расчитываем сколько в % от 100 будет ( 1/4 ) 100 / 2,5 = 40 %  должен
+    // быть заполнен БарЛоад далее берем посчитанный 1 % в пикселях
+    // длина БарЛоадера и * на колличество % на которые он должен быть заполнен
+    public void changeLoadBar(double sizeFiles) {
+        double onePercentLoadBar = load_bar.getHeight()/100;
+        double PercenAllFiles = 100 / (CAPACITY_CLOUD_IN_GB / sizeFiles);
+        bar.setPrefHeight(PercenAllFiles * onePercentLoadBar);
+    }
+
+    public boolean isReWriteFileCheck() {
+        return reWriteFileCheck;
     }
 }

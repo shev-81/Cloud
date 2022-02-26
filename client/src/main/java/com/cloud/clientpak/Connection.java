@@ -1,9 +1,6 @@
 package com.cloud.clientpak;
 
-import messages.AbstractMessage;
-import messages.AuthMessage;
-import messages.FileMessage;
-import messages.RegUserRequest;
+import messages.*;
 import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
 import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 import javafx.application.Platform;
@@ -19,6 +16,7 @@ public class Connection implements Runnable {
     private static ObjectEncoderOutputStream out;
     private static ObjectDecoderInputStream in;
     private Controller controller;
+    private long lastLoadSizeFiles;
 
     public Connection(Controller controller) {
         this.controller = controller;
@@ -40,11 +38,13 @@ public class Connection implements Runnable {
     public void readMsg() throws ClassNotFoundException, IOException {
         Object obj = in.readObject();
 
-        if(obj instanceof AuthMessage) authMess(obj);          // ответ от сервера о состоянни авторизации
+        if(obj instanceof AuthMessage) authMess(obj);               // ответ от сервера о состоянни авторизации
 
-        if (obj instanceof RegUserRequest) regUserReq(obj);    // ответ от сервера о состоянии регистрации  regUserReq(obj);
+        if (obj instanceof RegUserRequest) regUserReq(obj);         // ответ от сервера о состоянии регистрации  regUserReq(obj);
 
-        if (obj instanceof FileMessage) fileMess(obj);         // сервер прислал файл //todo сделать прогресс бар получения файла
+        if (obj instanceof FileMessage) fileMess(obj);              // сервер прислал файл
+
+        if (obj instanceof FilesSizeMessage) filesSizeMess(obj);    // сервер прислал размер фалов
     }
 
     public void openConnection() {
@@ -134,6 +134,23 @@ public class Connection implements Runnable {
             controller.authMessage.setVisible(true);
             controller.authMessage.setText("Авторизация не пройдена!");
         });
+    }
+
+    public void filesSizeMess(Object obj){
+        if(controller.isReWriteFileCheck()){
+            return;
+        }
+        FilesSizeMessage filesSizeObj = (FilesSizeMessage) obj;
+        lastLoadSizeFiles = filesSizeObj.getFilesSize();                         // сохраняем последний запрос размера в байтах
+        double filesSize = (double) filesSizeObj.getFilesSize()/1024/1024/1024;  // расчет байтов единицы измерения гигабайты
+        Platform.runLater(() -> {
+            controller.changeLoadBar(filesSize);
+            controller.fileSizeLabel.setText(String.valueOf(filesSize).substring(0, 3));
+        });
+    }
+
+    public long getLastLoadSizeFiles() {
+        return lastLoadSizeFiles;
     }
 
     public void closeConnection() {
