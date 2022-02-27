@@ -170,11 +170,14 @@
                         <MenuItem onAction="#changeUser" text="Сменить пользователя" />
                         <MenuItem onAction="#exitApp" text="Выйти из программы" />
                     </Menu>
+<!--                    <Menu  text="Обновить">-->
+<!--                        <MenuItem onAction="#sendReload" text="Обновить" />-->
+<!--                    </Menu>-->
                 </MenuBar>
                 <HBox maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS">
                     <children>
                         <VBox maxWidth="Infinity" prefWidth="400" HBox.hgrow="ALWAYS">
-                            <ListView fx:id="listView" VBox.vgrow="ALWAYS"  maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" />
+                            <ListView fx:id="listView" maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS" />
                             <Label fx:id="fileNameMessage" alignment="CENTER" prefWidth="Infinity" text="" textAlignment="CENTER" textFill="blue" visible="false">
                                 <font>
                                     <Font size="13.0" />
@@ -184,13 +187,13 @@
                         </VBox>
                         <VBox fx:id="load_bar" alignment="BOTTOM_CENTER" prefHeight="2000.0" prefWidth="40.0" style="-fx-border-color: black; -fx-border-radius: 2 2 2 2;">
                             <children>
-                                <Label alignment="TOP_CENTER" prefWidth="Infinity" text="10 Gb" textAlignment="CENTER" textFill="#4169E1" visible="true">
+                                <Label alignment="TOP_CENTER"  prefWidth="Infinity" text="10 Gb" textAlignment="CENTER" textFill="#4169E1" visible="true">
                                     <font>
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                                <VBox fx:id="bar" prefHeight="222.0" prefWidth="40.0"  style="-fx-border-radius: 2 2 2 2;">
-                                    <Label fx:id="fileSizeLabel" alignment="BOTTOM_CENTER" prefWidth="Infinity" text="10 Gb" textAlignment="CENTER" textFill="white" visible="true">
+                                <VBox fx:id="bar" prefHeight="222.0" prefWidth="40.0" style="-fx-border-radius: 2 2 2 2;">
+                                    <Label fx:id="fileSizeLabel" alignment="BOTTOM_CENTER" prefWidth="Infinity" text="" textAlignment="CENTER" textFill="white" visible="true">
                                         <font>
                                             <Font size="20.0" />
                                         </font>

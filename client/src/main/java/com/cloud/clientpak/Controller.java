@@ -1,5 +1,6 @@
 package com.cloud.clientpak;
 
+import javafx.event.ActionEvent;
 import messages.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,6 +19,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Controller implements Initializable{
 
@@ -27,6 +30,7 @@ public class Controller implements Initializable{
     private FileChooser fileChooser;
     private boolean reWriteFileCheck;
     private final static long CAPACITY_CLOUD_IN_GB = 10;
+    private ExecutorService executorService;
 
     @FXML
     VBox cloudPane;
@@ -76,6 +80,7 @@ public class Controller implements Initializable{
         this.fileChooser = new FileChooser();
         bar.setStyle("-fx-background-color: #4169E1");  //todo перенести в стили
         reWriteFileCheck = false;
+        executorService = Executors.newSingleThreadExecutor(); // 1 поток на выполнение последовательных операций посылки файлов
        }
 
     @FXML
@@ -107,8 +112,8 @@ public class Controller implements Initializable{
         }
     }
 
-    public void addFile(File file) throws IOException {
-        new Thread(() ->{
+    public void addFile(File file){
+        executorService.execute(()->{
             try {
                 int bufSize = 1024 * 1024 * 10;
                 int partsCount = (int)(file.length() / bufSize);
@@ -136,7 +141,6 @@ public class Controller implements Initializable{
                     System.out.println("Отправлена часть #" + (i + 1));
                 }
                 reWriteFileCheck = false;
-                System.out.println("посылаем запрос размера файлов на сервере");
                 connection.send(new FilesSizeMessage(1));
                 in.close();
                 Platform.runLater(() -> {
@@ -146,7 +150,7 @@ public class Controller implements Initializable{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }).start();
+        });
     }
 
     @FXML
@@ -278,5 +282,13 @@ public class Controller implements Initializable{
 
     public boolean isReWriteFileCheck() {
         return reWriteFileCheck;
+    }
+
+    public void sendReload(ActionEvent actionEvent) {
+        System.out.println("Нажата кнопка обновить!!!");
+    }
+
+    public ExecutorService getExecutorService() {
+        return executorService;
     }
 }

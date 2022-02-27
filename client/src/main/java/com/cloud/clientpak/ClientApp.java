@@ -31,6 +31,7 @@ public class ClientApp extends Application {
     public void stop() {
         try{
             controller = loader.getController();
+            controller.getExecutorService().shutdown();
             controller.getConnection().closeConnection();
         }catch (NullPointerException e){}
     }

@@ -17,6 +17,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class MainHandler extends ChannelInboundHandlerAdapter {
@@ -24,9 +26,11 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     private AuthService authService;
     private static List<Channel> channels = new ArrayList<>();
     private String userName;
+    private ExecutorService executorService;
 
     public MainHandler(AuthService authService) {
         this.authService = authService;
+        this.executorService = Executors.newSingleThreadExecutor(); // 1 поток на выполнение последовательных операций посылки файлов
     }
 
     @Override
@@ -71,31 +75,34 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    public void fileReq(ChannelHandlerContext ctx, Object msg){
-        try {
-            String nameFile = ((FileRequest) msg).getFilename();
-            File file = new File("server/files/" + userName + "/" + nameFile);
-            int bufSize = 1024 * 1024 * 10;
-            int partsCount = (int) (file.length() / bufSize);
-            if (file.length() % bufSize != 0) {
-                partsCount++;
-            }
-            FileMessage fmOut = new FileMessage(nameFile, -1, partsCount, new byte[bufSize]);
-            FileInputStream in = new FileInputStream(file);
-            for (int i = 0; i < partsCount; i++) {
-                int readedBytes = in.read(fmOut.data);
-                fmOut.partNumber = i + 1;
-                if (readedBytes < bufSize) {
-                    fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
+    public void fileReq(ChannelHandlerContext ctx, Object msg) {
+        executorService.execute(() -> {
+            try {
+                String nameFile = ((FileRequest) msg).getFilename();
+                File file = new File("server/files/" + userName + "/" + nameFile);
+                int bufSize = 1024 * 1024 * 10;
+                int partsCount = (int) (file.length() / bufSize);
+                if (file.length() % bufSize != 0) {
+                    partsCount++;
                 }
-                ctx.writeAndFlush(fmOut);
-                System.out.println("Отправлена часть #" + (i + 1));
+                FileMessage fmOut = new FileMessage(nameFile, -1, partsCount, new byte[bufSize]);
+                FileInputStream in = new FileInputStream(file);
+                for (int i = 0; i < partsCount; i++) {
+                    int readedBytes = in.read(fmOut.data);
+                    fmOut.partNumber = i + 1;
+                    if (readedBytes < bufSize) {
+                        fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
+                    }
+                    ctx.writeAndFlush(fmOut);
+                    System.out.println("Отправлена часть #" + (i + 1));
+                }
+                in.close();
+                ctx.writeAndFlush(new FilesSizeMessage(filesSize(userName)));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            in.close();
-            ctx.writeAndFlush(new FilesSizeMessage(filesSize(userName)));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
+
     }
 
     public void fileMess(ChannelHandlerContext ctx, Object msg) throws IOException {
@@ -153,6 +160,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        authService.stop();
+        executorService.shutdown();
         cause.printStackTrace();
         ctx.close();
         LOGGER.info("Соединение закрыто");
