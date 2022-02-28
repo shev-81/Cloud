@@ -7,6 +7,7 @@ import javafx.application.Platform;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 public class Connection implements Runnable {
 
@@ -44,7 +45,7 @@ public class Connection implements Runnable {
 
         if (obj instanceof FileMessage) fileMess(obj);              // сервер прислал файл
 
-        if (obj instanceof FilesSizeMessage) filesSizeMess(obj);    // сервер прислал размер фалов
+        if (obj instanceof FilesSizeRequest) filesSizeMess(obj);    // сервер прислал размер фалов
     }
 
     public void openConnection() {
@@ -101,7 +102,7 @@ public class Connection implements Runnable {
         }
         double percentProgressBar = (double) 1 / fmsg.partsCount;
         Platform.runLater(() -> {
-            controller.fileNameMessage.setText("Копируем файла - "+ fmsg.filename + ".");
+            controller.fileNameMessage.setText("Копируем файл - "+ fmsg.filename + ".");
             controller.fileNameMessage.setVisible(true);
             controller.progressBar.setVisible(true);
             controller.progressBar.setProgress((double) fmsg.partNumber * percentProgressBar);
@@ -112,6 +113,7 @@ public class Connection implements Runnable {
         fos.close();
         if (fmsg.partNumber == fmsg.partsCount) {
             System.out.println("файл полностью получен");
+            send(new FilesSizeRequest(1));
             Platform.runLater(()->{
                 controller.progressBar.setVisible(false);
                 controller.fileNameMessage.setVisible(false);
@@ -120,12 +122,8 @@ public class Connection implements Runnable {
     }
 
     public void openCloudWindow(AuthMessage msg) throws IOException {
-        String listFiles = msg.getPassUser();   // строка с перечнем файлов клиенту возвращается в объекте авторизации в поле пароля
-        String [] patrs = listFiles.split("\\s+");
-        for(int i = 0; i < patrs.length; i++){
-            controller.getFileList().add(patrs[i]);
-        }
-        controller.reloadFxFilesList();
+        controller.setFileList(msg.getListFiles());
+        controller.reloadFxFilesList(msg.getListFiles());
         controller.changeStageToCloud();
     }
 
@@ -140,12 +138,15 @@ public class Connection implements Runnable {
         if(controller.isReWriteFileCheck()){
             return;
         }
-        FilesSizeMessage filesSizeObj = (FilesSizeMessage) obj;
-        lastLoadSizeFiles = filesSizeObj.getFilesSize();                         // сохраняем последний запрос размера в байтах
-        double filesSize = (double) filesSizeObj.getFilesSize()/1024/1024/1024;  // расчет байтов единицы измерения гигабайты
+        FilesSizeRequest filesObj = (FilesSizeRequest) obj;
+        lastLoadSizeFiles = filesObj.getFilesSize();                         // сохраняем последний запрос размера в байтах
+        double filesSize = (double) filesObj.getFilesSize()/1024/1024/1024;  // расчет байтов единицы измерения гигабайты
+        List<FileInfo> listFiles = filesObj.getListFiles();
+        controller.setFileList(listFiles);
         Platform.runLater(() -> {
             controller.changeLoadBar(filesSize);
             controller.fileSizeLabel.setText(String.valueOf(filesSize).substring(0, 3));
+            controller.reloadFxFilesList(listFiles);                             // обновляем лист файлов в нашей таблице
         });
     }
 

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<StackPane prefHeight="500" prefWidth="500" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cloud.clientpak.Controller">
+<StackPane prefHeight="500" prefWidth="550" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cloud.clientpak.Controller">
     <children>
         <GridPane fx:id="authPane" prefHeight="500" prefWidth="500" stylesheets="@style.css" visible="false">
             <columnConstraints>
@@ -170,14 +170,12 @@
                         <MenuItem onAction="#changeUser" text="Сменить пользователя" />
                         <MenuItem onAction="#exitApp" text="Выйти из программы" />
                     </Menu>
-<!--                    <Menu  text="Обновить">-->
-<!--                        <MenuItem onAction="#sendReload" text="Обновить" />-->
-<!--                    </Menu>-->
                 </MenuBar>
                 <HBox maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS">
                     <children>
                         <VBox maxWidth="Infinity" prefWidth="400" HBox.hgrow="ALWAYS">
-                            <ListView fx:id="listView" maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS" />
+<!--                            <ListView fx:id="listView" maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS" />-->
+                            <TableView fx:id="tableView" maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" VBox.vgrow="ALWAYS" />
                             <Label fx:id="fileNameMessage" alignment="CENTER" prefWidth="Infinity" text="" textAlignment="CENTER" textFill="blue" visible="false">
                                 <font>
                                     <Font size="13.0" />
@@ -192,7 +190,7 @@
                                         <Font size="13.0" />
                                     </font>
                                 </Label>
-                                <VBox fx:id="bar" prefHeight="222.0" prefWidth="40.0" style="-fx-border-radius: 2 2 2 2;">
+                                <VBox fx:id="bar" prefHeight="222.0" prefWidth="40.0" style="-fx-border-radius: 2 2 2 2; -fx-background-color: #4169E1;">
                                     <Label fx:id="fileSizeLabel" alignment="BOTTOM_CENTER" prefWidth="Infinity" text="" textAlignment="CENTER" textFill="white" visible="true">
                                         <font>
                                             <Font size="20.0" />

@@ -45,6 +45,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         if (msg instanceof DellFileRequest) delFileReq(ctx, msg);       // пришел запрос на удаление файла
 
         if (msg instanceof FileMessage) fileMess(ctx, msg);             // пришел файл
+
+        if (msg instanceof FilesSizeRequest) getFilesList (ctx, msg);   // запрос на получение списка файлов и их размера
     }
 
     public void reqAuth (ChannelHandlerContext ctx, Object msg) throws IOException {
@@ -54,7 +56,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         if (userName != null) {  // если сервис авторизации вернул имя
             channels.add(ctx.channel());
             ctx.writeAndFlush(new AuthMessage(userName, listFiles(userName)));
-            ctx.writeAndFlush(new FilesSizeMessage(filesSize(userName)));
+            ctx.writeAndFlush(new FilesSizeRequest(filesSize(userName), listFiles(userName)));
             LOGGER.info("Авторизация пройдена успешно выслан список файлов на сервере");
         } else {
             ctx.writeAndFlush(new AuthMessage("none", ""));
@@ -62,7 +64,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    public void  regUserReq(ChannelHandlerContext ctx, Object msg){
+    public void regUserReq(ChannelHandlerContext ctx, Object msg){
         RegUserRequest regMsg = (RegUserRequest) msg;
         // если запрошенный ник пользователя уже зарегистрирован в БД
         if (regMsg.getNameUser().equals(authService.getNickByLoginPass(regMsg.getLogin(), regMsg.getPassUser()))) {
@@ -73,6 +75,10 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                 ctx.writeAndFlush(new RegUserRequest("reg", "", ""));
             }
         }
+    }
+
+    public void getFilesList (ChannelHandlerContext ctx, Object msg) throws IOException {
+        ctx.writeAndFlush(new FilesSizeRequest(filesSize(userName), listFiles(userName)));
     }
 
     public void fileReq(ChannelHandlerContext ctx, Object msg) {
@@ -97,7 +103,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                     System.out.println("Отправлена часть #" + (i + 1));
                 }
                 in.close();
-                ctx.writeAndFlush(new FilesSizeMessage(filesSize(userName)));
+                ctx.writeAndFlush(new FilesSizeRequest(filesSize(userName), listFiles(userName)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -121,7 +127,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         if (fmsg.partNumber == fmsg.partsCount) {
             System.out.println("файл полностью получен");
         }
-        ctx.writeAndFlush(new FilesSizeMessage(filesSize(userName)));
+        ctx.writeAndFlush(new FilesSizeRequest(filesSize(userName), listFiles(userName)));
     }
 
     public void delFileReq(ChannelHandlerContext ctx, Object msg) throws IOException {
@@ -129,19 +135,19 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         Path path = Paths.get("server/files/" + userName + "/" + nameDelFile);
         Files.delete(path);
         LOGGER.info("Пользователь " + userName + " удалил файл " + nameDelFile);
-        ctx.writeAndFlush(new FilesSizeMessage(filesSize(userName)));
+        ctx.writeAndFlush(new FilesSizeRequest(filesSize(userName), listFiles(userName)));
     }
 
-    public String listFiles(String nameUser) throws IOException {
+    public List<FileInfo> listFiles(String nameUser) throws IOException {
         if (nameUser != null) {
             Path path = Paths.get("server/files/" + nameUser);
             if (!Files.exists(path)) {
                 Files.createDirectory(path);
             }
             // формируем лист файлов находящихся у сервера для клиента
-            return Files.list(path).map((p) -> p.getFileName().toString()).collect(Collectors.joining(" "));
+            return Files.list(path).map(FileInfo::new).collect(Collectors.toList());
         }
-        return "";
+        return null;
     }
 
     public long filesSize(String nameUser) throws IOException {

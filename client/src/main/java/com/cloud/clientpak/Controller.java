@@ -1,9 +1,9 @@
 package com.cloud.clientpak;
 
-import javafx.event.ActionEvent;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import messages.*;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,8 +26,7 @@ import java.util.concurrent.Executors;
 public class Controller implements Initializable{
 
     private Connection connection;
-    private List<String> fileList;
-    private ObservableList<String> listFilesModel;
+    private List<FileInfo> fileList;
     private FileChooser fileChooser;
     private boolean reWriteFileCheck;
     private final static long CAPACITY_CLOUD_IN_GB = 10;
@@ -36,7 +36,7 @@ public class Controller implements Initializable{
     VBox cloudPane;
 
     @FXML
-    ListView <String> listView;
+    TableView <FileInfo> tableView;
 
     @FXML
     GridPane regPane;
@@ -78,16 +78,53 @@ public class Controller implements Initializable{
         changeStageToAuth();
         fileList = new ArrayList<>();
         this.fileChooser = new FileChooser();
-        bar.setStyle("-fx-background-color: #4169E1");  //todo перенести в стили
         reWriteFileCheck = false;
         executorService = Executors.newSingleThreadExecutor(); // 1 поток на выполнение последовательных операций посылки файлов
+        TableColumn<FileInfo, String> fileTypeColumn = new TableColumn<>();
+        fileTypeColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getType().getName()));
+        fileTypeColumn.setPrefWidth(24);
+
+        TableColumn<FileInfo, String> filenameColumn = new TableColumn<>("Имя");
+        filenameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFilename()));
+        filenameColumn.setPrefWidth(240);
+
+        TableColumn<FileInfo, Long> fileSizeColumn = new TableColumn<>("Размер");
+        fileSizeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getSize()));
+        fileSizeColumn.setCellFactory(column -> {
+            return new TableCell<FileInfo, Long>() {
+                @Override
+                protected void updateItem(Long item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        String text = String.format("%,d bytes", item);
+                        if (item == -1L) {
+                            text = "[DIR]";
+                        }
+                        setText(text);
+                    }
+                }
+            };
+        });
+        fileSizeColumn.setPrefWidth(120);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        TableColumn<FileInfo, String> fileDateColumn = new TableColumn<>("Дата изменения");
+        fileDateColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLastModified().format(dtf)));
+        fileDateColumn.setPrefWidth(120);
+
+        tableView.getColumns().addAll(fileTypeColumn, filenameColumn, fileSizeColumn, fileDateColumn);
+        tableView.getSortOrder().add(fileTypeColumn);
        }
 
     @FXML
-    public void clickAddFile() throws IOException {
+    public void clickAddFile(){
         File file = fileChooser.showOpenDialog(ClientApp.getpStage());
         if (file != null) {
-            if(fileList.contains(file.getName())){
+            long sizeStream = fileList.stream().map((p) -> p.getFilename()).filter((p)-> p.equals(file.getName())).count();
+            if(sizeStream > 0){
                 Alert allert = new Alert(Alert.AlertType.CONFIRMATION,"Файл будет перезаписан.");
                 Optional<ButtonType> option = allert.showAndWait();
                 if (option.get() == null) {
@@ -107,8 +144,6 @@ public class Controller implements Initializable{
             }
             reWriteFileCheck = false;
             addFile(file);
-            fileList.add(file.getName());
-            reloadFxFilesList();
         }
     }
 
@@ -141,7 +176,7 @@ public class Controller implements Initializable{
                     System.out.println("Отправлена часть #" + (i + 1));
                 }
                 reWriteFileCheck = false;
-                connection.send(new FilesSizeMessage(1));
+                connection.send(new FilesSizeRequest(1));  // запрос на новый размер файлов и список файлов
                 in.close();
                 Platform.runLater(() -> {
                     fileNameMessage.setVisible(false);
@@ -155,17 +190,17 @@ public class Controller implements Initializable{
 
     @FXML
     public void clickDeleteButton() {
-        String delFileName = listView.getSelectionModel().getSelectedItem();
+        String delFileName = tableView.getSelectionModel().getSelectedItem().getFilename();
         if(delFileName != null){
             fileList.remove(delFileName);
-            reloadFxFilesList();
+            reloadFxFilesList(fileList);
             connection.send(new DellFileRequest(delFileName));
         }
     }
 
     @FXML
     public void clickGetButton() {
-        String getFileName = listView.getSelectionModel().getSelectedItem();
+        String getFileName = tableView.getSelectionModel().getSelectedItem().getFilename();
         if(getFileName != null){
             connection.send(new FileRequest(getFileName));
         }
@@ -209,11 +244,10 @@ public class Controller implements Initializable{
         Platform.exit();
     }
 
-    public void reloadFxFilesList(){
-        listFilesModel = FXCollections.observableArrayList(fileList);
-        Platform.runLater(()->{
-            listView.setItems(listFilesModel);
-        });
+    public void reloadFxFilesList(List <FileInfo> fileList ){
+        tableView.getItems().clear();
+        tableView.getItems().addAll(fileList);
+        tableView.sort();
     }
 
     public Connection getConnection() {
@@ -258,10 +292,6 @@ public class Controller implements Initializable{
         }
     }
 
-    public List<String> getFileList() {
-        return fileList;
-    }
-
     @FXML
     public void changeUser() {
         changeStageToAuth();
@@ -284,11 +314,11 @@ public class Controller implements Initializable{
         return reWriteFileCheck;
     }
 
-    public void sendReload(ActionEvent actionEvent) {
-        System.out.println("Нажата кнопка обновить!!!");
-    }
-
     public ExecutorService getExecutorService() {
         return executorService;
+    }
+
+    public void setFileList(List<FileInfo> fileList) {
+        this.fileList = fileList;
     }
 }
