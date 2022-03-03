@@ -2,9 +2,9 @@ package com.cloud.clientpak;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import lombok.Data;
 import messages.*;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -15,22 +15,19 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.CountDownLatch;
 
+@Data
 public class Controller implements Initializable{
 
-    private Connection connection;
+    private static Connection connection;
     private List<FileInfo> fileList;
     private FileChooser fileChooser;
-    private boolean reWriteFileCheck;
-    private final static long CAPACITY_CLOUD_IN_GB = 10;
-    private ExecutorService executorService;
+    public final static long CAPACITY_CLOUD_IN_GB = 10;
+    private FileWorker fileWorker;
 
     @FXML
     VBox cloudPane;
@@ -76,116 +73,29 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         changeStageToAuth();
-        fileList = new ArrayList<>();
+        this.fileList = new ArrayList<>();
         this.fileChooser = new FileChooser();
-        reWriteFileCheck = false;
-        executorService = Executors.newSingleThreadExecutor(); // 1 поток на выполнение последовательных операций посылки файлов
-        TableColumn<FileInfo, String> fileTypeColumn = new TableColumn<>();
-        fileTypeColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getType().getName()));
-        fileTypeColumn.setPrefWidth(24);
-
-        TableColumn<FileInfo, String> filenameColumn = new TableColumn<>("Имя");
-        filenameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFilename()));
-        filenameColumn.setPrefWidth(240);
-
-        TableColumn<FileInfo, Long> fileSizeColumn = new TableColumn<>("Размер");
-        fileSizeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getSize()));
-        fileSizeColumn.setCellFactory(column -> {
-            return new TableCell<FileInfo, Long>() {
-                @Override
-                protected void updateItem(Long item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item == null || empty) {
-                        setText(null);
-                        setStyle("");
-                    } else {
-                        String text = String.format("%,d bytes", item);
-                        if (item == -1L) {
-                            text = "[DIR]";
-                        }
-                        setText(text);
-                    }
-                }
-            };
-        });
-        fileSizeColumn.setPrefWidth(120);
-
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        TableColumn<FileInfo, String> fileDateColumn = new TableColumn<>("Дата изменения");
-        fileDateColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLastModified().format(dtf)));
-        fileDateColumn.setPrefWidth(120);
-
-        tableView.getColumns().addAll(fileTypeColumn, filenameColumn, fileSizeColumn, fileDateColumn);
-        tableView.getSortOrder().add(fileTypeColumn);
+        this.fileWorker = new FileWorker();
+        createTableView();
        }
 
     @FXML
-    public void clickAddFile(){
-        File file = fileChooser.showOpenDialog(ClientApp.getpStage());
+    public void clickAddFile() {
+        File file = fileChooser.showOpenDialog(ClientApp.getStage());
         if (file != null) {
-            long sizeStream = fileList.stream().map((p) -> p.getFilename()).filter((p)-> p.equals(file.getName())).count();
-            if(sizeStream > 0){
-                Alert allert = new Alert(Alert.AlertType.CONFIRMATION,"Файл будет перезаписан.");
-                Optional<ButtonType> option = allert.showAndWait();
-                if (option.get() == null) {
-                    return;
-                } else if (option.get() == ButtonType.OK) {
-                    reWriteFileCheck = true;                // чек на перезапись если отключен то файл не перезаписывается
-                    addFile(file);
-                    return;
-                } else if (option.get() == ButtonType.CANCEL) {
-                    return;
-                }
-            }
-            if (connection.getLastLoadSizeFiles() + file.length() > CAPACITY_CLOUD_IN_GB * 1024 * 1024 * 1024) {
-                Alert allert = new Alert(Alert.AlertType.INFORMATION, "Нехватает места в облаке для сохранения файла.");
-                allert.show();
-                return;
-            }
-            reWriteFileCheck = false;
-            addFile(file);
+            long sizeStream = getFileList().stream().map((p) -> p.getFilename()).filter((p)-> p.equals(file.getName())).count();
+            fileWorker.working(file, this::setVisibleLoadInfoFile,sizeStream > 0);
         }
     }
 
-    public void addFile(File file){
-        executorService.execute(()->{
-            try {
-                int bufSize = 1024 * 1024 * 10;
-                int partsCount = (int)(file.length() / bufSize);
-                double percentProgressBar = (double) 1 / partsCount;
-                if (file.length() % bufSize != 0) {
-                    partsCount++;
-                }
-                Platform.runLater(() -> {
-                    fileNameMessage.setText("Загрузка файла - "+ file.getName()+" в облако.");
-                    fileNameMessage.setVisible(true);
-                    progressBar.setVisible(true);
-                });
-                FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[bufSize]);
-                FileInputStream in = new FileInputStream(file);
-                for (int i = 0; i < partsCount; i++) {
-                    int readedBytes = in.read(fmOut.data);
-                    fmOut.partNumber = i + 1;
-                    Platform.runLater(() -> {
-                        progressBar.setProgress((double) fmOut.partNumber * percentProgressBar);
-                    });
-                    if (readedBytes < bufSize) {
-                        fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
-                    }
-                    connection.send(fmOut);
-                    System.out.println("Отправлена часть #" + (i + 1));
-                }
-                reWriteFileCheck = false;
-                connection.send(new FilesSizeRequest(1));  // запрос на новый размер файлов и список файлов
-                in.close();
-                Platform.runLater(() -> {
-                    fileNameMessage.setVisible(false);
-                    progressBar.setVisible(false);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+    public void setVisibleLoadInfoFile(boolean check){
+        fileNameMessage.setText("Загрузка файла в облако.");
+        fileNameMessage.setVisible(check);
+        progressBar.setVisible(check);
+    }
+
+    public void changeProgressBar (double percent){
+        progressBar.setProgress(percent);
     }
 
     @FXML
@@ -194,7 +104,7 @@ public class Controller implements Initializable{
         if(delFileName != null){
             fileList.remove(delFileName);
             reloadFxFilesList(fileList);
-            connection.send(new DellFileRequest(delFileName));
+            connection.send(new DelFileRequest(delFileName));
         }
     }
 
@@ -250,15 +160,13 @@ public class Controller implements Initializable{
         tableView.sort();
     }
 
-    public Connection getConnection() {
-        return connection;
-    }
-
     @FXML
-    public void enterCloud() {
+    public void enterCloud() throws InterruptedException {
         if (connection == null) {
-            connection = new Connection(this);
+            CountDownLatch countDownLatch = new CountDownLatch(1);
+            connection = new Connection(this, countDownLatch);
             new Thread(connection).start();
+            countDownLatch.await();
         }
         if (authLogin.getText().isEmpty() || authPassword.getText().isEmpty()) {
             authMessage.setText("Enter login and password");
@@ -272,10 +180,12 @@ public class Controller implements Initializable{
     }
 
     @FXML
-    public void register() {
+    public void register() throws InterruptedException {
         if (connection == null) {
-            connection = new Connection(this);
+            CountDownLatch countDownLatch = new CountDownLatch(1);
+            connection = new Connection(this, countDownLatch);
             new Thread(connection).start();
+            countDownLatch.await();
         }
         if (regLogin.getText().isEmpty() || regPassword.getText().isEmpty() ||
                 regPasswordRep.getText().isEmpty() || regName.getText().isEmpty()) {
@@ -287,7 +197,7 @@ public class Controller implements Initializable{
             regMessage.setText("Passwords do not match");
             regMessage.setVisible(true);
         } else {
-            AbstractMessage message = new RegUserRequest(regName.getText(), regLogin.getText(), regPassword.getText());
+            AbstractMessage message = new RegUserRequest(regName.getText(),  regLogin.getText(), regPassword.getText());
             connection.send(message);
         }
     }
@@ -295,8 +205,48 @@ public class Controller implements Initializable{
     @FXML
     public void changeUser() {
         changeStageToAuth();
-        connection.closeConnection();
+        connection.close();
         connection = null;
+    }
+
+    public void createTableView(){
+        TableColumn<FileInfo, String> fileTypeColumn = new TableColumn<>();
+        fileTypeColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getType().getName()));
+        fileTypeColumn.setPrefWidth(24);
+
+        TableColumn<FileInfo, String> filenameColumn = new TableColumn<>("Имя");
+        filenameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getFilename()));
+        filenameColumn.setPrefWidth(240);
+
+        TableColumn<FileInfo, Long> fileSizeColumn = new TableColumn<>("Размер");
+        fileSizeColumn.setCellValueFactory(param -> new SimpleObjectProperty<>(param.getValue().getSize()));
+        fileSizeColumn.setCellFactory(column -> {
+            return new TableCell<FileInfo, Long>() {
+                @Override
+                protected void updateItem(Long item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                        setStyle("");
+                    } else {
+                        String text = String.format("%,d bytes", item);
+                        if (item == -1L) {
+                            text = "[DIR]";
+                        }
+                        setText(text);
+                    }
+                }
+            };
+        });
+        fileSizeColumn.setPrefWidth(120);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        TableColumn<FileInfo, String> fileDateColumn = new TableColumn<>("Дата изменения");
+        fileDateColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getLastModified().format(dtf)));
+        fileDateColumn.setPrefWidth(120);
+
+        tableView.getColumns().addAll(fileTypeColumn, filenameColumn, fileSizeColumn, fileDateColumn);
+        tableView.getSortOrder().add(fileTypeColumn);
     }
 
     // длина в лоад-баре 1 % в зависимости от размера бара в окне просмотра в пикселях
@@ -310,12 +260,12 @@ public class Controller implements Initializable{
         bar.setPrefHeight(PercenAllFiles * onePercentLoadBar);
     }
 
-    public boolean isReWriteFileCheck() {
-        return reWriteFileCheck;
+    public List<FileInfo> getFileList() {
+        return fileList;
     }
 
-    public ExecutorService getExecutorService() {
-        return executorService;
+    public static Connection getConnection() {
+        return connection;
     }
 
     public void setFileList(List<FileInfo> fileList) {

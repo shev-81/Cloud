@@ -1,5 +1,8 @@
 package messages;
 
+import lombok.Data;
+
+@Data
 public class RegUserRequest extends AbstractMessage {
 
     private String nameUser;
@@ -10,19 +13,6 @@ public class RegUserRequest extends AbstractMessage {
         this.nameUser = nameUser;
         this.login = login;
         this.passUser = passUser;
-
-    }
-
-    public String getNameUser() {
-        return nameUser;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassUser() {
-        return passUser;
     }
 }
 

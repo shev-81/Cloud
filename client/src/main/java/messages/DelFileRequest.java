@@ -1,14 +1,13 @@
 package messages;
 
-public class DellFileRequest extends AbstractMessage {
+import lombok.Data;
+
+@Data
+public class DelFileRequest extends AbstractMessage {
 
     private String nameFile;
 
-    public DellFileRequest(String nameFile) {
+    public DelFileRequest(String nameFile) {
         this.nameFile = nameFile;
-    }
-
-    public String getNameFile() {
-        return nameFile;
     }
 }

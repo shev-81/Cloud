@@ -1,26 +1,31 @@
 package handlers;
 
-import com.cloud.serverpak.AuthService;
-import com.cloud.serverpak.MainHandler;
+import com.cloud.clientpak.Controller;
 import io.netty.channel.ChannelHandlerContext;
+import javafx.application.Platform;
 import messages.RegUserRequest;
 
 public class RegUserHandler{
 
-    private AuthService authService;
+    private Controller controller;
 
-    public RegUserHandler(MainHandler mainHandler) {
-        this.authService = mainHandler.getAuthService();
+    public RegUserHandler(Controller controller) {
+        this.controller =controller;
     }
 
     public void regHandle(ChannelHandlerContext ctx, Object msg) {
-        RegUserRequest regMsg = (RegUserRequest) msg;
-        if (regMsg.getNameUser().equals(authService.getNickByLoginPass(regMsg.getLogin(), regMsg.getPassUser()))) {
-            ctx.writeAndFlush(new RegUserRequest("none", "", ""));
+        RegUserRequest regUserRequest = (RegUserRequest) msg;
+        if (regUserRequest.getNameUser().equals("none")) {
+            Platform.runLater(() -> {
+                controller.getRegMessage().setText("Регистрация не пройдена!");
+                controller.getRegMessage().setVisible(true);
+            });
         } else {
-            if (authService.registerNewUser(regMsg.getNameUser(), regMsg.getLogin(), regMsg.getPassUser())) {
-                ctx.writeAndFlush(new RegUserRequest("reg", "", ""));
-            }
+            Platform.runLater(() -> {
+                controller.changeStageToAuth();
+                controller.getAuthMessage().setText("Регистрация пройдена!");
+                controller.getAuthMessage().setVisible(true);
+            });
         }
     }
 }

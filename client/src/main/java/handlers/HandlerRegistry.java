@@ -1,6 +1,6 @@
 package handlers;
 
-import com.cloud.serverpak.MainHandler;
+import com.cloud.clientpak.Controller;
 import lombok.Data;
 import messages.*;
 
@@ -12,14 +12,12 @@ public class HandlerRegistry {
 
     private Map<Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
 
-    public HandlerRegistry(MainHandler mainHandler) {
+    public HandlerRegistry(Controller controller) {
         this.mapHandlers = new HashMap<>();
-        mapHandlers.put(AuthMessage.class, new AuthHandler(mainHandler)::authHandle);
-        mapHandlers.put(RegUserRequest.class, new RegUserHandler(mainHandler)::regHandle);
-        mapHandlers.put(FileRequest.class, new ReqFileHandler(mainHandler)::reqFileHandle);
-        mapHandlers.put(DelFileRequest.class, new DelFileHandler(mainHandler)::delHandle);
-        mapHandlers.put(FileMessage.class, new FileHandler(mainHandler)::fileHandle);
-        mapHandlers.put(FilesSizeRequest.class, new FilesListRequestHandler(mainHandler)::filesListHandle);
+        mapHandlers.put(AuthMessage.class, new AuthHandler(controller)::authHandle);
+        mapHandlers.put(RegUserRequest.class, new RegUserHandler(controller)::regHandle);
+        mapHandlers.put(FileMessage.class, new FileHandler(controller)::fileHandle);
+        mapHandlers.put(FilesSizeRequest.class, new FilesSizeRequestHandler(controller)::filesSizeReqHandle);
     }
 
     public RequestHandler getHandler(Class cl) {

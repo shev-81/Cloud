@@ -5,14 +5,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Data;
 
 import java.io.IOException;
 
+@Data
 public class ClientApp extends Application {
 
     private FXMLLoader loader;
     private Controller controller;
-    public static Stage pStage;
+    private static Stage pStage;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -24,15 +26,16 @@ public class ClientApp extends Application {
         primaryStage.setTitle("Cloud");
         primaryStage.show();
     }
-    public static Stage getpStage() {
+
+    public static Stage getStage() {
         return pStage;
     }
 
     public void stop() {
         try{
             controller = loader.getController();
-            controller.getExecutorService().shutdown();
-            controller.getConnection().closeConnection();
+            controller.getFileWorker().getExecutorService().shutdown();
+            controller.getConnection().close();
         }catch (NullPointerException e){}
     }
     public static void main(String[] args) {

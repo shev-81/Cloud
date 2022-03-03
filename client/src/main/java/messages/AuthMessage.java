@@ -1,7 +1,10 @@
 package messages;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class AuthMessage extends AbstractMessage{
 
     private String loginUser;
@@ -16,14 +19,6 @@ public class AuthMessage extends AbstractMessage{
     public AuthMessage(String loginUser, List<FileInfo> listFiles) {
         this.loginUser = loginUser;
         this.listFiles = listFiles;
-    }
-
-    public String getLoginUser() {
-        return loginUser;
-    }
-
-    public String getPassUser() {
-        return passUser;
     }
 
     public List<FileInfo> getListFiles() {
