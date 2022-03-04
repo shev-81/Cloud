@@ -25,7 +25,7 @@ public class ReqFileHandler{
     }
 
     public void reqFileHandle(ChannelHandlerContext ctx, Object msg) {
-        executorService.execute(() -> {
+//        executorService.execute(() -> {
             try {
                 String userName = mainHandler.getUserName();
                 String nameFile = ((FileRequest) msg).getFilename();
@@ -51,6 +51,6 @@ public class ReqFileHandler{
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        });
+//        });
     }
 }

@@ -89,7 +89,7 @@ public class Controller implements Initializable{
     }
 
     public void setVisibleLoadInfoFile(boolean check){
-        fileNameMessage.setText("Загрузка файла в облако.");
+        fileNameMessage.setText("Загрузка файла.");
         fileNameMessage.setVisible(check);
         progressBar.setVisible(check);
     }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="center" prefHeight="180.0" prefWidth="300" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serverui.Controller">
+    <Label fx:id="textLable" alignment="CENTER" prefHeight="53.0" prefWidth="301.0" text="Сервер работает" textFill="#3751d3">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+    <Button fx:id="buttonClose" onAction="#closeConnection" prefHeight="30" prefWidth="134.0" text="Выключить сервер" textAlignment="RIGHT" />
+</VBox>

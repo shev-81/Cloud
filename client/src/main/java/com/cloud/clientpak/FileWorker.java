@@ -59,7 +59,7 @@ public class FileWorker {
 
 
     public void addFile(File file){
-        executorService.execute(()->{
+//        executorService.execute(()->{
             try {
                 int bufSize = 1024 * 1024 * 10;
                 int partsCount = (int)(file.length() / bufSize);
@@ -89,6 +89,6 @@ public class FileWorker {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
+//        });
     }
 }

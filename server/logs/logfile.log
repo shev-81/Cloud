@@ -803,3 +803,158 @@ INFO  2022-03-04 13:30:32 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandl
 INFO  2022-03-04 13:31:03 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
 INFO  2022-03-04 13:31:03 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
 INFO  2022-03-04 13:31:32 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.014
+INFO  2022-03-04 13:58:54 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 13:58:55 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-03-04 14:32:46 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 14:32:46 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-03-04 14:33:29 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 14:33:48 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 14:39:22 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 14:39:23 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-03-04 14:39:29 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 14:39:37 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 14:44:26 [nioEventLoopGroup-3-2] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 14:48:52 [nioEventLoopGroup-3-2] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 15:03:37 [nioEventLoopGroup-3-3] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 15:11:49 [nioEventLoopGroup-3-4] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 15:11:55 [nioEventLoopGroup-3-4] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.005
+INFO  2022-03-04 15:11:59 [nioEventLoopGroup-3-4] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.006
+INFO  2022-03-04 15:17:35 [nioEventLoopGroup-3-5] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 15:17:39 [nioEventLoopGroup-3-5] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 15:17:54 [nioEventLoopGroup-3-5] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 15:19:31 [nioEventLoopGroup-3-5] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 16:10:13 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:10:14 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:15:02 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:15:03 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:16:14 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:16:14 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:42:26 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:42:26 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:44:53 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:44:54 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:51:54 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:51:54 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:54:02 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:54:03 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:54:52 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:54:52 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:55:31 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:55:31 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:42) - Сервер запущен
+INFO  2022-03-04 16:59:04 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:59:05 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 16:59:16 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 16:59:17 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:00:01 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:00:02 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:01:07 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:01:08 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:02:10 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:02:10 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:03:59 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:03:59 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:07:31 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:07:31 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:08:00 [Thread-4] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:08:00 [Thread-4] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:34:45 [Thread-3] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:34:45 [Thread-3] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:42:43 [Thread-3] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:42:43 [Thread-3] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:45:46 [Thread-3] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:45:47 [Thread-3] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:46:00 [Thread-3] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:46:00 [Thread-3] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 17:47:34 [Thread-3] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 17:47:34 [Thread-3] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 19:10:59 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 19:10:59 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 19:12:15 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:50) - Соединение закрыто
+INFO  2022-03-04 19:33:38 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 19:33:38 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 19:33:53 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 19:34:25 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:34:25 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:34:58 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:34:58 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:35:25 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:35:25 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:36:37 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:36:37 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:37:02 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:37:25 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:37:49 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:38:00 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:38:32 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:38:43 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:38:54 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:39:12 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:39:27 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:40:05 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:40:05 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:40:45 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:40:45 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:42:10 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 19:42:10 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:43:05 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 19:43:05 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 19:43:21 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 19:43:43 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:43:51 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:46:34 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 19:46:34 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 19:46:43 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 19:47:11 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:47:46 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 19:48:03 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:33:54 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 23:33:54 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 23:34:15 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 23:34:41 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:35:19 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:37:28 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:37:47 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:48:22 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:50) - Соединение закрыто
+INFO  2022-03-04 23:49:00 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 23:49:00 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-04 23:49:23 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 23:49:30 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.006
+INFO  2022-03-04 23:49:44 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:50:35 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:42) - Файл полностью получен
+INFO  2022-03-04 23:50:35 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 23:51:10 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:09:24 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:11:35 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.003
+INFO  2022-03-05 00:11:37 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.007
+INFO  2022-03-05 00:11:39 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.008
+INFO  2022-03-05 00:12:21 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:42) - Файл полностью получен
+INFO  2022-03-05 00:12:21 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:12:27 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:17:09 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл WhatsApp Image 2022-01-15 at 15.36.28.jpeg
+INFO  2022-03-05 00:20:51 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-05 00:20:52 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-05 00:21:08 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-05 00:21:37 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:22:33 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:24:42 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:42) - Файл полностью получен
+INFO  2022-03-05 00:24:42 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:25:08 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:26:30 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:26:53 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:28:01 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:42) - Файл полностью получен
+INFO  2022-03-05 00:28:01 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:43:15 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:42) - Файл полностью получен
+INFO  2022-03-05 00:43:16 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:44:16 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.006
+INFO  2022-03-05 00:44:17 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.005
+INFO  2022-03-05 00:44:22 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.011
+INFO  2022-03-05 00:44:29 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.010
+INFO  2022-03-05 00:44:57 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-05 00:44:58 [main] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-05 00:45:18 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-05 00:48:25 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:42) - Файл полностью получен
+INFO  2022-03-05 00:48:25 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:54:06 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-05 00:55:26 [Thread-3] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-05 00:55:27 [Thread-3] com.cloud.serverpak.ServerApp (ServerApp.java:44) - Сервер запущен
+INFO  2022-03-05 00:55:50 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере

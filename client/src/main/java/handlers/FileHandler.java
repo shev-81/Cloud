@@ -8,53 +8,46 @@ import messages.FilesSizeRequest;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 public class FileHandler {
 
     private Controller controller;
+    private FileOutputStream fos;
+    private boolean append;
 
     public FileHandler(Controller controller) {
         this.controller = controller;
+        this.fos = null;
     }
 
     public void fileHandle(ChannelHandlerContext ctx, Object msg) {
         FileMessage fmsg = (FileMessage) msg;
-        boolean append = true;
-        if (Files.exists(Paths.get("client/files/" + fmsg.filename)) && fmsg.partNumber == 1) {
-            try {
-                Files.delete(Paths.get("client/files/" + fmsg.filename));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if (fmsg.partsCount == 1) {
-            append = false;
-        }
-        double percentProgressBar = (double) 1 / fmsg.partsCount;
-        Platform.runLater(() -> {
-            controller.getFileNameMessage().setText("Копируем файл - " + fmsg.filename + ".");
-            controller.getFileNameMessage().setVisible(true);
-            controller.getProgressBar().setVisible(true);
-            controller.getProgressBar().setProgress((double) fmsg.partNumber * percentProgressBar);
-        });
-        System.out.println(fmsg.partNumber + " / " + fmsg.partsCount);
-        FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream("client/files/" + fmsg.filename, append);
+            if (fmsg.partNumber == 1) {
+                append = false;
+                fos = null;
+                fos = new FileOutputStream("client/files/" + fmsg.filename, append);
+            } else {
+                append = true;
+            }
+            Platform.runLater(() -> {
+                controller.setVisibleLoadInfoFile(true);
+                controller.changeProgressBar((double) fmsg.partNumber * ((double) 1 / fmsg.partsCount));
+            });
+            System.out.println(fmsg.partNumber + " / " + fmsg.partsCount);
             fos.write(fmsg.data);
-            fos.close();
+            if (fmsg.partNumber == fmsg.partsCount) {
+                fos.close();
+                append = false;
+                System.out.println("файл полностью получен");
+                ctx.writeAndFlush(new FilesSizeRequest(1));
+                Platform.runLater(() -> {
+                    controller.setVisibleLoadInfoFile(false);
+                });
+            }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        if (fmsg.partNumber == fmsg.partsCount) {
-            System.out.println("файл полностью получен");
-            ctx.writeAndFlush(new FilesSizeRequest(1));
-            Platform.runLater(() -> {
-                controller.getProgressBar().setVisible(false);
-                controller.getFileNameMessage().setVisible(false);
-            });
         }
     }
 }

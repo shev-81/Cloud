@@ -9,14 +9,14 @@ import messages.FilesSizeRequest;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 @Log4j2
 public class FileHandler {
 
     private MainHandler mainHandler;
     private FilesInformService fileService;
+    private FileOutputStream fos;
+    private boolean append;
 
     public FileHandler(MainHandler mainHandler) {
         this.mainHandler = mainHandler;
@@ -25,28 +25,27 @@ public class FileHandler {
 
     public void fileHandle(ChannelHandlerContext ctx, Object msg) {
         String userName = mainHandler.getUserName();
-        FileMessage fMsg = (FileMessage) msg;
-        boolean append = true;
+        FileMessage fmsg = (FileMessage) msg;
         try {
-            if (Files.exists(Paths.get("server/files/" + userName + "/" + fMsg.filename)) && fMsg.partNumber == 1) {
-                Files.delete(Paths.get("server/files/" + userName + "/" + fMsg.filename));
-            }
-            if (fMsg.partsCount == 1) {
+            if (fmsg.partNumber == 1) {
                 append = false;
+                fos = null;
+                fos = new FileOutputStream("server/files/" + userName + "/" + fmsg.filename, append);
+            } else {
+                append = true;
             }
-            System.out.println(fMsg.partNumber + " / " + fMsg.partsCount);
-            FileOutputStream fos = null;
-            fos = new FileOutputStream("server/files/" + userName + "/" + fMsg.filename, append);
-            fos.write(fMsg.data);
-            fos.close();
-            if (fMsg.partNumber == fMsg.partsCount) {
+            System.out.println(fmsg.partNumber + " / " + fmsg.partsCount);
+            fos.write(fmsg.data);
+            if (fmsg.partNumber == fmsg.partsCount) {
+                fos.close();
+                append = false;
                 log.info("Файл полностью получен");
             }
             ctx.writeAndFlush(new FilesSizeRequest(
                     fileService.getFilesSize(userName),
                     fileService.getListFiles(userName),
-                    fMsg.partNumber,
-                    fMsg.partsCount)
+                    fmsg.partNumber,
+                    fmsg.partsCount)
             );
         } catch (IOException e) {
             e.printStackTrace();
