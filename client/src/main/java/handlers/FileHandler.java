@@ -8,8 +8,10 @@ import messages.FilesSizeRequest;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-public class FileHandler{
+public class FileHandler {
 
     private Controller controller;
 
@@ -20,12 +22,19 @@ public class FileHandler{
     public void fileHandle(ChannelHandlerContext ctx, Object msg) {
         FileMessage fmsg = (FileMessage) msg;
         boolean append = true;
+        if (Files.exists(Paths.get("client/files/" + fmsg.filename)) && fmsg.partNumber == 1) {
+            try {
+                Files.delete(Paths.get("client/files/" + fmsg.filename));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         if (fmsg.partsCount == 1) {
             append = false;
         }
         double percentProgressBar = (double) 1 / fmsg.partsCount;
         Platform.runLater(() -> {
-            controller.getFileNameMessage().setText("Копируем файл - "+ fmsg.filename + ".");
+            controller.getFileNameMessage().setText("Копируем файл - " + fmsg.filename + ".");
             controller.getFileNameMessage().setVisible(true);
             controller.getProgressBar().setVisible(true);
             controller.getProgressBar().setProgress((double) fmsg.partNumber * percentProgressBar);
@@ -42,7 +51,7 @@ public class FileHandler{
         if (fmsg.partNumber == fmsg.partsCount) {
             System.out.println("файл полностью получен");
             ctx.writeAndFlush(new FilesSizeRequest(1));
-            Platform.runLater(()->{
+            Platform.runLater(() -> {
                 controller.getProgressBar().setVisible(false);
                 controller.getFileNameMessage().setVisible(false);
             });

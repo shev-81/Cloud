@@ -787,3 +787,19 @@ INFO  2022-03-03 17:29:41 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandl
 INFO  2022-03-03 17:30:23 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
 INFO  2022-03-03 17:30:23 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
 INFO  2022-03-03 17:30:43 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.014
+INFO  2022-03-04 13:20:33 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 13:20:34 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-03-04 13:20:47 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 13:20:59 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.013
+INFO  2022-03-04 13:21:03 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.015
+INFO  2022-03-04 13:21:57 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 13:22:27 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 13:23:05 [nioEventLoopGroup-3-1] com.cloud.serverpak.MainHandler (MainHandler.java:50) - Соединение закрыто
+INFO  2022-03-04 13:29:27 [main] com.cloud.serverpak.AuthServiceBD (AuthServiceBD.java:35) - Загрузили пользователей из БД AuthServiceBD
+INFO  2022-03-04 13:29:27 [main] com.cloud.serverpak.ServerApp (ServerApp.java:37) - Сервер запущен
+INFO  2022-03-04 13:29:41 [nioEventLoopGroup-3-1] handlers.AuthHandler (AuthHandler.java:39) - Авторизация пройдена успешно выслан список файлов на сервере
+INFO  2022-03-04 13:30:12 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 13:30:32 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 13:31:03 [nioEventLoopGroup-3-1] handlers.FileHandler (FileHandler.java:43) - Файл полностью получен
+INFO  2022-03-04 13:31:03 [nioEventLoopGroup-3-1] handlers.FilesListRequestHandler (FilesListRequestHandler.java:26) - По запросу пользователя Aaaвыслан список файлов.
+INFO  2022-03-04 13:31:32 [nioEventLoopGroup-3-1] handlers.DelFileHandler (DelFileHandler.java:32) - Пользователь Aaa удалил файл data.014
