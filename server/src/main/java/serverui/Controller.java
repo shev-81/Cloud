@@ -2,7 +2,6 @@ package serverui;
 
 import com.cloud.serverpak.ServerApp;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,7 +14,7 @@ import java.util.ResourceBundle;
 @Data
 public class Controller implements Initializable {
 
-    private ServerApp server;
+    private static ServerApp server = new ServerApp();
 
     @FXML
     Label textLable;
@@ -31,16 +30,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        new Thread(() -> {
-            try {
-                Platform.runLater(() -> {
-                    textLable.setText("Сервер работает");
-                });
-                server = new ServerApp();
-                server.run();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
+        textLable.setText("Сервер работает");
+        new Thread(server).start();
     }
 }

@@ -4,6 +4,7 @@ import com.cloud.serverpak.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
+import lombok.Data;
 import messages.FileMessage;
 import messages.FileRequest;
 import messages.FilesSizeRequest;
@@ -12,8 +13,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+@Data
 public class ReqFileHandler {
 
     private MainHandler mainHandler;
@@ -23,7 +24,7 @@ public class ReqFileHandler {
     public ReqFileHandler(MainHandler mainHandler) {
         this.mainHandler = mainHandler;
         this.fileService = mainHandler.getFilesInformService();
-        this.executorService = Executors.newSingleThreadExecutor();
+        this.executorService = mainHandler.getExecutorService();
     }
 
     public void reqFileHandle(ChannelHandlerContext ctx, Object msg) {

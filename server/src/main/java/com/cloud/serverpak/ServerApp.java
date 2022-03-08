@@ -12,18 +12,22 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import lombok.Data;
+import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Data
-public class ServerApp {
+public class ServerApp implements Runnable{
     private static final Logger LOGGER = LogManager.getLogger(ServerApp.class); // Trace < Debug < Info < Warn < Error < Fatal
     private static AuthService authService = new AuthServiceBD();
     private Channel currentChannel;
     private EventLoopGroup mainGroup;
     private EventLoopGroup workerGroup;
+    private MainHandler mainHandler = new MainHandler(authService);
 
-    public void run() throws Exception {
+    @SneakyThrows
+    @Override
+    public void run(){
         mainGroup = new NioEventLoopGroup();
         workerGroup = new NioEventLoopGroup();
         try {
@@ -35,7 +39,7 @@ public class ServerApp {
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(1024 * 1024 * 100, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new MainHandler(authService)
+                                    mainHandler
                             );
                             currentChannel = socketChannel;
                         }
@@ -46,11 +50,13 @@ public class ServerApp {
         } finally {
             mainGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
+            mainHandler.getExecutorService().shutdown();
         }
     }
 
     public void stop(){
         mainGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
+        mainHandler.getExecutorService().shutdown();
     }
 }

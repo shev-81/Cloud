@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private FXMLLoader loader;
-    private Controller controller;
+    private static Controller controller;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -19,11 +19,6 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Server");
         primaryStage.show();
-    }
-
-    @Override
-    public void stop(){
-        controller.closeConnection();
     }
 
     public static void main(String[] args) {

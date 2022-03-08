@@ -58,7 +58,7 @@ public class FileWorker {
     }
 
     public void addFile(File file) {
-        executorService.execute(()->{
+        executorService.execute(() -> {
             try {
                 int bufSize = 1024 * 1024 * 10;
                 int partsCount = (int) (file.length() / bufSize);
@@ -76,7 +76,6 @@ public class FileWorker {
                     if (readedBytes < bufSize) {
                         fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
                     }
-
                     ChannelFuture f = connection.send(fmOut);
                     f.sync();
                     System.out.println("Отправлена часть #" + (i + 1));
@@ -92,5 +91,9 @@ public class FileWorker {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void stop() {
+        executorService.shutdown();
     }
 }
