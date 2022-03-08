@@ -12,23 +12,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static com.cloud.clientpak.Controller.CAPACITY_CLOUD_IN_GB;
 
 @Data
 public class FileWorker {
 
-    private ExecutorService executorService;
     private boolean reWriteFileCheck;
     private long lastLoadSizeFiles;
     private Connection connection;
     private ChangeInterface changeInterface;
 
-
     public FileWorker() {
-        this.executorService = Executors.newSingleThreadExecutor();
         this.reWriteFileCheck = false;
     }
 
@@ -57,38 +52,35 @@ public class FileWorker {
         addFile(file);
     }
 
-
-    public void addFile(File file){
-//        executorService.execute(()->{
-            try {
-                int bufSize = 1024 * 1024 * 10;
-                int partsCount = (int)(file.length() / bufSize);
-                if (file.length() % bufSize != 0) {
-                    partsCount++;
-                }
-                Platform.runLater(() -> {
-                    changeInterface.call(true);
-                });
-                FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[bufSize]);
-                FileInputStream in = new FileInputStream(file);
-                for (int i = 0; i < partsCount; i++) {
-                    int readedBytes = in.read(fmOut.data);
-                    fmOut.partNumber = i + 1;
-                    if (readedBytes < bufSize) {
-                        fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
-                    }
-                    connection.send(fmOut);
-                    System.out.println("Отправлена часть #" + (i + 1));
-                }
-                reWriteFileCheck = false;
-                connection.send(new FilesSizeRequest(1));
-                in.close();
-                Platform.runLater(() -> {
-                    changeInterface.call(false);
-                });
-            } catch (IOException e) {
-                e.printStackTrace();
+    public void addFile(File file) {
+        try {
+            int bufSize = 1024 * 1024 * 10;
+            int partsCount = (int) (file.length() / bufSize);
+            if (file.length() % bufSize != 0) {
+                partsCount++;
             }
-//        });
+            Platform.runLater(() -> {
+                changeInterface.call(true);
+            });
+            FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[bufSize]);
+            FileInputStream in = new FileInputStream(file);
+            for (int i = 0; i < partsCount; i++) {
+                int readedBytes = in.read(fmOut.data);
+                fmOut.partNumber = i + 1;
+                if (readedBytes < bufSize) {
+                    fmOut.data = Arrays.copyOfRange(fmOut.data, 0, readedBytes);
+                }
+                connection.send(fmOut);
+                System.out.println("Отправлена часть #" + (i + 1));
+            }
+            reWriteFileCheck = false;
+            connection.send(new FilesSizeRequest(1));
+            in.close();
+            Platform.runLater(() -> {
+                changeInterface.call(false);
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

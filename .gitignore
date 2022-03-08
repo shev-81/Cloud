@@ -4,3 +4,5 @@
 /server/files/
 /client/files/
 /server/files/
+
+server/logs/logfile.log

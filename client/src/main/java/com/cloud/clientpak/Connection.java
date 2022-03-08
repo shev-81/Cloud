@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 @Data
 public class Connection implements Runnable {
 
-    private final String SERVER_ADDR = "192.168.1.205";  //192.168.1.205";
+    private final String SERVER_ADDR = "localhost";  //192.168.1.205";
     private final int SERVER_PORT = 8189;
     private Controller controller;
     private Channel currentChannel;
