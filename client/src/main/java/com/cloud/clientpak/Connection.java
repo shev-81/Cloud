@@ -65,8 +65,8 @@ public class Connection implements Runnable {
         }
     }
 
-    public void send(AbstractMessage msg){
-        currentChannel.writeAndFlush(msg);
+    public ChannelFuture send(AbstractMessage msg){
+        return currentChannel.writeAndFlush(msg);
     }
 
     public void close() {
