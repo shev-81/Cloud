@@ -23,7 +23,7 @@ public class ServerApp implements Runnable{
     private Channel currentChannel;
     private EventLoopGroup mainGroup;
     private EventLoopGroup workerGroup;
-    private MainHandler mainHandler = new MainHandler(authService);
+    private MainHandler mainHandler;
 
     @SneakyThrows
     @Override
@@ -39,7 +39,7 @@ public class ServerApp implements Runnable{
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(1024 * 1024 * 100, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    mainHandler
+                                    new MainHandler(authService)
                             );
                             currentChannel = socketChannel;
                         }
@@ -50,7 +50,6 @@ public class ServerApp implements Runnable{
         } finally {
             mainGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
-            mainHandler.getExecutorService().shutdown();
         }
     }
 
