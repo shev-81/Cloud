@@ -3,25 +3,6 @@
   -fx-padding: 0;
 }
 
-.list-view, .split-pane {
-  -fx-background-insets: 0;
-  -fx-padding: 0;
-}
-
-.list-cell {
--fx-background-radius: 10px;
-  -fx-background-color: #FFFFFF;
-}
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
-   -fx-background-color: #4169E1;
-
- }
-
-.list-cell:filled:hover {
-    -fx-background-color: #E0E0E0;
-    -fx-text-color: white;
-}
-
 .buttonIcon {
     -fx-opacity: 0.3;
 }
@@ -46,4 +27,75 @@
     -fx-border-color: #E0E0E0;
     -fx-background-color:
     -fx-control-inner-background;
+}
+
+.table-cell {
+    -fx-padding: 0.5em;
+    -fx-border-color: transparent -fx-box-border transparent transparent;
+    -fx-font: 13px "Arial";
+    -fx-text-fill: #212121;
+}
+
+.table-cell :focused {
+    -fx-border-color: transparent -fx-box-border transparent transparent;
+    -fx-font: 13px "Arial";
+    -fx-text-fill: green;
+}
+
+
+.table-view {
+    -fx-table-header-border-color: #959595;
+    -fx-table-cell-border-color: -fx-box-border;
+}
+
+.table-view:focused {
+    -fx-background-color: -fx-box-border, -fx-box-border, white;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-row-cell:even {
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 1 0;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-box-border, rgb(205, 205, 205);
+}
+
+.table-view:focused .table-row-cell:filled:selected, .table-view:row-selection .table-row-cell:filled:hover:selected {
+    -fx-background-color: #4169E1;
+    -fx-background-insets: 0, 1 1 1 1 0;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected:hover {
+    -fx-background-color: -fx-box-border, rgb(205, 205, 205);
+    -fx-background-insets: 0, 1 1 1 1 0;
+}
+
+.table-row-cell:filled:selected:focused{
+    -fx-background-color: #4169E1;
+}
+
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: rgb(231, 231, 231);
+}
+
+.table-view:row-selection .table-row-cell:filled:focused:hover {
+    -fx-background-color: #4169E1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:hover {
+    -fx-background-color: -fx-box-border, rgb(231, 231, 231);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
 }

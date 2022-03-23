@@ -43,8 +43,10 @@ public class AuthServiceBD implements AuthService {
     public boolean registerNewUser(String nickName, String login, String pass) {
         int result = 0;
         try {
-            result = stmt.executeUpdate("INSERT INTO users (NickName, login, pass) VALUES ('" + nickName + "','" + login + "','" + pass + "');");
-            listUser.add(new User(nickName, login, pass));
+            int loginHash  = login.hashCode();
+            int passHash = pass.hashCode();
+            result = stmt.executeUpdate("INSERT INTO users (NickName, login, pass) VALUES ('" + nickName + "','" + loginHash + "','" + passHash + "');");
+            listUser.add(new User(nickName, String.valueOf(loginHash), String.valueOf(passHash)));
         } catch (SQLException e) {
             LOGGER.throwing(Level.ERROR, e);
         }
@@ -89,7 +91,7 @@ public class AuthServiceBD implements AuthService {
     @Override
     public String getNickByLoginPass(String login, String pass) {
         for (User user : listUser) {
-            if (user.login.equals(login) && user.pass.equals(pass))
+            if (user.login.equals(String.valueOf(login.hashCode())) && user.pass.equals(String.valueOf(pass.hashCode())))
                 return user.name;
         }
         return null;
