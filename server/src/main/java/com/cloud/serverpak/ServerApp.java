@@ -1,5 +1,7 @@
 package com.cloud.serverpak;
 
+import com.cloud.serverpak.services.AuthService;
+import com.cloud.serverpak.services.AuthServiceBD;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -18,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 @Data
 public class ServerApp implements Runnable{
-    private static final Logger LOGGER = LogManager.getLogger(ServerApp.class); // Trace < Debug < Info < Warn < Error < Fatal
+    private static final Logger LOGGER = LogManager.getLogger(ServerApp.class);
     private static AuthService authService = new AuthServiceBD();
     private Channel currentChannel;
     private EventLoopGroup mainGroup;

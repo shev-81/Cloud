@@ -1,7 +1,9 @@
 package com.cloud.serverpak;
 
-import handlers.HandlerRegistry;
-import handlers.RequestHandler;
+import com.cloud.serverpak.handlers.HandlerRegistry;
+import com.cloud.serverpak.handlers.RequestHandler;
+import com.cloud.serverpak.services.AuthService;
+import com.cloud.serverpak.services.FilesInformService;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

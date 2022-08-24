@@ -9,13 +9,35 @@ import lombok.Data;
 
 import java.io.IOException;
 
+/**
+ * The FX class of the application, Launches the UI of the application
+ * according to the description of the application scene described in
+ * view.xml file.
+ */
 @Data
 public class ClientApp extends Application {
 
+    /**
+     * The loader of the XML file describing the UI.
+     */
     private FXMLLoader loader;
-    private Controller controller;
+
+    /**
+     * Variable {@link Controller Controller}
+     */
+    private static Controller controller;
+
+    /**
+     * The main Stage of the FX application.
+     */
     private static Stage pStage;
 
+    /**
+     * Executed at application startup, saves references to in class variables
+     * Primary Stage and Controller.
+     * @param primaryStage The main Stage of the FX application.
+     * @throws Exception It may occur when working with the loader.
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         this.pStage = primaryStage;
@@ -31,13 +53,21 @@ public class ClientApp extends Application {
         return pStage;
     }
 
+    /**
+     * Выполняется перед закрытием приложения, останавливаетсервис работы
+     * с файлами и закрывает сетевое соединение.
+     */
+    @Override
     public void stop() {
         try{
             controller = loader.getController();
             controller.getFileWorker().stop();
-            controller.getConnection().close();
-        }catch (NullPointerException e){}
+            Controller.getConnection().close();
+        }catch (NullPointerException ignored){
+            ignored.printStackTrace();
+        }
     }
+
     public static void main(String[] args) {
         launch();
     }
