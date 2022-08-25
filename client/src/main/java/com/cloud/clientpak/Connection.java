@@ -7,6 +7,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.serialization.*;
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 import messages.AbstractMessage;
 import java.net.InetSocketAddress;
 import java.util.concurrent.CountDownLatch;
@@ -16,6 +17,7 @@ import java.util.concurrent.CountDownLatch;
  * Соединение необходимо открывать в отдельном потоке, что бы не мешать работе приложения.
  */
 @Data
+@Log4j2
 public class Connection implements Runnable {
 
     /**
@@ -93,12 +95,12 @@ public class Connection implements Runnable {
             countDownLatch.countDown();
             channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.toString());
         } finally {
             try {
                 group.shutdownGracefully().sync();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.toString());
             }
         }
     }

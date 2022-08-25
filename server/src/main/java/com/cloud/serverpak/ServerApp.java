@@ -1,12 +1,9 @@
 package com.cloud.serverpak;
 
-import com.cloud.serverpak.services.AuthService;
+import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.services.AuthServiceBD;
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -18,15 +15,49 @@ import lombok.SneakyThrows;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Класс запускающий Сервер Netty. Выполняет настройку сервера, создает
+ * конвеер состоящий из {@link ObjectDecoder ObjectDecoder()},
+ * {@link ObjectEncoder ObjectEncoder()} и {@link MainHandler MainHandler()}.
+ * @see ServerBootstrap
+ * @see NioEventLoopGroup
+ */
 @Data
 public class ServerApp implements Runnable{
+
     private static final Logger LOGGER = LogManager.getLogger(ServerApp.class);
+
+    /**
+     * Сервис авторизации. {@link AuthService AuthService}
+     */
     private static AuthService authService = new AuthServiceBD();
+
+    /**
+     * Текущий канал соединения.
+     */
     private Channel currentChannel;
+
+    /**
+     * Пулл потоков для работы с клиентами.
+     */
     private EventLoopGroup mainGroup;
+
+    /**
+     * Пулл потоков для работы с отправляемыми данными.
+     */
     private EventLoopGroup workerGroup;
+
+    /**
+     * Основной слушатель входящих объектов сообщений.
+     */
     private MainHandler mainHandler;
 
+    /**
+     * Метод запуска сервера. Для запуска создает 2 пула потоков, создает объект сервера,
+     * Определяет для него конвеер обработки данных. В конвеере, определяет
+     * максимальный размер байт для отправки (10 mb). При создании главного слушателя
+     * передает ему в конструкторе ссылку на сервис авторизации.
+     */
     @SneakyThrows
     @Override
     public void run(){
@@ -55,9 +86,14 @@ public class ServerApp implements Runnable{
         }
     }
 
+    /**
+     * Останавливает пулы потоков сервера и слушателя.
+     */
     public void stop(){
         mainGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        mainHandler.getExecutorService().shutdown();
+        AuthServiceBD.getMainHandlerList().forEach(p-> {
+            p.getExecutorService().shutdown();
+        });
     }
 }

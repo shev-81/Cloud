@@ -9,9 +9,15 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+/**
+ * Модель описывающая свойства файла.
+ */
 @Data
 public class FileInfo  implements Serializable {
 
+    /**
+     * Тип - файл или директория
+     */
     public enum FileType {
         FILE("F"), DIRECTORY("D");
 
@@ -26,11 +32,30 @@ public class FileInfo  implements Serializable {
         }
     }
 
+    /**
+     * Имя файла.
+     */
     private String filename;
+
+    /**
+     * Тип файла.
+     */
     private FileType type;
+
+    /**
+     * Размер файла в байтах.
+     */
     private long size;
+
+    /**
+     * Вермя последнего изменения.
+     */
     private LocalDateTime lastModified;
 
+    /**
+     * Конструктор принимает объект пути к файлу и обрабатывая его заполняет модель свойствами.
+     * @param path Путь к файлу.
+     */
     public FileInfo(Path path) {
         try {
             this.filename = path.getFileName().toString();

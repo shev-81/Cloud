@@ -318,6 +318,7 @@ public class Controller implements Initializable{
             connection = new Connection(this, countDownLatch);
             new Thread(connection).start();
             countDownLatch.await();
+            fileWorker.setConnection(connection);
         }
         connection.send(new AuthMessage(authLogin.getText(), authPassword.getText()));
     }

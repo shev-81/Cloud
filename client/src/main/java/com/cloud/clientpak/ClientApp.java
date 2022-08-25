@@ -63,9 +63,7 @@ public class ClientApp extends Application {
             controller = loader.getController();
             controller.getFileWorker().stop();
             Controller.getConnection().close();
-        }catch (NullPointerException ignored){
-            ignored.printStackTrace();
-        }
+        }catch (NullPointerException ignored){}
     }
 
     public static void main(String[] args) {

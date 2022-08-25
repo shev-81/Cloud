@@ -142,7 +142,7 @@ public class FileWorker {
                     changeInterface.call(false);
                 });
             } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
+                log.error(e.toString());
             }
         });
     }

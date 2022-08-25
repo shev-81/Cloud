@@ -75,7 +75,7 @@ public class FileHandler {
                 });
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.toString());
         }
     }
 }

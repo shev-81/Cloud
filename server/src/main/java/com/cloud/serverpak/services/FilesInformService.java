@@ -9,8 +9,18 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Класс предназначен как сервис возвращающий в своих методах: сколько места
+ * в облаке занято для конкретного пользователя, список файлов пользователя.
+ */
 public class FilesInformService {
 
+    /**
+     * Возвращает список объектов описывающий файлы для конкретного пользователя.
+     * @param nameUser имя пользователя.
+     * @return Список объектов описывающий файлы. может вернуть "Null" если файлов нет.
+     * @throws IOException при работе с файлами.
+     */
     public List<FileInfo> getListFiles(String nameUser) throws IOException {
         if (nameUser != null) {
             Path path = Paths.get("server/files/" + nameUser);
@@ -22,6 +32,12 @@ public class FilesInformService {
         return null;
     }
 
+    /**
+     * Возвращает размер файлов в байтах.
+     * @param nameUser имя пользователя.
+     * @return размер файлов в байтах.
+     * @throws IOException при работе с файлами.
+     */
     public long getFilesSize(String nameUser) throws IOException {
         if (nameUser != null) {
             Path path = Paths.get("server/files/" + nameUser);
