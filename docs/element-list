@@ -1,0 +1,10 @@
+com.cloud.clientpak
+com.cloud.clientpak.handlers
+com.cloud.clientpak.interfaces
+com.cloud.clientpak.services
+com.cloud.serverpak
+com.cloud.serverpak.handlers
+com.cloud.serverpak.interfaces
+com.cloud.serverpak.services
+messages
+serverui
