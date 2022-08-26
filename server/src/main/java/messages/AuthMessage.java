@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * The successor class {@link AbstractMessage AbstractMessage},
+ * The successor class AbstractMessage,
  * is a Data Transfer Object, carrying the user's login and
  * password to the server, and upon successful authorization
  * contains contains a list of files in the cloud.

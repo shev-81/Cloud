@@ -3,7 +3,7 @@ package messages;
 import lombok.Data;
 
 /**
- * The descendant class of {@link AbstractMessage AbstractMessage}, is a Data Transfer Object.
+ * The descendant class of AbstractMessage, is a Data Transfer Object.
  * Is a service message containing data about the registration of a new user.
  * */
 @Data

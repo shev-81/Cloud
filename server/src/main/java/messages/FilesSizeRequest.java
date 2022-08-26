@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * The descendant class of {@link AbstractMessage AbstractMessage},
+ * The descendant class of AbstractMessage,
  * is a Data Transfer Object. If sent by the client, then the
  * constructor with the parameter "1" is used, accepting this
  * the message object server will understand that it is necessary

@@ -3,7 +3,7 @@ package messages;
 import lombok.Data;
 
 /**
- * The successor class {@link AbstractMessage AbstractMessage}, is a
+ * The successor class AbstractMessage, is a
  * Data Transfer Object, carries the name of the file to be deleted
  * from the cloud.
  */
