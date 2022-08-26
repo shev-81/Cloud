@@ -1,7 +1,7 @@
 package com.cloud.clientpak.interfaces;
 
 /**
- * Интерфейс работающий с CallBack GUI.
+ * The interface works with the CallBack GUI.
  */
 @FunctionalInterface
 public interface ChangeInterface {

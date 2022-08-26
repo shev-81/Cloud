@@ -9,40 +9,29 @@ import messages.FilesSizeRequest;
 import java.util.List;
 
 /**
- * Класс слушатель сообщений {@link FilesSizeRequest FilesSizeRequest}.
+ * Message Listener class {@link FilesSizeRequest FilesSizeRequest}.
  */
 @Log4j2
 public class FilesSizeRequestHandler {
 
     /**
-     * Переменная {@link Controller Controller}
+     * Variable {@link Controller Controller}
      */
-    private Controller controller;
+    private final Controller controller;
 
     /**
-     * Метка маркер, необходимая для отображения загрузки файла.
+     * The marker label required to display the file upload.
      */
     private boolean check;
 
     /**
-     * Процент прогресс бара.
+     * Percentage of the progress bar.
      */
     private double percentProgBar;
 
     /**
-     * Общее колличество часте файла.
-     */
-    private double partsCount;
-
-    /**
-     * Номер текущей части файла.
-     */
-    private double partNumber;
-
-
-    /**
-     * Конструктор сохраняет ссылку на контроллер приложения.
-     * @param controller контроллер приложения.
+     * The constructor saves a reference to the application controller.
+     * @param controller application controller.
      */
     public FilesSizeRequestHandler(Controller controller) {
         this.controller = controller;
@@ -50,10 +39,10 @@ public class FilesSizeRequestHandler {
     }
 
     /**
-     * Получив от сервера ответ о данных в облаке, обновляет
-     * все данные в GUI о состоянии облака.
+     * After receiving a response from the server about the data in the cloud, updates
+     * all data in the GUI about the state of the cloud.
      * @param ctx channel context.
-     * @param msg объект сообщение.
+     * @param msg the message object.
      */
     public void filesSizeReqHandle(ChannelHandlerContext ctx, Object msg) {
         if (controller.getFileWorker().isReWriteFileCheck()) {
@@ -64,8 +53,8 @@ public class FilesSizeRequestHandler {
         double filesSize = (double) filesObj.getFilesSize() / 1024 / 1024 / 1024;
         List<FileInfo> listFiles = filesObj.getListFiles();
         controller.setFileList(listFiles);
-        partsCount = filesObj.getPartsCount();
-        partNumber = filesObj.getPartNumber();
+        double partsCount = filesObj.getPartsCount();
+        double partNumber = filesObj.getPartNumber();
         if(partsCount != partNumber){
             percentProgBar =  (1 / partsCount) * partNumber;
             check = true;

@@ -10,16 +10,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Класс предназначен как сервис возвращающий в своих методах: сколько места
- * в облаке занято для конкретного пользователя, список файлов пользователя.
+ * The class is intended as a service that returns in its methods: how much space
+ * the cloud is busy for a specific user, a list of the user's files.
  */
 public class FilesInformService {
 
     /**
-     * Возвращает список объектов описывающий файлы для конкретного пользователя.
-     * @param nameUser имя пользователя.
-     * @return Список объектов описывающий файлы. может вернуть "Null" если файлов нет.
-     * @throws IOException при работе с файлами.
+     * Returns a list of objects describing files for a specific user.
+     * @param nameUser username.
+     * @return A list of objects describing the files. it can return "Null" if there are no files.
+     * @throws IOException when working with files.
      */
     public List<FileInfo> getListFiles(String nameUser) throws IOException {
         if (nameUser != null) {
@@ -33,10 +33,10 @@ public class FilesInformService {
     }
 
     /**
-     * Возвращает размер файлов в байтах.
-     * @param nameUser имя пользователя.
-     * @return размер файлов в байтах.
-     * @throws IOException при работе с файлами.
+     * Returns the size of files in bytes.
+     * @param nameUser username.
+     * @return file size in bytes.
+     * @throws IOException when working with files.
      */
     public long getFilesSize(String nameUser) throws IOException {
         if (nameUser != null) {
@@ -44,8 +44,7 @@ public class FilesInformService {
             if (!Files.exists(path)) {
                 Files.createDirectory(path);
             }
-            long size = Files.list(path).map((p) -> p.toFile().length()).reduce((s1, s2) -> s1 + s2).orElse(Long.valueOf(0));
-            return size;
+            return Files.list(path).map((p) -> p.toFile().length()).reduce(Long::sum).orElse(0L);
         }
         return 0;
     }

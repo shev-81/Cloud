@@ -13,43 +13,43 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Класс описывающий сетевое соединение, {@link #openConnection openConnection()}.
- * Соединение необходимо открывать в отдельном потоке, что бы не мешать работе приложения.
- */
+ * Class describing the network connection, {@link #openConnection openConnection()}.
+ * The connection must be opened in a separate thread, so as not to interfere with the operation of the application. */
 @Data
 @Log4j2
 public class Connection implements Runnable {
 
     /**
-     * Адресс сервера.
+     * Server address.
      */
     private final String SERVER_ADDR = "localhost";
 
     /**
-     * Порт сервера.
+     * Server port.
      */
     private final int SERVER_PORT = 8189;
 
     /**
-     * Контроллер приложения.
+     * Application controller.
      */
     private Controller controller;
 
     /**
-     * Текущее соединение.
+     * The current connection.
      */
     private Channel currentChannel;
 
     /**
-     * Объект синхронизации, используется при запуске соединения,
-     * связан с основным приложением GUI пользователя.
+     * Synchronization object, used when starting a connection,
+     * linked to the user's main GUI application.
      */
     private CountDownLatch countDownLatch;
 
     /**
-     * Конструктор сохраняет ссылку на контроллер приложения и объект синхронизации.
-     * @param controller контроллер приложения.
-     * @param countDownLatch объект синхронизации.
+     * The constructor saves a reference to the application controller
+     * and the synchronization object.
+     * @param controller application controller.
+     * @param countDownLatch synchronization object.
      */
     public Connection(Controller controller, CountDownLatch countDownLatch) {
         this.controller = controller;
@@ -57,7 +57,8 @@ public class Connection implements Runnable {
     }
 
     /**
-     * Вызывает метод открытия сетевого соединения, в отдельном потоке.
+     * Calls the method of opening a network connection, in a
+     * separate thread.
      */
     @Override
     public void run() {
@@ -65,10 +66,10 @@ public class Connection implements Runnable {
     }
 
     /**
-     * Открывает сетевое соединение. Запускает клиент Netty. При конфигурации клиента
-     * определяет пул потоков обработки, адресс и порт сервера, строит ковеер обработчиков
-     * вхоядщих и исходящих данных. В данном случае используются сериализатор и десериализатор
-     * объектов, а так же основной слушатель имеющий ссылку на контроллер приложения.
+     * Opens a network connection. Starts the Netty client. When configuring the client
+     * defines the pool of processing threads, the address and port of the server, builds a pipeline of handlers
+     * incoming and outgoing data. In this case, the serializer and deserializer are used
+     * objects, as well as the main listener having a link to the application controller.
      * @see ObjectDecoder
      * @see ObjectEncoder
      * @see MainHandler
@@ -82,7 +83,7 @@ public class Connection implements Runnable {
                     .channel(NioSocketChannel.class)
                     .remoteAddress(new InetSocketAddress(SERVER_ADDR, SERVER_PORT))
                     .handler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        protected void initChannel(SocketChannel socketChannel) {
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(1024 * 1024 * 100, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
@@ -106,16 +107,17 @@ public class Connection implements Runnable {
     }
 
     /**
-     * Посылает объект сообщения через текущий канал соединения в конвеер Netty.
-     * @param msg Сообщение.
-     * @return Текущий канал соединения.
+     * Sends the message object through the current connection
+     * channel to the Netty pipeline.
+     * @param msg Message.
+     * @return The current connection channel.
      */
     public ChannelFuture send(AbstractMessage msg){
         return currentChannel.writeAndFlush(msg);
     }
 
     /**
-     * Закрывает канал соединения.
+     * Closes the connection channel.
      */
     public void close() {
         currentChannel.close();

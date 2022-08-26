@@ -3,7 +3,7 @@ package messages;
 import java.io.Serializable;
 
 /**
- * Абстрактный класс сообщения.
+ * Abstract message class.
  */
 public abstract class AbstractMessage implements Serializable {
 }

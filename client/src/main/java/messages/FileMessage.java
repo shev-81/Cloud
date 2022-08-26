@@ -1,38 +1,42 @@
 package messages;
 
 /**
- * Класс наследник {@link AbstractMessage AbstractMessage}, является Data Transfer Object,
- * предназначен для передачи байтов файла.
+ * The successor class {@link AbstractMessage AbstractMessage}, is a
+ * Data Transfer Object, designed to transfer bytes of a file.
  */
 public class FileMessage extends AbstractMessage {
 
     /**
-     * Имя файла.
+     * The file name.
      */
     public String filename;
 
     /**
-     * Номер текущей части файла. (Части по размерам передаваемой информации не превышают 10 mb).
+     * The number of the current part of the file. (Parts of the
+     * size of the transmitted information do not exceed 10 mb).
      */
     public int partNumber;
 
     /**
-     * Число показатель, на сколько всего частей разрезан файл.
+     * Number is an indicator of how many parts a file is cut
+     * into in total.
      */
     public int partsCount;
 
     /**
-     * Байты файла. Массив не более 10 mb/
+     * Bytes of the file. Array no more than 10 mb.
      */
     public byte[] data;
 
     /**
-     * При создании сообщения несущего в себе данные файла определяеются: имя файла,
-     * присвоенный номер посылки, сколько всего посылок и сам массив байт содержащий часть файла.
-     * @param filename Имя файла.
-     * @param partNumber Присвоенный номер посылки.
-     * @param partsCount Сколько всего посылок.
-     * @param data Массив байт содержащий часть файла.
+     * When creating a message containing file data, the following
+     * is determined: file name, the assigned parcel number, how
+     * many parcels there are in total, and the byte array itself
+     * containing part of the file.
+     * @param filename The file name.
+     * @param partNumber The assigned parcel number.
+     * @param partsCount How many packages are there in total.
+     * @param data An array of bytes containing a part of the file.
      */
     public FileMessage(String filename, int partNumber, int partsCount, byte[] data) {
         this.filename = filename;

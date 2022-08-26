@@ -6,30 +6,30 @@ import io.netty.channel.ChannelHandlerContext;
 import messages.RegUserRequest;
 
 /**
- * Класс слушатель сообщений {@link RegUserRequest RegUserRequest}.
+ * Message Listener class {@link RegUserRequest RegUserRequest}.
  */
 public class RegUserHandler{
 
     /**
-     * Сервис авторизации.
+     * Authorization service.
      */
-    private AuthService authService;
+    private final AuthService authService;
 
     /**
-     * Конструктор сохранят ссылку на главный слушатель.
-     * @param mainHandler
+     * The constructor saves a reference to the main listener.
+     * @param mainHandler Netty's main listener.
      */
     public RegUserHandler(MainHandler mainHandler) {
         this.authService = mainHandler.getAuthService();
     }
 
     /**
-     * Обрабатывает служебное сообщение - запрос на регистрацию нового пользователя,
-     * проверяет есть ла пользователь с таким же ником в БД, если есть, то отправляет
-     * отказ в регистрации, а при отсутствии регистрирует его и посылает ответ клиенту,
-     * что регистрация прошла успешно.
+     * Processes a service message - a request to register a new user,
+     * checks if there is a user with the same nickname in the database, if there is, then sends
+     * refusal to register, and in the absence registers it and sends a response to the client,
+     * that the registration was successful.
      * @param ctx channel context.
-     * @param msg объект сообщение.
+     * @param msg the message object.
      */
     public void regHandle(ChannelHandlerContext ctx, Object msg) {
         RegUserRequest regMsg = (RegUserRequest) msg;

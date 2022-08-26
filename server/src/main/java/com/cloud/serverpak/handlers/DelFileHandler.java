@@ -12,27 +12,28 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Класс слушатель сообщений несущих информацию об удалении файла. Определяет метод по работе
- * с сообщением представляющим запрос на удаление файла из облака.
+ * Class listener of messages carrying information about
+ * file deletion. Defines a method for work with a message
+ * representing a request to delete a file from the cloud.
  */
 @Log4j2
 public class DelFileHandler{
 
     /**
-     * Главный слушатель Netty.
+     * Netty's main listener.
      * @see MainHandler
      */
-    private MainHandler mainHandler;
+    private final MainHandler mainHandler;
 
     /**
-     * Файловый информационный сервис.
+     * File information service.
      * @see FilesInformService
      */
-    private FilesInformService fileService;
+    private final FilesInformService fileService;
 
     /**
-     * Конструктор получает ссылку на галвный слушатель.
-     * @param mainHandler Главный слушатель Netty.
+     * The constructor gets a reference to the main listener.
+     * @param mainHandler Netty's main listener.
      */
     public DelFileHandler(MainHandler mainHandler) {
         this.mainHandler = mainHandler;
@@ -40,7 +41,7 @@ public class DelFileHandler{
     }
 
     /**
-     * Удаляет файл с облака у пользователя.
+     * Deletes a file from the user's cloud.
      * @param ctx channel context.
      * @param msg the message object.
      * @see DelFileRequest

@@ -5,47 +5,50 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * Класс наследник {@link AbstractMessage AbstractMessage}, является Data Transfer Object.
- * Если отправляется клиентом, то используется конструктор с параметром "1", приняв этот
- * объект сообщения сервер поймет, что необходимо вернуть заполненный ответ.
- * На стороне сервера используется как ответ клиенту на запрос о наполеннности хранилища, так
- * и ответ на получение частей файлов.
+ * The descendant class of {@link AbstractMessage AbstractMessage},
+ * is a Data Transfer Object. If sent by the client, then the
+ * constructor with the parameter "1" is used, accepting this
+ * the message object server will understand that it is necessary
+ * to return a completed response. On the server side, it is used
+ * as a response to the client's request for storage capacity, and
+ * the response to receiving parts of the files.
  */
 @Data
 public class FilesSizeRequest extends AbstractMessage{
 
     /**
-     * Общий размер файлов в байтах.
+     * Total file size in bytes.
      */
     private long filesSize;
 
     /**
-     * Список объектов описывающих файлы на сервере.
+     * A list of objects describing files on the server.
      */
     private List<FileInfo> listFiles;
 
     /**
-     * Заполянется в ответ о получении части файла.
+     * Filled in in response to receiving part of the file.
      */
     private int partNumber;
 
     /**
-     * Заполянется в ответ о получении части файла, сколько всего частей.
+     * Is filled in in response to receiving a part of the file,
+     * how many parts are there in total.
      */
     private int partsCount;
 
     /**
-     * Конструктор заполняемый клиентом для запроса серверу.
-     * @param filesSize содержит "1".
+     * A constructor filled in by the client for a request to the server.
+     * @param filesSize contains "1".
      */
     public FilesSizeRequest(long filesSize) {
         this.filesSize = filesSize;
     }
 
     /**
-     * Конструктор используемый сервером.
-     * @param filesSize Размер файлов на сервере в байтах.
-     * @param listFiles Список объектов описывающих файлы.
+     * The constructor used by the server.
+     * @param filesSize The size of files on the server in bytes.
+     * @param listFiles A list of objects describing files.
      */
     public FilesSizeRequest(long filesSize, List<FileInfo> listFiles) {
         this.filesSize = filesSize;
@@ -53,11 +56,11 @@ public class FilesSizeRequest extends AbstractMessage{
     }
 
     /**
-     * Конструктор используемый сервером.
-     * @param filesSize Размер файлов на сервере в байтах.
-     * @param listFiles Список объектов описывающих файлы.
-     * @param partNumber Присвоенный номер посылки.
-     * @param partsCount Сколько всего посылок.
+     * The constructor used by the server.
+     * @param filesSize The size of files on the server in bytes.
+     * @param listFiles A list of objects describing files.
+     * @param partNumber The assigned parcel number.
+     * @param partsCount How many packages are there in total.
      */
     public FilesSizeRequest(long filesSize, List<FileInfo> listFiles, int partNumber, int partsCount) {
         this.filesSize = filesSize;

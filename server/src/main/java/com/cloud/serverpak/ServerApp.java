@@ -12,51 +12,49 @@ import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import lombok.Data;
 import lombok.SneakyThrows;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 /**
- * Класс запускающий Сервер Netty. Выполняет настройку сервера, создает
- * конвеер состоящий из {@link ObjectDecoder ObjectDecoder()},
- * {@link ObjectEncoder ObjectEncoder()} и {@link MainHandler MainHandler()}.
+ * The class that starts the Netty Server. Performs server configuration, creates
+ * pipeline consisting of {@link ObjectDecoder ObjectDecoder()},
+ * {@link ObjectEncoder ObjectEncoder()} and {@link MainHandler MainHandler()}.
  * @see ServerBootstrap
  * @see NioEventLoopGroup
  */
 @Data
+@Log4j2
 public class ServerApp implements Runnable{
 
-    private static final Logger LOGGER = LogManager.getLogger(ServerApp.class);
-
     /**
-     * Сервис авторизации. {@link AuthService AuthService}
+     * Authorization service. {@link AuthService AuthService}
      */
     private static AuthService authService = new AuthServiceBD();
 
     /**
-     * Текущий канал соединения.
+     * The current connection channel.
      */
     private Channel currentChannel;
 
     /**
-     * Пулл потоков для работы с клиентами.
+     * A thread pool for working with clients.
      */
     private EventLoopGroup mainGroup;
 
     /**
-     * Пулл потоков для работы с отправляемыми данными.
+     * A pool of threads for working with the data being sent.
      */
     private EventLoopGroup workerGroup;
 
     /**
-     * Основной слушатель входящих объектов сообщений.
+     * The primary listener of incoming message objects.
      */
     private MainHandler mainHandler;
 
     /**
-     * Метод запуска сервера. Для запуска создает 2 пула потоков, создает объект сервера,
-     * Определяет для него конвеер обработки данных. В конвеере, определяет
-     * максимальный размер байт для отправки (10 mb). При создании главного слушателя
-     * передает ему в конструкторе ссылку на сервис авторизации.
+     * The method of starting the server. To run, creates 2 thread pools, creates a server object,
+     * Defines a data processing pipeline for it. In the conveyor, defines
+     * maximum size of bytes to send (10 mb). When creating the main listener
+     * passes him a link to the authorization service in the constructor.
      */
     @SneakyThrows
     @Override
@@ -68,7 +66,7 @@ public class ServerApp implements Runnable{
             b.group(mainGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
+                        protected void initChannel(SocketChannel socketChannel) {
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(1024 * 1024 * 100, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
@@ -78,7 +76,7 @@ public class ServerApp implements Runnable{
                         }
                     });
             ChannelFuture future = b.bind(8189).sync();
-            LOGGER.info("Сервер запущен");
+            log.info("Сервер запущен");
             future.channel().closeFuture().sync();
         } finally {
             mainGroup.shutdownGracefully();
@@ -87,13 +85,13 @@ public class ServerApp implements Runnable{
     }
 
     /**
-     * Останавливает пулы потоков сервера и слушателя.
+     * Stops the server and listener thread pools.
      */
     public void stop(){
         mainGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        AuthServiceBD.getMainHandlerList().forEach(p-> {
-            p.getExecutorService().shutdown();
-        });
+        AuthServiceBD.getMainHandlerList()
+                .forEach(p-> p.getExecutorService()
+                        .shutdown());
     }
 }

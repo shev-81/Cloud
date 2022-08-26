@@ -3,32 +3,32 @@ package messages;
 import lombok.Data;
 
 /**
- * Класс наследник {@link AbstractMessage AbstractMessage}, является Data Transfer Object.
- * Является служебным сообщением содержащим данные о регистрации нового пользователя.
- */
+ * The descendant class of {@link AbstractMessage AbstractMessage}, is a Data Transfer Object.
+ * Is a service message containing data about the registration of a new user.
+ * */
 @Data
 public class RegUserRequest extends AbstractMessage {
 
     /**
-     * Имя пользователя.
+     * Username.
      */
     private String nameUser;
 
     /**
-     * Логин пользователя.
+     * User login.
      */
     private String login;
 
     /**
-     * Пароль пользователя.
+     * The user's password.
      */
     private String passUser;
 
     /**
-     * Конструктор наполняет все поля.
-     * @param nameUser Имя пользователя.
-     * @param login Логин пользователя.
-     * @param passUser Пароль пользователя.
+     * The constructor fills in all fields.
+     * @param nameUser Username.
+     * @param login User login.
+     * @param passUser The user's password.
      */
     public RegUserRequest(String nameUser, String login, String passUser) {
         this.nameUser = nameUser;
