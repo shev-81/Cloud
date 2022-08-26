@@ -1,7 +1,7 @@
 package com.cloud.serverpak;
 
 /**
- *  Класс для запуска сервера
+ * Class for starting the server.
  */
 public class Main {
     public static void main(String[] args) throws Exception {

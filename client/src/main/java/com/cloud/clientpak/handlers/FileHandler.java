@@ -10,31 +10,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Класс слушатель сообщений несущих данные файла. Определяет метод по работе
- * с сообщением содержащим данные файла.
+ * Class listener of messages carrying file data. Defines a method for work
+ * with a message containing the file data.
  */
 @Log4j2
 public class FileHandler {
 
     /**
-     * Переменная {@link Controller Controller}
+     * Variable {@link Controller Controller}
      */
-    private Controller controller;
+    private final Controller controller;
 
     /**
-     * Поток вывода в файл.
+     * Output stream to a file.
      */
     private FileOutputStream fos;
 
     /**
-     * Маркер определяющий режим записи в файл
-     * (нужно ли дописывать данные в конец файла или перезаписать.)
+     * Marker defining the mode of writing to the file
+     * (whether to append the data to the end of the file or overwrite it.)
      */
     private boolean append;
 
     /**
-     * Конструктор сохраняет ссылку на контроллер приложения.
-     * @param controller контроллер приложения.
+     * The constructor saves a reference to the application controller.
+     * @param controller application controller.
      */
     public FileHandler(Controller controller) {
         this.controller = controller;
@@ -42,12 +42,12 @@ public class FileHandler {
     }
 
     /**
-     * Получает сообщение с данными файла, проверяет уместился ли файл в 1 сообщение.
-     * Если нет то устанавливает маркер "append" в режим "true" для записи данных из
-     * последующих сообщений в конец файла. По получению последней части файла в сообщении
-     * закрывает поток вывода в файл, и отправляет запрос на обновление данных списка файлов
+     * Receives a message with file data, checks whether the file fits into 1 message.
+     * If not, then sets the "append" marker to "true" mode to record data from
+     * follow-up messages to the end of the file. After receiving the last part of the file in the message
+     * closes the output stream to a file, and sends a request to update the file list data
      * @param ctx channel context.
-     * @param msg объект сообщение.
+     * @param msg message object.
      */
     public void fileHandle(ChannelHandlerContext ctx, Object msg) {
         FileMessage fmsg = (FileMessage) msg;

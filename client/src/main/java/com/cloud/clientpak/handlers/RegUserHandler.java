@@ -6,28 +6,28 @@ import javafx.application.Platform;
 import messages.RegUserRequest;
 
 /**
- * Класс слушатель сообщений {@link RegUserRequest RegUserRequest}.
+ * Message Listener class {@link RegUserRequest RegUserRequest}.
  */
 public class RegUserHandler{
 
     /**
-     * Переменная {@link Controller Controller}
+     * Variable {@link Controller Controller}
      */
-    private Controller controller;
+    private final Controller controller;
 
     /**
-     * Конструктор сохраняет ссылку на контроллер приложения.
-     * @param controller контроллер приложения.
+     * The constructor saves a reference to the application controller.
+     * @param controller application controller.
      */
     public RegUserHandler(Controller controller) {
         this.controller =controller;
     }
 
     /**
-     * Обрабатывает служебное сообщение сервера о прохождении
-     * или не прохождении регистрации.
+     * Processes the server's service message about the passage
+     * or not passing registration.
      * @param ctx channel context.
-     * @param msg объект сообщение.
+     * @param msg the message object.
      */
     public void regHandle(ChannelHandlerContext ctx, Object msg) {
         RegUserRequest regUserRequest = (RegUserRequest) msg;

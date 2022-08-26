@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
 public class MainHandler extends ChannelInboundHandlerAdapter{
 
     /**
-     * Сервис авторизации {@link AuthService AuthService}.
+     * Authorization service {@link AuthService AuthService}.
      */
     private AuthService authService;
     private static List<Channel> channels = new ArrayList<>();
@@ -40,9 +40,9 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
     private RegistryHandler handlerRegistry;
 
     /**
-     * При создании получает ссылку на сервис авторизации. Запускает
-     * пулл потоков, сервис работы с файлами, и регистратор слушателей сообщений.
-     * @param authService Сервис авторизации.
+     * Receives a link to the authorization service when creating it. Launches
+     * thread pool, file management service, and message listener logger.
+     * @param authService Authorization service.
      * @see Executors
      * @see FilesInformService
      * @see RegistryHandler
@@ -79,7 +79,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
      * @param cause a variable with an exception.
      */
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause){
         authService.stop();
         executorService.shutdown();
         cause.printStackTrace();

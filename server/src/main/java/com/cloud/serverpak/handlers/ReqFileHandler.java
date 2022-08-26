@@ -15,40 +15,39 @@ import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 
 /**
- * Класс слушатель сообщений запросов файлов. Определяет метод по работе
- * с сообщением содержащим данные файла.
+ * File request message listener class. Defines a method for work
+ * with a message containing the file data.
  */
 @Data
 @Log4j2
 public class ReqFileHandler {
 
     /**
-     * Буфер масива байт для объекта сообщения.
+     * Byte array buffer for the message object.
      */
     private static final int BUF_SIZE = 1024 * 1024 * 10;
 
     /**
-     * Главный слушатель Netty.
+     * Netty's main listener.
      * @see MainHandler
      */
     private MainHandler mainHandler;
 
     /**
-     * Файловый информационный сервис.
+     * File information service.
      * @see FilesInformService
      */
     private FilesInformService fileService;
 
     /**
-     * Ссылка на пулл потоков из главного слушателя.
+     * A link to the thread pool from the main listener.
      */
     private ExecutorService executorService;
 
     /**
-     * Конструктор сохраняет ссылку на главный слушатель сообщений.
-     * @see FilesInformService
+     * The constructor saves a link to the main message listener.     * @see FilesInformService
      * @see ExecutorService
-     * @param mainHandler
+     * @param mainHandler Netty's main listener.
      */
     public ReqFileHandler(MainHandler mainHandler) {
         this.mainHandler = mainHandler;
@@ -57,10 +56,10 @@ public class ReqFileHandler {
     }
 
     /**
-     * Обрабатывает запрос от клиента на получение файла, если файл весит больше 10 mb,
-     * разрезает его на части по 10 mb. и отправляет клиенту.
+     * Processes a request from the client to receive a file if the file weighs more than 10 mb,
+     * cuts it into 10 mb pieces. and sends it to the client.
      * @param ctx channel context.
-     * @param msg объект сообщение.
+     * @param msg the message object.
      */
     public void reqFileHandle(ChannelHandlerContext ctx, Object msg) {
         executorService.execute(() -> {

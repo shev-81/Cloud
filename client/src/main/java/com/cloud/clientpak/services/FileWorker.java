@@ -22,12 +22,12 @@ import java.util.concurrent.Executors;
 import static com.cloud.clientpak.Controller.CAPACITY_CLOUD_IN_GB;
 
 /**
- * Клас отвечающий за работу по отправке файлов в облако. При выполнении
- * отправки сообщения с данными файла (размер не превышает 10 mb.), файл
- * режется на равные части по 10 mb. и отправляется по сети частями. На
- * сколько частей был разрезан файл, столько же сообщений будет
- * последовательно отправлено в сеть. Важный момент соблюдения очередности
- * отправки таких сообщений синхронизируется в методе sync()
+ * The class responsible for sending files to the cloud. When
+ * sending a message with file data (size does not exceed 10 mb.), the file
+ * cut into equal parts of 10 mb. and it is sent over the network in parts.
+ * How many parts the file was cut into, the same number of messages will be
+ * sequentially sent to the network. An important point of compliance with the order
+ * sending such messages is synchronized in the sync() method.
  * {@link ChannelFuture ChannelFuture}
  */
 @Data
@@ -35,36 +35,36 @@ import static com.cloud.clientpak.Controller.CAPACITY_CLOUD_IN_GB;
 public class FileWorker {
 
     /**
-     * Максимальный размер передаваемого сообщения 10mb.
+     * The maximum size of the transmitted message is 10 mb.
      */
     private final int BUFFER_SIZE = 1024 * 1024 * 10;
 
     /**
-     * Чек, нужна ли перезапись файла.
+     * Check whether the file needs to be overwritten.
      */
     private boolean reWriteFileCheck;
 
     /**
-     * Содержит количество байт на которое наполнено облако.
+     * Contains the number of bytes that the cloud is filled with.
      */
     private long lastLoadSizeFiles;
 
     /**
-     * Сетевое соединение.
+     * Network connection.
      */
     private Connection connection;
 
     /**
-     * Пулл потоков.
+     * Thread pool.
      */
     private ExecutorService executorService;
 
     /**
-     * Конструктор определяет из пула потоков 1 раобчий поток для отправки сообщений,
-     * один поток необходим по причине соблюдения асинхронности отправки сообщений.
-     * Если будет работать 2 и более паралельных потоков то будет нарушен принцип
-     * асинхронности работы у Netty. И возникнет путаница в сообщениях, какое к
-     * какому файлу относится.
+     * The constructor determines from the thread pool 1 the next thread to send messages,
+     * one thread is required due to the asynchronous nature of sending messages.
+     * If 2 or more parallel threads work, the principle will be violated
+     * asynchronous operation at Netty. And there will be confusion in the messages, which to
+     * which file it belongs to.
      * @see ExecutorService
      */
     public FileWorker() {
@@ -74,19 +74,19 @@ public class FileWorker {
     }
 
     /**
-     * Проверяет файл на наличие в облаке, если есть то уточняет у пользователя
-     * нужно ли его перезаписать. Проверяет будет ли превышен лимит на хранение
-     * данных в облаке после записи файла (Если нехватает места выдает сообщение
-     * пользователю о нехватке места).
-     * @param file ссылка на файл подлежащий передаче в облако.
-     * @param changeInterface CallBack для GUI пользователя.
-     * @param reWrite говорит будет ли файл перезаписан в облаке.
+     * Checks the file for availability in the cloud, if there is, then checks with the user
+     * whether it needs to be overwritten. Checks whether the storage limit will be exceeded
+     * data in the cloud after writing a file (If there is not enough space, it issues a message
+     * to the user about the lack of space).
+     * @param file a link to the file to be transferred to the cloud.
+     * @param changeInterface CallBack for the user's GUI.
+     * @param reWrite tells whether the file will be overwritten in the cloud.
      */
     public void checkAddFile(File file, ChangeInterface changeInterface, boolean reWrite) {
         if (reWrite) {
             Alert allert = new Alert(Alert.AlertType.CONFIRMATION, "Файл будет перезаписан.");
             Optional<ButtonType> option = allert.showAndWait();
-            if (option.get() == null) {
+            if (option.isEmpty()) {
                 return;
             } else if (option.get() == ButtonType.OK) {
                 reWriteFileCheck = true;
@@ -106,10 +106,10 @@ public class FileWorker {
     }
 
     /**
-     * Если файл больше 10 mb режет его на части и отправляет в сеть. После отправки каждого сообщения,
-     * вызывается CallBack для изменения GUI пользователя.
-     * @param file ссылка на файл подлежащий передаче в облако.
-     * @param changeInterface CallBack для GUI пользователя.
+     * If the file is larger than 10 mb, it cuts it into pieces and sends it to the network. After sending each message,
+     * CallBack is called to change the user's GUI.
+     * @param file a link to the file to be transferred to the cloud.
+     * @param changeInterface CallBack for the user's GUI.
      */
     public void send(File file, ChangeInterface changeInterface) {
         this.connection = Controller.getConnection();
@@ -119,9 +119,7 @@ public class FileWorker {
                 if (file.length() % BUFFER_SIZE != 0) {
                     partsCount++;
                 }
-                Platform.runLater(() -> {
-                    changeInterface.call(true);
-                });
+                Platform.runLater(() -> changeInterface.call(true));
                 FileMessage fmOut = new FileMessage(file.getName(), -1, partsCount, new byte[BUFFER_SIZE]);
                 FileInputStream in = new FileInputStream(file);
                 for (int i = 0; i < partsCount; i++) {
@@ -138,9 +136,7 @@ public class FileWorker {
                 ChannelFuture f = connection.send(new FilesSizeRequest(1));
                 f.sync();
                 in.close();
-                Platform.runLater(() -> {
-                    changeInterface.call(false);
-                });
+                Platform.runLater(() -> changeInterface.call(false));
             } catch (IOException | InterruptedException e) {
                 log.error(e.toString());
             }

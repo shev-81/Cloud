@@ -1,7 +1,7 @@
 package serverui;
 
 /**
- *  Класс для запуска графического интерфейса Сервера.
+ *  A class for launching the Server GUI.
  */
 public class Launcher {
     public static void main(String[] args) {

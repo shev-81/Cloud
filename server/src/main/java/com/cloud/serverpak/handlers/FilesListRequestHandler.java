@@ -8,29 +8,29 @@ import messages.FilesSizeRequest;
 import java.io.IOException;
 
 /**
- * Класс слушатель сообщений, определяет реакцию на запрос (FilesSizeRequest), о получении
- * состоянии Облака для пользователя пославшего запрос.
+ * The message listener class, defines the response to the request (Files Size Request), about receiving
+ * the state of the Cloud for the user who sent the request.
  * @see FilesSizeRequest
  */
 @Log4j2
 public class FilesListRequestHandler{
 
     /**
-     * Главный слушатель Netty.
+     * Netty's main listener.
      * @see MainHandler
      */
-    private MainHandler mainHandler;
+    private final MainHandler mainHandler;
 
     /**
-     * Файловый информационный сервис.
+     * File information service.
      * @see FilesInformService
      */
-    private FilesInformService fileService;
+    private final FilesInformService fileService;
 
 
     /**
-     * Конструктор сохраняет ссылку на главный слушатель.
-     * @param mainHandler
+     * The constructor saves a reference to the main listener.
+     * @param mainHandler Netty's main listener.
      */
     public FilesListRequestHandler(MainHandler mainHandler) {
         this.mainHandler = mainHandler;
@@ -38,7 +38,7 @@ public class FilesListRequestHandler{
     }
 
     /**
-     * Высылает список файлов в облаке для пользователя.
+     * Sends a list of files in the cloud to the user.
      * @param ctx channel context.
      * @param msg the message object.
      */

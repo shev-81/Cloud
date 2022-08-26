@@ -25,7 +25,7 @@ public class AuthServiceBD implements AuthService {
     /**
      * A list that stores a list of all users from the database.
      */
-    private List<User> listUser;
+    private final List<User> listUser;
 
     private static List<MainHandler> mainHandlerList;
 
@@ -40,9 +40,9 @@ public class AuthServiceBD implements AuthService {
     private static Statement stmt;
 
     /**
-     * Алгоритм шифрования данных.
+     * Data encryption algorithm.
      */
-    private Base64.Encoder encoder;
+    private final Base64.Encoder encoder;
 
     /**
      * User class.

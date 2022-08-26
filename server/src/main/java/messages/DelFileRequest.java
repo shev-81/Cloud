@@ -3,20 +3,21 @@ package messages;
 import lombok.Data;
 
 /**
- * Класс наследник {@link AbstractMessage AbstractMessage}, является Data Transfer Object,
- * несет в себе название файла, который нужно удалить с облака.
+ * The successor class {@link AbstractMessage AbstractMessage}, is a
+ * Data Transfer Object, carries the name of the file to be deleted
+ * from the cloud.
  */
 @Data
 public class DelFileRequest extends AbstractMessage {
 
     /**
-     * Имя файла.
+     * The file name.
      */
     private String nameFile;
 
     /**
-     * Конструктор с переменной имя файла.
-     * @param nameFile имя файла.
+     * Constructor with variable file name.
+     * @param nameFile the file name.
      */
     public DelFileRequest(String nameFile) {
         this.nameFile = nameFile;

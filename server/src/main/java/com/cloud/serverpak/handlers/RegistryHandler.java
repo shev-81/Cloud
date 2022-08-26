@@ -8,20 +8,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Класс регистратор слушателей сообщений.
+ * The message listener logger class.
  */
 @Data
 public class RegistryHandler {
 
     /**
-     * Переменная с картой слушателей.
+     * A variable with a listener map.
      */
     private Map<Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
 
     /**
-     * Создает коллекцию {@link HashMap HashMap}, помещает в нее в виде ключей
-     * классы сообщений, а значения методы слушателей для обработки этих сообщений.
-     * @param mainHandler главный слушатель сообщений.
+     * Creates a collection {@link HashMap HashMap}, puts it in the form of keys
+     * message classes, as well as listener methods for processing these messages.
+     * @param mainHandler is the main message listener.
      */
     public RegistryHandler(MainHandler mainHandler) {
         this.mapHandlers = new HashMap<>();
@@ -34,9 +34,10 @@ public class RegistryHandler {
     }
 
     /**
-     * Возвращает из коллекции {@link HashMap HashMap} метод слушателя, по классу пришедшего сообщения.
-     * @param cl Класс сообщения
-     * @return метод слушателя в интерфейсной переменной.
+     * Returns the listener method from the {@link HashMap HashMap}
+     * collection, by the class of the received message.
+     * @param cl Message class.
+     * @return the listener method in the interface variable.
      */
     public RequestHandler getHandler(Class cl) {
         return mapHandlers.get(cl);

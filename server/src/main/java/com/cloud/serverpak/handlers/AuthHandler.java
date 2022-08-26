@@ -10,33 +10,33 @@ import messages.FilesSizeRequest;
 import java.io.IOException;
 
 /**
- * Класс слушатель сообщений несущих информацию о запросе авторизации.
- * Определяет метод по авторизации пользователя на сервере.
+ * Class listener of messages carrying information about the authorization request.
+ * Defines the method for user authorization on the server.
  */
 @Log4j2
 public class AuthHandler{
 
     /**
-     * Главный слушатель Netty.
+     * Netty's main listener.
      * @see MainHandler
      */
-    private MainHandler mainHandler;
+    private final MainHandler mainHandler;
 
     /**
-     * Сервис авторизации.
+     * Authorization service.
      * @see AuthService
      */
-    private AuthService authService;
+    private final AuthService authService;
 
     /**
-     * Файловый информационный сервис.
+     * File information service.
      * @see FilesInformService
      */
-    private FilesInformService fileService;
+    private final FilesInformService fileService;
 
     /**
-     * Конструктор получает ссылку на галвный слушатель.
-     * @param mainHandler Главный слушатель Netty.
+     * The constructor gets a reference to the main listener.
+     * @param mainHandler Netty's main listener.
      */
     public AuthHandler(MainHandler mainHandler) {
         this.mainHandler = mainHandler;
@@ -45,13 +45,13 @@ public class AuthHandler{
     }
 
     /**
-     * Проводит авторизацию пользователя на сервере. Запрашивает сервис авторизации пользователя
-     * с логином и паролем полученным в сообщении, если пользователь есть то посылает служебное
-     * сообщение {@link AuthMessage AuthMessage}с именем авторизовавшегося пользователя и списком
-     * файлов в облаке для данного пользователя. Дополнительно посылает следом сообщение
-     * {@link FilesSizeRequest FilesSizeRequest} несущее информацию о состоянии хранилища для
-     * данного пользователя.При отказе регистрации  возвращает такое же служебное сообщение с
-     * Логином "none", что свидетельствует для клиента о не пройденной авторизации.
+     * Performs user authorization on the server. Requests the user authorization service
+     * with the login and password received in the message, if the user is, then sends a service message
+     * a message {@link AuthMessage AuthMessage} with the name of the authorized user and a list
+     * of files in the cloud for this user. Additionally sends the following message
+     * {@link FilesSizeRequest FilesSizeRequest} carrying information about the storage status for
+     * this user.If registration is refused, it returns the same service message with
+     * Login "none", which indicates to the client that authorization has not been completed.
      * @param ctx channel context.
      * @param msg the message object.
      * @see AuthMessage

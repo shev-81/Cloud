@@ -36,7 +36,7 @@ public class ClientApp extends Application {
      * Executed at application startup, saves references to in class variables
      * Primary Stage and Controller.
      * @param primaryStage The main Stage of the FX application.
-     * @throws Exception It may occur when working with the loader.
+     * @throws IOException It may occur when working with the loader.
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -54,8 +54,8 @@ public class ClientApp extends Application {
     }
 
     /**
-     * Выполняется перед закрытием приложения, останавливаетсервис работы
-     * с файлами и закрывает сетевое соединение.
+     * Executed before closing the application, stops the service of work
+     * with files and closes the network connection.
      */
     @Override
     public void stop() {

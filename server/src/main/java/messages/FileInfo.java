@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 /**
- * Модель описывающая свойства файла.
+ * A model describing the properties of the file.
  */
 @Data
 public class FileInfo  implements Serializable {
 
     /**
-     * Тип - файл или директория
+     * Type - file or directory.
      */
     public enum FileType {
         FILE("F"), DIRECTORY("D");
@@ -33,28 +33,29 @@ public class FileInfo  implements Serializable {
     }
 
     /**
-     * Имя файла.
+     * The file name.
      */
     private String filename;
 
     /**
-     * Тип файла.
+     * File type.
      */
     private FileType type;
 
     /**
-     * Размер файла в байтах.
+     * File size in bytes.
      */
     private long size;
 
     /**
-     * Вермя последнего изменения.
+     * The time of the last change.
      */
     private LocalDateTime lastModified;
 
     /**
-     * Конструктор принимает объект пути к файлу и обрабатывая его заполняет модель свойствами.
-     * @param path Путь к файлу.
+     * The constructor takes a file path object and,
+     * processing it, fills the model with properties.
+     * @param path The path to the file.
      */
     public FileInfo(Path path) {
         try {
