@@ -81,6 +81,7 @@ public class ServerApp implements Runnable{
         } finally {
             mainGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
+            log.info("Server is stopped.");
         }
     }
 
