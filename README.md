@@ -1,6 +1,8 @@
-# Облачное хранилище файлов
+<h1 align="center">Cloud
+<h3 align="center">Облачное хранилище файлов (Java IO, NIO, Netty, StreamAPI + Java FX)</h3>
 
-## Cloud on Netty 
+<a href="https://shev-81.github.io/Cloud-netty/"><img src="https://img.shields.io/badge/Cloud-JavaDoc-green"/>  </a>
+
 Проект с использование стека технологий: Java FX, Netty, NIO. Реализация в двух модулях сервер и клиент. 
 
 Пользователи пройдя аутентификацию на сервере получают возможность использовать рабочий интерфейс в котором показывается содержание файлов на сервере, 
