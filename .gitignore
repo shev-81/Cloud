@@ -1,0 +1,8 @@
+/client/target/
+/server/target/
+/server/files/
+/client/files/
+/server/files/
+
+server/logs/logfile.log
+/.idea/
