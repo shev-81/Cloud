@@ -18,6 +18,8 @@ public class RegistryHandler {
      */
     private Map<Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
 
+    //todo добавить сервис локатор, через рефлексию сканирования пакета на наличие хендлеров.
+
     /**
      * Creates a collection {@link HashMap HashMap}, puts it in the form of keys
      * message classes, as well as listener methods for processing these messages.
