@@ -4,19 +4,25 @@ import com.cloud.clientpak.Controller;
 import com.cloud.clientpak.interfaces.RequestHandler;
 import lombok.Data;
 import messages.*;
+import org.reflections.Reflections;
+
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * The message listener logger class.
  */
 @Data
-public class RegistryHandler {
+public class RegistryHandler{
 
+    private static final String HANDLERS_PACKAGE = "com.cloud.clientpak.handlers";
     /**
      * A variable with a listener map.
      */
-    private Map<Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
+    private Map< Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
 
     //todo добавить сервис локатор, через рефлексию сканирования пакета на наличие хендлеров.
 
@@ -26,11 +32,28 @@ public class RegistryHandler {
      * @param controller application controller.
      */
     public RegistryHandler(Controller controller) {
+        //todo перевести на дженерики и функциональный интерфейс переделать на дженерики
         this.mapHandlers = new HashMap<>();
-        mapHandlers.put(AuthMessage.class, new AuthHandler(controller)::authHandle);
-        mapHandlers.put(RegUserRequest.class, new RegUserHandler(controller)::regHandle);
-        mapHandlers.put(FileMessage.class, new FileHandler(controller)::fileHandle);
-        mapHandlers.put(FilesSizeRequest.class, new FilesSizeRequestHandler(controller)::filesSizeReqHandle);
+        try {
+            locateHandlers(controller);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void locateHandlers(Controller controller) throws Exception{
+        Reflections reflections = new Reflections(HANDLERS_PACKAGE);
+        List<Class<?>> classes = new ArrayList<>(reflections.getTypesAnnotatedWith(Handler.class));
+        for(Class<?>  c: classes){
+            Constructor<?> constructor = c.getConstructor(Controller.class);
+            RequestHandler handler = (RequestHandler)constructor.newInstance(controller);
+
+            //todo разобраться с рефлексией и созданием локатора хенлеров
+
+
+            Class handlerMessageClass = handler.getClass();
+            mapHandlers.put(handlerMessageClass, handler);
+        }
     }
 
     /**

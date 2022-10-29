@@ -1,6 +1,7 @@
 package com.cloud.clientpak.handlers;
 
 import com.cloud.clientpak.Controller;
+import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import javafx.application.Platform;
 import messages.RegUserRequest;
@@ -8,19 +9,24 @@ import messages.RegUserRequest;
 /**
  * Message Listener class {@link RegUserRequest RegUserRequest}.
  */
-public class RegUserHandler{
+@Handler(message = "RegUserRequest")
+public class RegUserHandler implements RequestHandler{
 
     /**
      * Variable {@link Controller Controller}
      */
-    private final Controller controller;
+    private Controller controller;
 
     /**
      * The constructor saves a reference to the application controller.
      * @param controller application controller.
      */
     public RegUserHandler(Controller controller) {
+        this();
         this.controller =controller;
+    }
+
+    public RegUserHandler() {
     }
 
     /**
@@ -29,7 +35,8 @@ public class RegUserHandler{
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void regHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, Object msg) {
         RegUserRequest regUserRequest = (RegUserRequest) msg;
         if (regUserRequest.getNameUser().equals("none")) {
             Platform.runLater(() -> {

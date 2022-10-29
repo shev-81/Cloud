@@ -1,6 +1,7 @@
 package com.cloud.clientpak.handlers;
 
 import com.cloud.clientpak.Controller;
+import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import javafx.application.Platform;
 import lombok.extern.log4j.Log4j2;
@@ -14,12 +15,13 @@ import java.io.IOException;
  * with a message containing the file data.
  */
 @Log4j2
-public class FileHandler {
+@Handler(message = "FileMessage")
+public class FileHandler implements RequestHandler {
 
     /**
      * Variable {@link Controller Controller}
      */
-    private final Controller controller;
+    private Controller controller;
 
     /**
      * Output stream to a file.
@@ -37,8 +39,12 @@ public class FileHandler {
      * @param controller application controller.
      */
     public FileHandler(Controller controller) {
+        this();
         this.controller = controller;
         this.fos = null;
+    }
+
+    public FileHandler() {
     }
 
     /**
@@ -49,7 +55,8 @@ public class FileHandler {
      * @param ctx channel context.
      * @param msg message object.
      */
-    public void fileHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, Object msg) {
         FileMessage fmsg = (FileMessage) msg;
         try {
             if (fmsg.partNumber == 1) {
