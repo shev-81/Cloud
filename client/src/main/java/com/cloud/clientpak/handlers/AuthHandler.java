@@ -1,6 +1,7 @@
 package com.cloud.clientpak.handlers;
 
 import com.cloud.clientpak.Controller;
+import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import javafx.application.Platform;
 import messages.AuthMessage;
@@ -10,19 +11,24 @@ import messages.FileInfo;
  * Authorization message listener class. Defines methods for work
  * with an authorization message.
  */
-public class AuthHandler{
+@Handler(message = "AuthMessage")
+public class AuthHandler implements RequestHandler {
 
     /**
      * Variable {@link Controller Controller}
      */
-    private final Controller controller;
+    private Controller controller;
 
     /**
      * The constructor saves a reference to the application controller.
      * @param controller application controller.
      */
     public AuthHandler(Controller controller) {
+        this();
         this.controller = controller;
+    }
+
+    public AuthHandler() {
     }
 
     /**
@@ -31,7 +37,8 @@ public class AuthHandler{
      * @param ctx channel context.
      * @param msg message object.
      */
-    public void authHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, Object msg) {
         AuthMessage authMsg = (AuthMessage) msg;
         if(!authMsg.getLoginUser().equals("none")){
             openCloudWindow(authMsg);

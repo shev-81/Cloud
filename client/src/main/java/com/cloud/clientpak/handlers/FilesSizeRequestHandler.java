@@ -1,6 +1,7 @@
 package com.cloud.clientpak.handlers;
 
 import com.cloud.clientpak.Controller;
+import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import javafx.application.Platform;
 import lombok.extern.log4j.Log4j2;
@@ -12,12 +13,13 @@ import java.util.List;
  * Message Listener class {@link FilesSizeRequest FilesSizeRequest}.
  */
 @Log4j2
-public class FilesSizeRequestHandler {
+@Handler(message = "FilesSizeRequest")
+public class FilesSizeRequestHandler implements RequestHandler{
 
     /**
      * Variable {@link Controller Controller}
      */
-    private final Controller controller;
+    private Controller controller;
 
     /**
      * The marker label required to display the file upload.
@@ -34,8 +36,12 @@ public class FilesSizeRequestHandler {
      * @param controller application controller.
      */
     public FilesSizeRequestHandler(Controller controller) {
+        this();
         this.controller = controller;
         this.check = false;
+    }
+
+    public FilesSizeRequestHandler() {
     }
 
     /**
@@ -44,7 +50,8 @@ public class FilesSizeRequestHandler {
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void filesSizeReqHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, Object msg) {
         if (controller.getFileWorker().isReWriteFileCheck()) {
             return;
         }

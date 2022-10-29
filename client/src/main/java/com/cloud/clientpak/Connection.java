@@ -1,5 +1,7 @@
 package com.cloud.clientpak;
 
+import config.Config;
+import config.ConfigFromFile;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -20,14 +22,19 @@ import java.util.concurrent.CountDownLatch;
 public class Connection implements Runnable {
 
     /**
+     * Configuration server
+     */
+    private final Config config;
+
+    /**
      * Server address.
      */
-    private final String SERVER_ADDR = "localhost";
+    private final String SERVER_ADDR;
 
     /**
      * Server port.
      */
-    private final int SERVER_PORT = 8189;
+    private final int SERVER_PORT;
 
     /**
      * Application controller.
@@ -52,8 +59,11 @@ public class Connection implements Runnable {
      * @param countDownLatch synchronization object.
      */
     public Connection(Controller controller, CountDownLatch countDownLatch) {
+        config = new ConfigFromFile("./../server.properties");
         this.controller = controller;
-        this.countDownLatch = countDownLatch;
+        this.SERVER_ADDR = config.getAddress();
+        this.SERVER_PORT = config.getPort();
+        this.countDownLatch = countDownLatch; // Launch after all!!!
     }
 
     /**

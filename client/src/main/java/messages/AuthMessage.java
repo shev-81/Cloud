@@ -11,6 +11,7 @@ import java.util.List;
  * contains contains a list of files in the cloud.
  */
 @Data
+@Message
 public class AuthMessage extends AbstractMessage{
 
     /**

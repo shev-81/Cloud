@@ -13,6 +13,7 @@ import java.time.ZoneOffset;
  * A model describing the properties of the file.
  */
 @Data
+@Message
 public class FileInfo  implements Serializable {
 
     /**
