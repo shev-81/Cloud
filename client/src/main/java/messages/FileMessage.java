@@ -4,6 +4,7 @@ package messages;
  * The successor class {@link AbstractMessage AbstractMessage}, is a
  * Data Transfer Object, designed to transfer bytes of a file.
  */
+@Message
 public class FileMessage extends AbstractMessage {
 
     /**

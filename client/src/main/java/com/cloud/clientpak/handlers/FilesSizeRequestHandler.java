@@ -13,7 +13,7 @@ import java.util.List;
  * Message Listener class {@link FilesSizeRequest FilesSizeRequest}.
  */
 @Log4j2
-@Handler(message = "FileSizeRequest")
+@Handler(message = "FilesSizeRequest")
 public class FilesSizeRequestHandler implements RequestHandler{
 
     /**

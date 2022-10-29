@@ -8,6 +8,7 @@ import lombok.Data;
  * file from the cloud.
  */
 @Data
+@Message
 public class FileRequest extends AbstractMessage {
 
     /**

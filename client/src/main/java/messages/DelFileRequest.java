@@ -8,6 +8,7 @@ import lombok.Data;
  * from the cloud.
  */
 @Data
+@Message
 public class DelFileRequest extends AbstractMessage {
 
     /**

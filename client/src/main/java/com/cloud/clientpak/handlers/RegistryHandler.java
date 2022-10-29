@@ -19,12 +19,12 @@ import java.util.Map;
 public class RegistryHandler{
 
     private static final String HANDLERS_PACKAGE = "com.cloud.clientpak.handlers";
+
+    private static final String MESSAGES_PACKAGE = "messages";
     /**
      * A variable with a listener map.
      */
-    private Map< Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
-
-    //todo добавить сервис локатор, через рефлексию сканирования пакета на наличие хендлеров.
+    private Map<Class<?>, RequestHandler> mapHandlers;
 
     /**
      * Creates a collection {@link HashMap HashMap}, puts it in the form of keys
@@ -32,7 +32,6 @@ public class RegistryHandler{
      * @param controller application controller.
      */
     public RegistryHandler(Controller controller) {
-        //todo перевести на дженерики и функциональный интерфейс переделать на дженерики
         this.mapHandlers = new HashMap<>();
         try {
             locateHandlers(controller);
@@ -42,17 +41,21 @@ public class RegistryHandler{
     }
 
     private void locateHandlers(Controller controller) throws Exception{
-        Reflections reflections = new Reflections(HANDLERS_PACKAGE);
-        List<Class<?>> classes = new ArrayList<>(reflections.getTypesAnnotatedWith(Handler.class));
-        for(Class<?>  c: classes){
+        Reflections reflectionHandler = new Reflections(HANDLERS_PACKAGE);
+        Reflections reflectionMessages = new Reflections(MESSAGES_PACKAGE);
+
+        List<Class<?>> classesHandlers = new ArrayList<>(reflectionHandler.getTypesAnnotatedWith(Handler.class));
+        List<Class<?>> classesMessages = new ArrayList<>(reflectionMessages.getTypesAnnotatedWith(Message.class));
+
+        Map<String, Class<?>> mapMessages = new HashMap<>();
+        for(Class <?> classMessage : classesMessages){
+            mapMessages.put(classMessage.getSimpleName(), classMessage);
+        }
+        for(Class<?>  c: classesHandlers){
             Constructor<?> constructor = c.getConstructor(Controller.class);
             RequestHandler handler = (RequestHandler)constructor.newInstance(controller);
-
-            //todo разобраться с рефлексией и созданием локатора хенлеров
-
-
-            Class handlerMessageClass = handler.getClass();
-            mapHandlers.put(handlerMessageClass, handler);
+            Class<?> msg = mapMessages.get(c.getAnnotation(Handler.class).message());
+            mapHandlers.put(msg, handler);
         }
     }
 
@@ -62,7 +65,7 @@ public class RegistryHandler{
      * @param cl Message class
      * @return method of the listener in the interface variable.
      */
-    public RequestHandler getHandler(Class cl) {
+    public RequestHandler getHandler(Class<?> cl) {
         return mapHandlers.get(cl);
     }
 }
