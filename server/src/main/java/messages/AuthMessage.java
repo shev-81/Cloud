@@ -1,6 +1,7 @@
 package messages;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * contains contains a list of files in the cloud.
  */
 @Data
+@NoArgsConstructor
 public class AuthMessage extends AbstractMessage{
 
     /**

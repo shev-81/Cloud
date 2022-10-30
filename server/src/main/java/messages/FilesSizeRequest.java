@@ -1,6 +1,7 @@
 package messages;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * the response to receiving parts of the files.
  */
 @Data
+@NoArgsConstructor
 public class FilesSizeRequest extends AbstractMessage{
 
     /**

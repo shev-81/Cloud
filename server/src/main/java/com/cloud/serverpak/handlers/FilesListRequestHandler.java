@@ -1,11 +1,9 @@
 package com.cloud.serverpak.handlers;
 
-import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
-import messages.FileRequest;
 import messages.FilesSizeRequest;
 import java.io.IOException;
 
@@ -15,7 +13,8 @@ import java.io.IOException;
  * @see FilesSizeRequest
  */
 @Log4j2
-public class FilesListRequestHandler implements RequestHandler<FilesSizeRequest> {
+@Handler
+public class FilesListRequestHandler extends AbstractHandler<FilesSizeRequest> {
 
     /**
      * Netty's main listener.
@@ -53,5 +52,10 @@ public class FilesListRequestHandler implements RequestHandler<FilesSizeRequest>
         } catch (IOException e) {
             log.error(e.toString());
         }
+    }
+
+    @Override
+    public FilesSizeRequest getGeneric() {
+        return new FilesSizeRequest();
     }
 }

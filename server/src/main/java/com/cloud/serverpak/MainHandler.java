@@ -6,6 +6,7 @@ import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.services.AuthServiceBD;
 import com.cloud.serverpak.services.FilesInformService;
 import config.Config;
+import config.ServiceLocator;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -33,7 +34,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
     private String userName;
     private ExecutorService executorService;
     private FilesInformService filesInformService;
-    private Config config;
+    private ServiceLocator serviceLocator;
 
     /**
      * A listener logger for processing incoming messages.
@@ -49,8 +50,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
      * @see FilesInformService
      * @see RegistryHandler
      */
-    public MainHandler(AuthService authService, Config config) {
-        this.config = config;
+    public MainHandler(AuthService authService, ServiceLocator serviceLocator) {
+        this.serviceLocator = serviceLocator;
         this.authService = authService;
         this.executorService = Executors.newSingleThreadExecutor();
         this.filesInformService = new FilesInformService();

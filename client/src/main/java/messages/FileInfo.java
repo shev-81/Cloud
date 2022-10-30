@@ -1,6 +1,7 @@
 package messages;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.time.ZoneOffset;
  * A model describing the properties of the file.
  */
 @Data
+@NoArgsConstructor
 @Message
 public class FileInfo  implements Serializable {
 

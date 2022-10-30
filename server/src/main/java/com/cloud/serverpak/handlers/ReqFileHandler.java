@@ -21,7 +21,8 @@ import java.util.concurrent.ExecutorService;
  */
 @Data
 @Log4j2
-public class ReqFileHandler implements RequestHandler<FileRequest> {
+@Handler
+public class ReqFileHandler extends AbstractHandler<FileRequest> {
 
     /**
      * Byte array buffer for the message object.
@@ -92,5 +93,10 @@ public class ReqFileHandler implements RequestHandler<FileRequest> {
                 log.error(e.toString());
             }
         });
+    }
+
+    @Override
+    public FileRequest getGeneric() {
+        return new FileRequest();
     }
 }

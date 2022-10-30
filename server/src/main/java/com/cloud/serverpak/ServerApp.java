@@ -4,6 +4,7 @@ import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.services.AuthServiceBD;
 import config.Config;
 import config.ConfigFromFile;
+import config.ServiceLocator;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -30,9 +31,11 @@ public class ServerApp implements Runnable{
     /**
      * Authorization service. {@link AuthService AuthService}
      */
-    private static AuthService authService = new AuthServiceBD();
+    private static final AuthService authService = new AuthServiceBD();
 
-    private static Config config = new ConfigFromFile("./../server.properties");
+    private static final Config config = new ConfigFromFile("./../server.properties");
+
+    private static final ServiceLocator serviceLocator = new ServiceLocator(config);
 
     /**
      * The current connection channel.
@@ -69,7 +72,7 @@ public class ServerApp implements Runnable{
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(1024 * 1024 * 100, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new MainHandler(authService, config)
+                                    new MainHandler(authService, serviceLocator)
                             );
                             currentChannel = socketChannel;
                         }

@@ -1,12 +1,14 @@
 package messages;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The descendant class of {@link AbstractMessage AbstractMessage}, is a Data Transfer Object.
  * Is a service message containing data about the registration of a new user.
  * */
 @Data
+@NoArgsConstructor
 public class RegUserRequest extends AbstractMessage {
 
     /**

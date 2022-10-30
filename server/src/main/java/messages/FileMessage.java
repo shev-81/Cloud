@@ -1,9 +1,14 @@
 package messages;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * The successor class {@link AbstractMessage AbstractMessage}, is a
  * Data Transfer Object, designed to transfer bytes of a file.
  */
+@Data
+@NoArgsConstructor
 public class FileMessage extends AbstractMessage {
 
     /**

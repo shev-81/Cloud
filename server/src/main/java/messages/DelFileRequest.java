@@ -1,6 +1,7 @@
 package messages;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The successor class {@link AbstractMessage AbstractMessage}, is a
@@ -8,6 +9,7 @@ import lombok.Data;
  * from the cloud.
  */
 @Data
+@NoArgsConstructor
 public class DelFileRequest extends AbstractMessage {
 
     /**

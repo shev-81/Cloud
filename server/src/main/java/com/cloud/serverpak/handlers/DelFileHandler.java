@@ -1,12 +1,10 @@
 package com.cloud.serverpak.handlers;
 
-import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
 import messages.DelFileRequest;
-import messages.FileRequest;
 import messages.FilesSizeRequest;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +17,8 @@ import java.nio.file.Paths;
  * representing a request to delete a file from the cloud.
  */
 @Log4j2
-public class DelFileHandler implements RequestHandler<DelFileRequest> {
+@Handler
+public class DelFileHandler extends AbstractHandler<DelFileRequest> {
 
     /**
      * Netty's main listener.
@@ -60,5 +59,10 @@ public class DelFileHandler implements RequestHandler<DelFileRequest> {
         } catch (IOException e) {
             log.error(e.toString());
         }
+    }
+
+    @Override
+    public DelFileRequest getGeneric() {
+        return new DelFileRequest();
     }
 }

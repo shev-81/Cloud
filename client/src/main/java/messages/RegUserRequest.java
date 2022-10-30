@@ -1,6 +1,7 @@
 package messages;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * The descendant class of {@link AbstractMessage AbstractMessage}, is a Data Transfer Object.
@@ -8,6 +9,7 @@ import lombok.Data;
  * */
 @Data
 @Message
+@NoArgsConstructor
 public class RegUserRequest extends AbstractMessage {
 
     /**

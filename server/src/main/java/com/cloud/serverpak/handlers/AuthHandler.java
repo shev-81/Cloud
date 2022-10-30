@@ -1,7 +1,6 @@
 package com.cloud.serverpak.handlers;
 
 import com.cloud.serverpak.interfaces.AuthService;
-import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -17,7 +16,7 @@ import java.io.IOException;
  */
 @Log4j2
 @Handler
-public class AuthHandler implements RequestHandler<AuthMessage> {
+public class AuthHandler extends AbstractHandler <AuthMessage>{
 
     /**
      * Netty's main listener.
@@ -79,5 +78,10 @@ public class AuthHandler implements RequestHandler<AuthMessage> {
             ctx.writeAndFlush(new AuthMessage("none", ""));
             log.info("Авторизация НЕ пройдена.");
         }
+    }
+
+    @Override
+    public AuthMessage getGeneric() {
+        return new AuthMessage();
     }
 }

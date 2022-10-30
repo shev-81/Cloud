@@ -2,7 +2,6 @@ package com.cloud.serverpak.handlers;
 
 import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.MainHandler;
-import com.cloud.serverpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import messages.RegUserRequest;
 
@@ -10,7 +9,7 @@ import messages.RegUserRequest;
  * Message Listener class {@link RegUserRequest RegUserRequest}.
  */
 @Handler
-public class RegUserHandler implements RequestHandler<RegUserRequest> {
+public class RegUserHandler extends AbstractHandler<RegUserRequest> {
 
     /**
      * Authorization service.
@@ -42,6 +41,11 @@ public class RegUserHandler implements RequestHandler<RegUserRequest> {
                 ctx.writeAndFlush(new RegUserRequest("reg", "", ""));
             }
         }
+    }
+
+    @Override
+    public RegUserRequest getGeneric() {
+        return new RegUserRequest();
     }
 
 }
