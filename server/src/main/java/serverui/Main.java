@@ -19,11 +19,6 @@ public class Main extends Application {
     private FXMLLoader loader;
 
     /**
-     * Variable {@link Controller Controller}
-     */
-    private static Controller controller;
-
-    /**
      * Executed at application startup, saves references to in class variables
      * Primary Stage and Controller.
      * @param primaryStage The main Stage of the FX application.
@@ -32,7 +27,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         loader = new  FXMLLoader(getClass().getResource("/sample.fxml"));
-        controller = loader.getController();
         Parent root = loader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Server");

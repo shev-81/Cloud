@@ -5,6 +5,7 @@ import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.services.AuthServiceBD;
 import com.cloud.serverpak.services.FilesInformService;
+import config.Config;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -32,6 +33,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
     private String userName;
     private ExecutorService executorService;
     private FilesInformService filesInformService;
+    private Config config;
 
     /**
      * A listener logger for processing incoming messages.
@@ -47,7 +49,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
      * @see FilesInformService
      * @see RegistryHandler
      */
-    public MainHandler(AuthService authService) {
+    public MainHandler(AuthService authService, Config config) {
+        this.config = config;
         this.authService = authService;
         this.executorService = Executors.newSingleThreadExecutor();
         this.filesInformService = new FilesInformService();
@@ -69,10 +72,6 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
         handler.handle(ctx, msg);
     }
 
-    public static List<Channel> getChannels() {
-        return channels;
-    }
-
     /**
      * Called when errors occur, closes the channel context.
      * @param ctx channel context.
@@ -85,5 +84,9 @@ public class MainHandler extends ChannelInboundHandlerAdapter{
         cause.printStackTrace();
         ctx.close();
         log.info("Соединение закрыто");
+    }
+
+    public List<Channel> getChannels() {
+        return channels;
     }
 }

@@ -2,13 +2,15 @@ package com.cloud.serverpak.handlers;
 
 import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.MainHandler;
+import com.cloud.serverpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import messages.RegUserRequest;
 
 /**
  * Message Listener class {@link RegUserRequest RegUserRequest}.
  */
-public class RegUserHandler{
+@Handler
+public class RegUserHandler implements RequestHandler<RegUserRequest> {
 
     /**
      * Authorization service.
@@ -31,14 +33,15 @@ public class RegUserHandler{
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void regHandle(ChannelHandlerContext ctx, Object msg) {
-        RegUserRequest regMsg = (RegUserRequest) msg;
-        if (regMsg.getNameUser().equals(authService.getNickByLoginPass(regMsg.getLogin(), regMsg.getPassUser()))) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, RegUserRequest msg) {
+        if (msg.getNameUser().equals(authService.getNickByLoginPass(msg.getLogin(), msg.getPassUser()))) {
             ctx.writeAndFlush(new RegUserRequest("none", "", ""));
         } else {
-            if (authService.registerNewUser(regMsg.getNameUser(), regMsg.getLogin(), regMsg.getPassUser())) {
+            if (authService.registerNewUser(msg.getNameUser(), msg.getLogin(), msg.getPassUser())) {
                 ctx.writeAndFlush(new RegUserRequest("reg", "", ""));
             }
         }
     }
+
 }

@@ -1,9 +1,11 @@
 package com.cloud.serverpak.handlers;
 
+import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
+import messages.FileRequest;
 import messages.FilesSizeRequest;
 import java.io.IOException;
 
@@ -13,7 +15,7 @@ import java.io.IOException;
  * @see FilesSizeRequest
  */
 @Log4j2
-public class FilesListRequestHandler{
+public class FilesListRequestHandler implements RequestHandler<FilesSizeRequest> {
 
     /**
      * Netty's main listener.
@@ -42,7 +44,8 @@ public class FilesListRequestHandler{
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void filesListHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, FilesSizeRequest msg) {
         String userName = mainHandler.getUserName();
         try {
             ctx.writeAndFlush(new FilesSizeRequest(fileService.getFilesSize(userName), fileService.getListFiles(userName)));

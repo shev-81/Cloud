@@ -2,6 +2,8 @@ package com.cloud.serverpak;
 
 import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.services.AuthServiceBD;
+import config.Config;
+import config.ConfigFromFile;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -30,6 +32,8 @@ public class ServerApp implements Runnable{
      */
     private static AuthService authService = new AuthServiceBD();
 
+    private static Config config = new ConfigFromFile("./../server.properties");
+
     /**
      * The current connection channel.
      */
@@ -44,11 +48,6 @@ public class ServerApp implements Runnable{
      * A pool of threads for working with the data being sent.
      */
     private EventLoopGroup workerGroup;
-
-    /**
-     * The primary listener of incoming message objects.
-     */
-    private MainHandler mainHandler;
 
     /**
      * The method of starting the server. To run, creates 2 thread pools, creates a server object,
@@ -70,12 +69,12 @@ public class ServerApp implements Runnable{
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(1024 * 1024 * 100, ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new MainHandler(authService)
+                                    new MainHandler(authService, config)
                             );
                             currentChannel = socketChannel;
                         }
                     });
-            ChannelFuture future = b.bind(8189).sync();
+            ChannelFuture future = b.bind(config.getPort()).sync();
             log.info("Сервер запущен");
             future.channel().closeFuture().sync();
         } finally {

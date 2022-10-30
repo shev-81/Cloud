@@ -1,12 +1,14 @@
 package com.cloud.serverpak.handlers;
 
 import com.cloud.serverpak.interfaces.AuthService;
+import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
 import messages.AuthMessage;
 import messages.FilesSizeRequest;
+
 import java.io.IOException;
 
 /**
@@ -14,7 +16,8 @@ import java.io.IOException;
  * Defines the method for user authorization on the server.
  */
 @Log4j2
-public class AuthHandler{
+@Handler
+public class AuthHandler implements RequestHandler<AuthMessage> {
 
     /**
      * Netty's main listener.
@@ -57,9 +60,10 @@ public class AuthHandler{
      * @see AuthMessage
      * @see FilesSizeRequest
      */
-    public void authHandle(ChannelHandlerContext ctx, Object msg) {
-        String name = ((AuthMessage) msg).getLoginUser();
-        String pass = ((AuthMessage) msg).getPassUser();
+    @Override
+    public void handle(ChannelHandlerContext ctx, AuthMessage msg) {
+        String name = msg.getLoginUser();
+        String pass = msg.getPassUser();
         String userName = authService.getNickByLoginPass(name, pass);
         if (userName != null) {
             mainHandler.setUserName(userName);

@@ -1,9 +1,11 @@
 package com.cloud.serverpak.handlers;
 
+import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
+import messages.AuthMessage;
 import messages.FileMessage;
 import messages.FilesSizeRequest;
 
@@ -15,7 +17,7 @@ import java.io.IOException;
  * with a message containing the file data.
  */
 @Log4j2
-public class FileHandler {
+public class FileHandler implements RequestHandler<FileMessage> {
 
     /**
      * Netty's main listener.
@@ -60,20 +62,20 @@ public class FileHandler {
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void fileHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, FileMessage msg) {
         String userName = mainHandler.getUserName();
-        FileMessage fmsg = (FileMessage) msg;
         try {
-            if (fmsg.partNumber == 1) {
+            if (msg.partNumber == 1) {
                 append = false;
                 fos = null;
-                fos = new FileOutputStream("server/files/" + userName + "/" + fmsg.filename, append);
+                fos = new FileOutputStream("server/files/" + userName + "/" + msg.filename, append);
             } else {
                 append = true;
             }
-            log.info(fmsg.partNumber + " / " + fmsg.partsCount);
-            fos.write(fmsg.data);
-            if (fmsg.partNumber == fmsg.partsCount) {
+            log.info(msg.partNumber + " / " + msg.partsCount);
+            fos.write(msg.data);
+            if (msg.partNumber == msg.partsCount) {
                 fos.close();
                 append = false;
                 log.info("Файл полностью получен");
@@ -81,8 +83,8 @@ public class FileHandler {
             ctx.writeAndFlush(new FilesSizeRequest(
                     fileService.getFilesSize(userName),
                     fileService.getListFiles(userName),
-                    fmsg.partNumber,
-                    fmsg.partsCount)
+                    msg.partNumber,
+                    msg.partsCount)
             );
         } catch (IOException e) {
             log.error(e.toString());
