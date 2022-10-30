@@ -1,5 +1,6 @@
 package com.cloud.serverpak.handlers;
 
+import com.cloud.serverpak.interfaces.RequestHandler;
 import com.cloud.serverpak.services.FilesInformService;
 import com.cloud.serverpak.MainHandler;
 import io.netty.channel.ChannelFuture;
@@ -20,7 +21,8 @@ import java.util.concurrent.ExecutorService;
  */
 @Data
 @Log4j2
-public class ReqFileHandler {
+@Handler
+public class ReqFileHandler extends AbstractHandler<FileRequest> {
 
     /**
      * Byte array buffer for the message object.
@@ -61,11 +63,12 @@ public class ReqFileHandler {
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void reqFileHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, FileRequest msg) {
         executorService.execute(() -> {
             try {
                 String userName = mainHandler.getUserName();
-                String nameFile = ((FileRequest) msg).getFilename();
+                String nameFile = msg.getFilename();
                 File file = new File("server/files/" + userName + "/" + nameFile);
                 int partsCount = (int) (file.length() / BUF_SIZE);
                 if (file.length() % BUF_SIZE != 0) {
@@ -90,5 +93,10 @@ public class ReqFileHandler {
                 log.error(e.toString());
             }
         });
+    }
+
+    @Override
+    public FileRequest getGeneric() {
+        return new FileRequest();
     }
 }

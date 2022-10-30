@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.log4j.Log4j2;
 import messages.AuthMessage;
 import messages.FilesSizeRequest;
+
 import java.io.IOException;
 
 /**
@@ -14,7 +15,8 @@ import java.io.IOException;
  * Defines the method for user authorization on the server.
  */
 @Log4j2
-public class AuthHandler{
+@Handler
+public class AuthHandler extends AbstractHandler <AuthMessage>{
 
     /**
      * Netty's main listener.
@@ -57,9 +59,10 @@ public class AuthHandler{
      * @see AuthMessage
      * @see FilesSizeRequest
      */
-    public void authHandle(ChannelHandlerContext ctx, Object msg) {
-        String name = ((AuthMessage) msg).getLoginUser();
-        String pass = ((AuthMessage) msg).getPassUser();
+    @Override
+    public void handle(ChannelHandlerContext ctx, AuthMessage msg) {
+        String name = msg.getLoginUser();
+        String pass = msg.getPassUser();
         String userName = authService.getNickByLoginPass(name, pass);
         if (userName != null) {
             mainHandler.setUserName(userName);
@@ -75,5 +78,10 @@ public class AuthHandler{
             ctx.writeAndFlush(new AuthMessage("none", ""));
             log.info("Авторизация НЕ пройдена.");
         }
+    }
+
+    @Override
+    public AuthMessage getGeneric() {
+        return new AuthMessage();
     }
 }

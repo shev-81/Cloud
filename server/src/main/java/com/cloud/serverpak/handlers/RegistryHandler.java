@@ -2,9 +2,11 @@ package com.cloud.serverpak.handlers;
 
 import com.cloud.serverpak.MainHandler;
 import com.cloud.serverpak.interfaces.RequestHandler;
+import config.ServiceLocator;
 import lombok.Data;
-import messages.*;
+import java.lang.reflect.Constructor;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,7 +18,9 @@ public class RegistryHandler {
     /**
      * A variable with a listener map.
      */
-    private Map<Class<? extends AbstractMessage>, RequestHandler> mapHandlers;
+    private Map<Class<?>, AbstractHandler<?>> mapHandlers;
+
+    private ServiceLocator serviceLocator;
 
     /**
      * Creates a collection {@link HashMap HashMap}, puts it in the form of keys
@@ -25,12 +29,12 @@ public class RegistryHandler {
      */
     public RegistryHandler(MainHandler mainHandler) {
         this.mapHandlers = new HashMap<>();
-        mapHandlers.put(AuthMessage.class, new AuthHandler(mainHandler)::authHandle);
-        mapHandlers.put(RegUserRequest.class, new RegUserHandler(mainHandler)::regHandle);
-        mapHandlers.put(FileRequest.class, new ReqFileHandler(mainHandler)::reqFileHandle);
-        mapHandlers.put(DelFileRequest.class, new DelFileHandler(mainHandler)::delHandle);
-        mapHandlers.put(FileMessage.class, new FileHandler(mainHandler)::fileHandle);
-        mapHandlers.put(FilesSizeRequest.class, new FilesListRequestHandler(mainHandler)::filesListHandle);
+        this.serviceLocator = mainHandler.getServiceLocator();
+        try {
+            regHandlers(mainHandler);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -39,7 +43,15 @@ public class RegistryHandler {
      * @param cl Message class.
      * @return the listener method in the interface variable.
      */
-    public RequestHandler getHandler(Class cl) {
+    public RequestHandler<?> getHandler(Class<?> cl) {
         return mapHandlers.get(cl);
+    }
+
+    private void regHandlers(MainHandler mainHandler) throws Exception{
+        List<Constructor<?>> constructorHandlers = serviceLocator.getListConstructors();
+        for(Constructor<?>  constructor: constructorHandlers){
+            AbstractHandler<?> handler = (AbstractHandler<?>)constructor.newInstance(mainHandler);
+            mapHandlers.put(handler.getGeneric().getClass(), handler);
+        }
     }
 }

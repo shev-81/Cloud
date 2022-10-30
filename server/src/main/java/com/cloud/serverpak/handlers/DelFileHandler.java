@@ -17,7 +17,8 @@ import java.nio.file.Paths;
  * representing a request to delete a file from the cloud.
  */
 @Log4j2
-public class DelFileHandler{
+@Handler
+public class DelFileHandler extends AbstractHandler<DelFileRequest> {
 
     /**
      * Netty's main listener.
@@ -46,9 +47,10 @@ public class DelFileHandler{
      * @param msg the message object.
      * @see DelFileRequest
      */
-    public void delHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, DelFileRequest msg) {
         String userName = mainHandler.getUserName();
-        String nameDelFile = ((DelFileRequest) msg).getNameFile();
+        String nameDelFile = msg.getNameFile();
         Path path = Paths.get("server/files/" + userName + "/" + nameDelFile);
         try {
             Files.delete(path);
@@ -57,5 +59,10 @@ public class DelFileHandler{
         } catch (IOException e) {
             log.error(e.toString());
         }
+    }
+
+    @Override
+    public DelFileRequest getGeneric() {
+        return new DelFileRequest();
     }
 }

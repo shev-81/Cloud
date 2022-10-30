@@ -7,12 +7,12 @@ import io.netty.channel.ChannelHandlerContext;
  * to save methods and call them.
  */
 @FunctionalInterface
-public interface RequestHandler {
+public interface RequestHandler <T> {
 
     /**
      * The method is called according to the context of the passed listener method.
      * @param ctx channel context.
      * @param msg the message object.
      */
-    void handle(ChannelHandlerContext ctx, Object msg);
+    void handle(ChannelHandlerContext ctx, T msg);
 }

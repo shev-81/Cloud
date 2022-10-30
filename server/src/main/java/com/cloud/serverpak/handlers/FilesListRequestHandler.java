@@ -13,7 +13,8 @@ import java.io.IOException;
  * @see FilesSizeRequest
  */
 @Log4j2
-public class FilesListRequestHandler{
+@Handler
+public class FilesListRequestHandler extends AbstractHandler<FilesSizeRequest> {
 
     /**
      * Netty's main listener.
@@ -42,7 +43,8 @@ public class FilesListRequestHandler{
      * @param ctx channel context.
      * @param msg the message object.
      */
-    public void filesListHandle(ChannelHandlerContext ctx, Object msg) {
+    @Override
+    public void handle(ChannelHandlerContext ctx, FilesSizeRequest msg) {
         String userName = mainHandler.getUserName();
         try {
             ctx.writeAndFlush(new FilesSizeRequest(fileService.getFilesSize(userName), fileService.getListFiles(userName)));
@@ -50,5 +52,10 @@ public class FilesListRequestHandler{
         } catch (IOException e) {
             log.error(e.toString());
         }
+    }
+
+    @Override
+    public FilesSizeRequest getGeneric() {
+        return new FilesSizeRequest();
     }
 }
