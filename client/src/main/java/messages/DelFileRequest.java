@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-@Message
 public class DelFileRequest extends AbstractMessage {
 
     /**

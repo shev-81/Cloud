@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
  * The successor class {@link AbstractMessage AbstractMessage}, is a
  * Data Transfer Object, designed to transfer bytes of a file.
  */
-@Message
 @NoArgsConstructor
 public class FileMessage extends AbstractMessage {
 

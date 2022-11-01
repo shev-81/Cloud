@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
  * file from the cloud.
  */
 @Data
-@Message
 @NoArgsConstructor
 public class FileRequest extends AbstractMessage {
 

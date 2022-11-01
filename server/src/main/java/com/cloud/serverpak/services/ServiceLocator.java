@@ -1,7 +1,8 @@
-package config;
+package com.cloud.serverpak.services;
 
 import com.cloud.serverpak.MainHandler;
 import com.cloud.serverpak.handlers.Handler;
+import config.Config;
 import lombok.Data;
 import org.reflections.Reflections;
 

@@ -4,7 +4,7 @@ import com.cloud.serverpak.interfaces.AuthService;
 import com.cloud.serverpak.services.AuthServiceBD;
 import config.Config;
 import config.ConfigFromFile;
-import config.ServiceLocator;
+import com.cloud.serverpak.services.ServiceLocator;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;

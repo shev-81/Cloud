@@ -1,7 +1,6 @@
 package com.cloud.clientpak.handlers;
 
 import com.cloud.clientpak.Controller;
-import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import javafx.application.Platform;
 import lombok.extern.log4j.Log4j2;
@@ -15,8 +14,8 @@ import java.io.IOException;
  * with a message containing the file data.
  */
 @Log4j2
-@Handler(message = "FileMessage")
-public class FileHandler implements RequestHandler {
+@Handler
+public class FileHandler extends AbstractHandler <FileMessage> {
 
     /**
      * Variable {@link Controller Controller}
@@ -39,12 +38,8 @@ public class FileHandler implements RequestHandler {
      * @param controller application controller.
      */
     public FileHandler(Controller controller) {
-        this();
         this.controller = controller;
         this.fos = null;
-    }
-
-    public FileHandler() {
     }
 
     /**
@@ -56,23 +51,22 @@ public class FileHandler implements RequestHandler {
      * @param msg message object.
      */
     @Override
-    public void handle(ChannelHandlerContext ctx, Object msg) {
-        FileMessage fmsg = (FileMessage) msg;
+    public void handle(ChannelHandlerContext ctx, FileMessage msg) {
         try {
-            if (fmsg.partNumber == 1) {
+            if (msg.partNumber == 1) {
                 append = false;
                 fos = null;
-                fos = new FileOutputStream("client/files/" + fmsg.filename, append);
+                fos = new FileOutputStream("client/files/" + msg.filename, append);
             } else {
                 append = true;
             }
             Platform.runLater(() -> {
                 controller.setVisibleLoadInfoFile(true);
-                controller.changeProgressBar((double) fmsg.partNumber * ((double) 1 / fmsg.partsCount));
+                controller.changeProgressBar((double) msg.partNumber * ((double) 1 / msg.partsCount));
             });
-            log.info(fmsg.partNumber + " / " + fmsg.partsCount);
-            fos.write(fmsg.data);
-            if (fmsg.partNumber == fmsg.partsCount) {
+            log.info(msg.partNumber + " / " + msg.partsCount);
+            fos.write(msg.data);
+            if (msg.partNumber == msg.partsCount) {
                 fos.close();
                 append = false;
                 log.info("файл полностью получен");

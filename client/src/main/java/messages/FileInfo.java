@@ -15,7 +15,6 @@ import java.time.ZoneOffset;
  */
 @Data
 @NoArgsConstructor
-@Message
 public class FileInfo  implements Serializable {
 
     /**

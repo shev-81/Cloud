@@ -2,7 +2,7 @@ package com.cloud.serverpak.handlers;
 
 import com.cloud.serverpak.MainHandler;
 import com.cloud.serverpak.interfaces.RequestHandler;
-import config.ServiceLocator;
+import com.cloud.serverpak.services.ServiceLocator;
 import lombok.Data;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class RegistryHandler {
         List<Constructor<?>> constructorHandlers = serviceLocator.getListConstructors();
         for(Constructor<?>  constructor: constructorHandlers){
             AbstractHandler<?> handler = (AbstractHandler<?>)constructor.newInstance(mainHandler);
-            mapHandlers.put(handler.getGeneric().getClass(), handler);
+            mapHandlers.put(handler.getGeneric(), handler);
         }
     }
 }

@@ -13,7 +13,6 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-@Message
 public class AuthMessage extends AbstractMessage{
 
     /**

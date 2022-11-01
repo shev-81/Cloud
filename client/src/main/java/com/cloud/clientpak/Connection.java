@@ -22,11 +22,6 @@ import java.util.concurrent.CountDownLatch;
 public class Connection implements Runnable {
 
     /**
-     * Configuration server
-     */
-    private final Config config;
-
-    /**
      * Server address.
      */
     private final String SERVER_ADDR;
@@ -59,7 +54,7 @@ public class Connection implements Runnable {
      * @param countDownLatch synchronization object.
      */
     public Connection(Controller controller, CountDownLatch countDownLatch) {
-        config = new ConfigFromFile("./../server.properties");
+        Config config = controller.getConfig();
         this.controller = controller;
         this.SERVER_ADDR = config.getAddress();
         this.SERVER_PORT = config.getPort();

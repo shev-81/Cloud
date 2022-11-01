@@ -42,10 +42,4 @@ public class RegUserHandler extends AbstractHandler<RegUserRequest> {
             }
         }
     }
-
-    @Override
-    public RegUserRequest getGeneric() {
-        return new RegUserRequest();
-    }
-
 }

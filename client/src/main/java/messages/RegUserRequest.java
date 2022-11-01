@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
  * Is a service message containing data about the registration of a new user.
  * */
 @Data
-@Message
 @NoArgsConstructor
 public class RegUserRequest extends AbstractMessage {
 

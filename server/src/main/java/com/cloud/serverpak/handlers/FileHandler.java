@@ -89,9 +89,4 @@ public class FileHandler extends AbstractHandler<FileMessage> {
             log.error(e.toString());
         }
     }
-
-    @Override
-    public FileMessage getGeneric() {
-        return new FileMessage();
-    }
 }

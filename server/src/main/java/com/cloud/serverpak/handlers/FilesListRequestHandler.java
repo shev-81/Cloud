@@ -53,9 +53,4 @@ public class FilesListRequestHandler extends AbstractHandler<FilesSizeRequest> {
             log.error(e.toString());
         }
     }
-
-    @Override
-    public FilesSizeRequest getGeneric() {
-        return new FilesSizeRequest();
-    }
 }

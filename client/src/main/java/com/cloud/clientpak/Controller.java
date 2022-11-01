@@ -1,6 +1,9 @@
 package com.cloud.clientpak;
 
 import com.cloud.clientpak.services.FileWorker;
+import com.cloud.clientpak.services.ServiceLocator;
+import config.Config;
+import config.ConfigFromFile;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Data;
@@ -27,6 +30,16 @@ import java.util.concurrent.CountDownLatch;
  */
 @Data
 public class Controller implements Initializable{
+
+    /**
+     * Configuration server
+     */
+    private Config config;
+
+    /**
+     * Service Locator Handlers.
+     */
+    ServiceLocator serviceLocator;
 
     /**
      * {@link Connection Network connection}
@@ -162,6 +175,8 @@ public class Controller implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        config = new ConfigFromFile("./../server.properties");
+        serviceLocator = new ServiceLocator(config);
         changeStageToAuth();
         this.fileList = new ArrayList<>();
         this.fileChooser = new FileChooser();

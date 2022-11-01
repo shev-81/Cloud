@@ -3,11 +3,8 @@ package com.cloud.clientpak.handlers;
 import com.cloud.clientpak.Controller;
 import com.cloud.clientpak.interfaces.RequestHandler;
 import lombok.Data;
-import messages.*;
-import org.reflections.Reflections;
 
 import java.lang.reflect.Constructor;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +21,7 @@ public class RegistryHandler{
     /**
      * A variable with a listener map.
      */
-    private Map<Class<?>, RequestHandler> mapHandlers;
+    private Map<Class<?>, RequestHandler<?>> mapHandlers;
 
     /**
      * Creates a collection {@link HashMap HashMap}, puts it in the form of keys
@@ -34,28 +31,22 @@ public class RegistryHandler{
     public RegistryHandler(Controller controller) {
         this.mapHandlers = new HashMap<>();
         try {
-            locateHandlers(controller);
+            regHandlers(controller);
         }catch (Exception e){
             throw new RuntimeException(e);
         }
     }
 
-    private void locateHandlers(Controller controller) throws Exception{
-        Reflections reflectionHandler = new Reflections(HANDLERS_PACKAGE);
-        Reflections reflectionMessages = new Reflections(MESSAGES_PACKAGE);
-
-        List<Class<?>> classesHandlers = new ArrayList<>(reflectionHandler.getTypesAnnotatedWith(Handler.class));
-        List<Class<?>> classesMessages = new ArrayList<>(reflectionMessages.getTypesAnnotatedWith(Message.class));
-
-        Map<String, Class<?>> mapMessages = new HashMap<>();
-        for(Class <?> classMessage : classesMessages){
-            mapMessages.put(classMessage.getSimpleName(), classMessage);
-        }
-        for(Class<?>  c: classesHandlers){
-            Constructor<?> constructor = c.getConstructor(Controller.class);
-            RequestHandler handler = (RequestHandler)constructor.newInstance(controller);
-            Class<?> msg = mapMessages.get(c.getAnnotation(Handler.class).message());
-            mapHandlers.put(msg, handler);
+    /**
+     * Register the listener method from the {@link HashMap HashMap}
+     * collection, by the class of the received message.
+     * @param controller
+     */
+    private void regHandlers(Controller controller) throws Exception{
+        List<Constructor<?>> constructorHandlers = controller.getServiceLocator().getListConstructors();
+        for(Constructor<?>  constructor: constructorHandlers){
+            AbstractHandler<?> handler = (AbstractHandler<?>)constructor.newInstance(controller);
+            mapHandlers.put(handler.getGeneric(), handler);
         }
     }
 

@@ -1,7 +1,6 @@
 package com.cloud.clientpak.handlers;
 
 import com.cloud.clientpak.Controller;
-import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 import javafx.application.Platform;
 import messages.RegUserRequest;
@@ -9,8 +8,8 @@ import messages.RegUserRequest;
 /**
  * Message Listener class {@link RegUserRequest RegUserRequest}.
  */
-@Handler(message = "RegUserRequest")
-public class RegUserHandler implements RequestHandler{
+@Handler
+public class RegUserHandler extends AbstractHandler <RegUserRequest>{
 
     /**
      * Variable {@link Controller Controller}
@@ -22,11 +21,7 @@ public class RegUserHandler implements RequestHandler{
      * @param controller application controller.
      */
     public RegUserHandler(Controller controller) {
-        this();
         this.controller =controller;
-    }
-
-    public RegUserHandler() {
     }
 
     /**
@@ -36,9 +31,8 @@ public class RegUserHandler implements RequestHandler{
      * @param msg the message object.
      */
     @Override
-    public void handle(ChannelHandlerContext ctx, Object msg) {
-        RegUserRequest regUserRequest = (RegUserRequest) msg;
-        if (regUserRequest.getNameUser().equals("none")) {
+    public void handle(ChannelHandlerContext ctx, RegUserRequest msg) {
+        if (msg.getNameUser().equals("none")) {
             Platform.runLater(() -> {
                 controller.getRegMessage().setText("Регистрация не пройдена!");
                 controller.getRegMessage().setVisible(true);

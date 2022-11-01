@@ -1,19 +1,18 @@
 package com.cloud.clientpak.interfaces;
 
-import com.cloud.clientpak.handlers.RegistryHandler;
 import io.netty.channel.ChannelHandlerContext;
 
 /**
- * The functional interface used in {@link RegistryHandler HandlerRegistry}
+ * The functional interface used in RegistryHandler
  * to save methods and call them.
  */
 @FunctionalInterface
-public interface RequestHandler{
+public interface RequestHandler<T> {
 
     /**
      * The method is called according to the context of the passed listener method.
      * @param ctx channel context.
      * @param msg the message object.
      */
-    void handle(ChannelHandlerContext ctx, Object msg);
+    void handle(ChannelHandlerContext ctx, T msg);
 }

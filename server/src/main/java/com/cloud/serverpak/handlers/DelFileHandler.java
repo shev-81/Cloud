@@ -60,9 +60,4 @@ public class DelFileHandler extends AbstractHandler<DelFileRequest> {
             log.error(e.toString());
         }
     }
-
-    @Override
-    public DelFileRequest getGeneric() {
-        return new DelFileRequest();
-    }
 }

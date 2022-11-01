@@ -1,7 +1,7 @@
-package com.cloud.serverpak.handlers;
+package com.cloud.clientpak.handlers;
 
 
-import com.cloud.serverpak.interfaces.RequestHandler;
+import com.cloud.clientpak.interfaces.RequestHandler;
 import io.netty.channel.ChannelHandlerContext;
 
 import java.lang.reflect.ParameterizedType;

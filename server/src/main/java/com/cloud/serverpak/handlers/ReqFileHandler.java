@@ -94,9 +94,4 @@ public class ReqFileHandler extends AbstractHandler<FileRequest> {
             }
         });
     }
-
-    @Override
-    public FileRequest getGeneric() {
-        return new FileRequest();
-    }
 }

@@ -13,8 +13,8 @@ import java.util.List;
  * Message Listener class {@link FilesSizeRequest FilesSizeRequest}.
  */
 @Log4j2
-@Handler(message = "FilesSizeRequest")
-public class FilesSizeRequestHandler implements RequestHandler{
+@Handler
+public class FilesSizeRequestHandler extends AbstractHandler <FilesSizeRequest>{
 
     /**
      * Variable {@link Controller Controller}
@@ -36,13 +36,10 @@ public class FilesSizeRequestHandler implements RequestHandler{
      * @param controller application controller.
      */
     public FilesSizeRequestHandler(Controller controller) {
-        this();
         this.controller = controller;
         this.check = false;
     }
 
-    public FilesSizeRequestHandler() {
-    }
 
     /**
      * After receiving a response from the server about the data in the cloud, updates
@@ -51,17 +48,16 @@ public class FilesSizeRequestHandler implements RequestHandler{
      * @param msg the message object.
      */
     @Override
-    public void handle(ChannelHandlerContext ctx, Object msg) {
+    public void handle(ChannelHandlerContext ctx, FilesSizeRequest msg) {
         if (controller.getFileWorker().isReWriteFileCheck()) {
             return;
         }
-        FilesSizeRequest filesObj = (FilesSizeRequest) msg;
-        controller.getFileWorker().setLastLoadSizeFiles(filesObj.getFilesSize());
-        double filesSize = (double) filesObj.getFilesSize() / 1024 / 1024 / 1024;
-        List<FileInfo> listFiles = filesObj.getListFiles();
+        controller.getFileWorker().setLastLoadSizeFiles(msg.getFilesSize());
+        double filesSize = (double) msg.getFilesSize() / 1024 / 1024 / 1024;
+        List<FileInfo> listFiles = msg.getListFiles();
         controller.setFileList(listFiles);
-        double partsCount = filesObj.getPartsCount();
-        double partNumber = filesObj.getPartNumber();
+        double partsCount = msg.getPartsCount();
+        double partNumber = msg.getPartNumber();
         if(partsCount != partNumber){
             percentProgBar =  (1 / partsCount) * partNumber;
             check = true;

@@ -15,7 +15,6 @@ import java.util.List;
  * the response to receiving parts of the files.
  */
 @Data
-@Message
 @NoArgsConstructor
 public class FilesSizeRequest extends AbstractMessage{
 

@@ -79,9 +79,4 @@ public class AuthHandler extends AbstractHandler <AuthMessage>{
             log.info("Авторизация НЕ пройдена.");
         }
     }
-
-    @Override
-    public AuthMessage getGeneric() {
-        return new AuthMessage();
-    }
 }
